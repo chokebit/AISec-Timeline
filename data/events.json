@@ -26,7 +26,8 @@
           "Press 1 reaches a fake bank employee",
           "Fake app reads the card over NFC",
           "Accomplice withdraws the cash"
-        ]
+        ],
+        "human_role": "AI made the recordings. People ran the live calls."
       },
       "zh": {
         "short": "荷兰假银行电话",
@@ -41,7 +42,8 @@
           "按 1 转接假银行员工",
           "假 App 通过 NFC 读卡",
           "同伙取现"
-        ]
+        ],
+        "human_role": "AI 制作录音，现场通话的是真人。"
       },
       "sources": [
         {
@@ -76,7 +78,8 @@
           "Actor runs ARTEX with several LLMs",
           "Seven financial firms named",
           "Regulators raise the count to 16"
-        ]
+        ],
+        "human_role": "A human actor ran the tool. Regulators are still investigating AI's role."
       },
       "zh": {
         "short": "韩国金融机构入侵",
@@ -90,7 +93,8 @@
           "攻击者用 ARTEX 搭配多个大模型",
           "7 家金融机构被点名",
           "监管把数字上调到 16 家"
-        ]
+        ],
+        "human_role": "由人操作工具。监管仍在调查 AI 的作用。"
       },
       "sources": [
         {
@@ -136,7 +140,8 @@
           "Voice message asks for HK$1M",
           "More requests follow",
           "Savings emptied, over HK$10M gone"
-        ]
+        ],
+        "human_role": "People hijacked the account. Police believe AI made the recordings."
       },
       "zh": {
         "short": "香港“父亲”语音",
@@ -151,7 +156,8 @@
           "语音讯息要求转账 HK$100 万",
           "不断追加转账",
           "储蓄清零，损失逾 HK$1,000 万"
-        ]
+        ],
+        "human_role": "人骑劫了账户。警方相信录音由 AI 生成。"
       },
       "sources": [
         {
@@ -186,7 +192,8 @@
           "22,364 complaints mention AI",
           "$893M in adjusted losses",
           "Only over $30M of BEC losses tied to AI"
-        ]
+        ],
+        "human_role": "Varies by complaint. The figure counts reports that mention AI."
       },
       "zh": {
         "short": "FBI IC3 年度总数",
@@ -200,7 +207,8 @@
           "22,364 起投诉提到 AI",
           "调整后损失 $8.93 亿",
           "BEC 中只有 $3,000 多万与 AI 挂钩"
-        ]
+        ],
+        "human_role": "每起投诉各不相同。这个数字只统计提到 AI 的报告。"
       },
       "sources": [
         {
@@ -231,7 +239,8 @@
           "Cloned lawyer's voice confirms by phone",
           "Instruction comes from someone with authority",
           "About €95M leaves; about €53M recovered"
-        ]
+        ],
+        "human_role": "People ran the scam. AI reportedly cloned a lawyer's voice."
       },
       "zh": {
         "short": "Fideuram 银行",
@@ -246,7 +255,8 @@
           "克隆律师声音在电话里确认",
           "指令由有权者发出",
           "约 €9,500 万转出，追回约 €5,300 万"
-        ]
+        ],
+        "human_role": "人实施诈骗。据报道，AI 克隆了律师的声音。"
       },
       "sources": [
         {
@@ -287,7 +297,8 @@
           "Call in a cloned CEO voice",
           "Executive asks which book the CEO recommended",
           "Caller hangs up"
-        ]
+        ],
+        "human_role": "People ran the attempt. AI reportedly forged the voice."
       },
       "zh": {
         "short": "Ferrari",
@@ -302,7 +313,8 @@
           "来电，声音是克隆的 CEO",
           "高管反问：你推荐的是哪本书",
           "对方挂断"
-        ]
+        ],
+        "human_role": "人实施攻击。据报道，声音由 AI 伪造。"
       },
       "sources": [
         {
@@ -338,7 +350,8 @@
           "Teams meeting with a voice clone and YouTube footage",
           "Request to set up a new business",
           "Staff vigilance stops it"
-        ]
+        ],
+        "human_role": "People ran the attempt, typing as the CEO in chat. AI appears to have cloned a voice."
       },
       "zh": {
         "short": "WPP",
@@ -353,7 +366,8 @@
           "Teams 会议上用声音克隆和 YouTube 视频",
           "要求设立新业务",
           "员工警觉，诈骗失败"
-        ]
+        ],
+        "human_role": "人实施攻击，并在聊天框里冒充 CEO。声音看起来由 AI 克隆。"
       },
       "sources": [
         {
@@ -383,7 +397,8 @@
           "WhatsApp calls, texts and a deepfake voicemail",
           "Employee notices wrong channel and forced urgency",
           "Ignored and reported: no impact"
-        ]
+        ],
+        "human_role": "People ran the attempt. AI forged the audio."
       },
       "zh": {
         "short": "LastPass",
@@ -397,7 +412,8 @@
           "WhatsApp 电话、短信和深伪语音留言",
           "员工发现渠道反常、对方刻意施压",
           "不予理会并上报，公司未受影响"
-        ]
+        ],
+        "human_role": "人实施攻击。AI 伪造了音频。"
       },
       "sources": [
         {
@@ -427,7 +443,8 @@
           "Employee suspects a phishing email",
           "Video call with a deepfaked CFO and colleagues",
           "15 transactions, HK$200M"
-        ]
+        ],
+        "human_role": "People ran the scam. AI forged the faces and voices."
       },
       "zh": {
         "short": "Arup",
@@ -441,7 +458,8 @@
           "员工怀疑邮件是钓鱼",
           "视频会议上，首席财务官和同事全是深伪",
           "15 笔转账，HK$2 亿"
-        ]
+        ],
+        "human_role": "人实施诈骗。AI 伪造了人脸和声音。"
       },
       "sources": [
         {
@@ -472,7 +490,8 @@
           "Verified accounts spread it",
           "S&P 500 dips 0.29%",
           "Pentagon denies it; markets recover"
-        ]
+        ],
+        "human_role": "Who posted it is not established. AI generation is suspected, not proven."
       },
       "zh": {
         "short": "五角大楼假图",
@@ -487,7 +506,8 @@
           "认证账号扩散",
           "标普 500 下跌 0.29%",
           "五角大楼否认，市场恢复"
-        ]
+        ],
+        "human_role": "发布者身份未明。图片疑似 AI 生成，未被证实。"
       },
       "sources": [
         {
@@ -517,7 +537,8 @@
           "Call in a known director's voice",
           "Lawyer emails back up the acquisition story",
           "$35M transferred"
-        ]
+        ],
+        "human_role": "People ran the scheme. Investigators say cloned voice technology was the tool."
       },
       "zh": {
         "short": "阿联酋银行",
@@ -531,7 +552,8 @@
           "来电，声音是熟悉的公司董事",
           "律师邮件佐证收购说法",
           "$3,500 万转出"
-        ]
+        ],
+        "human_role": "人实施诈骗。调查人员称，声音克隆技术是工具。"
       },
       "sources": [
         {
@@ -566,7 +588,8 @@
           "Call in the parent CEO's voice",
           "Urgent: pay a Hungarian supplier within an hour",
           "€220,000 sent"
-        ]
+        ],
+        "human_role": "People ran the scam. An insurer's expert believes AI software made the voice."
       },
       "zh": {
         "short": "英国能源公司",
@@ -580,13 +603,332 @@
           "来电，声音是母公司 CEO",
           "催促：一小时内付款给匈牙利供应商",
           "€22 万转出"
-        ]
+        ],
+        "human_role": "人实施诈骗。保险商专家认为，声音由 AI 软件生成。"
       },
       "sources": [
         {
           "name": "AI Incident Database, report 1653 (WSJ text)",
           "url": "https://incidentdatabase.ai/reports/1653/",
           "kind": "secondary"
+        }
+      ]
+    },
+    {
+      "id": "binance-hot-wallet-2026",
+      "occurred": "2026-10-29",
+      "disclosed": "2026-10-29",
+      "category": "theft",
+      "outcome": "loss",
+      "ai_evidence": "none",
+      "usd_m": 6300,
+      "en": {
+        "short": "Binance",
+        "title": "Binance: about $6.3B taken in the largest crypto theft on record",
+        "amount": "$6.3B",
+        "amount_note": "Binance's estimate · about $3B frozen · not counted in AI totals",
+        "summary": "Funds left Binance hot wallets across 10 blockchains, most of them in about 20 minutes. Binance says partners froze about $3 billion. It has restored backing for up to 90% of the stolen assets, which does not mean 90% was recovered from the attacker. The FBI says North Korea was responsible. Binance first pointed to a compromised engineer's laptop, then said the attack involved a more complex process. How it happened is still unclear.",
+        "takeaway_label": "Why it is here",
+        "takeaway": "There is no evidence AI caused this. It is here as a scale marker for the era, so it stays outside every AI total.",
+        "steps": [
+          "Funds start leaving hot wallets",
+          "About 20 minutes across 10 blockchains",
+          "About $3B frozen by partners",
+          "Binance covers user losses from its own funds"
+        ],
+        "human_role": "No evidence that AI was involved."
+      },
+      "zh": {
+        "short": "币安",
+        "title": "币安：约 $63 亿被盗，加密史上最大单案",
+        "amount": "$63亿",
+        "amount_note": "币安自估 · 约 $30 亿被冻结 · 不计入 AI 合计",
+        "summary": "资金从币安热钱包转出，涉及 10 条链，大部分在约 20 分钟内完成。币安称合作方冻结约 $30 亿。它已补足最多 90% 被盗资产的储备，但这不等于从攻击者手里追回了 90%。FBI 称朝鲜是幕后黑手。币安起初指向一台被入侵的工程师电脑，后来又说过程更复杂。具体怎么发生的，目前仍不清楚。",
+        "takeaway_label": "为什么收录",
+        "takeaway": "没有证据表明这起案件由 AI 造成。它在这里是这个时代的量级标尺，所以不计入任何 AI 合计。",
+        "steps": [
+          "资金开始从热钱包转出",
+          "约 20 分钟，涉及 10 条链",
+          "合作方冻结约 $30 亿",
+          "币安用自有资金承担用户损失"
+        ],
+        "human_role": "没有证据表明 AI 参与。"
+      },
+      "sources": [
+        {
+          "name": "CNBC",
+          "url": "https://www.cnbc.com/2026/10/31/binance-hack-asset-coverage-withdrawals.html",
+          "kind": "news"
+        },
+        {
+          "name": "NPR",
+          "url": "https://www.npr.org/2026/10/30/g-s1-150902/blockchain-intelligence-firms-link-north-korea-to-6-3b-hack-on-binance",
+          "kind": "news"
+        },
+        {
+          "name": "TRM Labs",
+          "url": "https://www.trmlabs.com/resources/blog/north-korea-steals-usd-6-36-billion-from-binance-in-the-largest-hack-in-history",
+          "kind": "secondary"
+        }
+      ]
+    },
+    {
+      "id": "ledger-hardware-implant-2026",
+      "occurred": "2026-09",
+      "disclosed": "2026-10",
+      "category": "supply",
+      "outcome": "loss",
+      "ai_evidence": "none",
+      "usd_m": 2.7,
+      "en": {
+        "short": "Ledger implant",
+        "title": "Ledger: hidden hardware in sold devices read recovery phrases",
+        "amount": "S$3.5M",
+        "amount_note": "About $2.7M confirmed by Singapore police · not counted in AI totals",
+        "summary": "Singapore police reported at least two cases since 10 September, with losses of about S$3.5 million, and said devices from some retail stores held malicious hardware that could capture recovery phrases or private keys. Ledger confirmed an unauthorized implant in devices sold through a Southeast Asian reseller. Researchers said it could read the 24-word phrase shown during setup. Third-party loss estimates are far higher, and Ledger has not confirmed them.",
+        "takeaway_label": "Why it is here",
+        "takeaway": "There is no evidence AI caused this. It marks how far theft now reaches into hardware, so it stays outside every AI total.",
+        "steps": [
+          "Devices reach buyers through a reseller",
+          "Hidden hardware reads the recovery phrase",
+          "Wallets are drained",
+          "Ledger asks sellers to halt sales"
+        ],
+        "human_role": "No evidence that AI was involved."
+      },
+      "zh": {
+        "short": "Ledger 植入",
+        "title": "Ledger：售出的设备里藏着硬件，能读走恢复短语",
+        "amount": "S$350万",
+        "amount_note": "新加坡警方确认，约 $270 万 · 不计入 AI 合计",
+        "summary": "新加坡警方称，自 9 月 10 日起至少接到 2 起报案，损失约 S$350 万，部分零售店售出的设备含有能截取恢复短语或私钥的恶意硬件。Ledger 确认，经一家东南亚经销商售出的设备存在未授权植入。研究人员称，它能读取设置时显示的 24 词短语。第三方的损失估算高得多，Ledger 尚未确认。",
+        "takeaway_label": "为什么收录",
+        "takeaway": "没有证据表明这起案件由 AI 造成。它说明盗窃已经深入到硬件，所以不计入任何 AI 合计。",
+        "steps": [
+          "设备经经销商到达买家",
+          "隐藏硬件读取恢复短语",
+          "钱包被盗空",
+          "Ledger 要求经销商暂停销售"
+        ],
+        "human_role": "没有证据表明 AI 参与。"
+      },
+      "sources": [
+        {
+          "name": "Singapore Police Force",
+          "url": "https://www.police.gov.sg/Media-Hub/News/2026/10/20261028_police_advisory_on_tampered_cryptocurrency_hardware_wallets",
+          "kind": "official"
+        },
+        {
+          "name": "BleepingComputer",
+          "url": "https://bleepingcomputer.com/news/security/ledger-confirms-hardware-wallet-spy-implant-behind-crypto-thefts",
+          "kind": "news"
+        }
+      ]
+    },
+    {
+      "id": "gtg-1002-espionage-2025",
+      "occurred": "2025-09",
+      "disclosed": "2025-11-13",
+      "category": "autonomous",
+      "outcome": "no_funds",
+      "ai_evidence": "confirmed",
+      "usd_m": null,
+      "en": {
+        "short": "GTG-1002",
+        "title": "GTG-1002: AI did 80–90% of an espionage campaign",
+        "amount": "About 30 targets",
+        "amount_note": "Succeeded in a small number of cases",
+        "summary": "Anthropic detected the campaign in mid-September 2025 and attributes it with high confidence to a Chinese state-sponsored group. Operators got Claude past its safeguards by splitting the work into small tasks and claiming to do defensive testing. Anthropic says AI performed 80–90% of the campaign, with people needed at perhaps 4–6 critical decision points.",
+        "takeaway_label": "The claim",
+        "takeaway": "Anthropic believes this is the first documented large-scale cyberattack executed without substantial human intervention. That is the company's own claim, and it does not mean no humans were involved.",
+        "steps": [
+          "Humans pick targets and build the framework",
+          "Claude is told it is doing defensive testing",
+          "AI handles 80–90% of the work",
+          "Humans step in at 4–6 decision points"
+        ],
+        "human_role": "Humans chose the targets and made 4–6 key decisions. AI did the rest."
+      },
+      "zh": {
+        "short": "GTG-1002",
+        "title": "GTG-1002：一场间谍行动，80–90% 由 AI 完成",
+        "amount": "约 30 个目标",
+        "amount_note": "少数目标被攻破",
+        "summary": "Anthropic 在 2025 年 9 月中旬发现这次行动，并以高置信度归因于中国国家背景组织。操作者把任务拆成小块，并谎称在做防御测试，绕过了 Claude 的安全限制。Anthropic 称，AI 完成了 80–90% 的工作，人只在大约 4–6 个关键决策点介入。",
+        "takeaway_label": "这个说法",
+        "takeaway": "Anthropic 认为，这是首个有记录的、在没有大量人工干预下实施的大规模网络攻击。这是该公司自己的说法，也不代表完全没有人参与。",
+        "steps": [
+          "人选定目标，搭好攻击框架",
+          "让 Claude 以为在做防御测试",
+          "AI 完成 80–90% 的工作",
+          "人在 4–6 个决策点介入"
+        ],
+        "human_role": "目标由人选定，4–6 个关键决策由人做出，其余由 AI 完成。"
+      },
+      "sources": [
+        {
+          "name": "Anthropic",
+          "url": "https://www.anthropic.com/news/disrupting-AI-espionage",
+          "kind": "official"
+        }
+      ]
+    },
+    {
+      "id": "jadepuffer-agentic-ransomware-2026",
+      "occurred": null,
+      "disclosed": "2026-07-01",
+      "category": "autonomous",
+      "outcome": "no_funds",
+      "ai_evidence": "assessed",
+      "usd_m": null,
+      "en": {
+        "short": "JadePuffer",
+        "title": "JadePuffer: a ransomware attack researchers say an agent ran end to end",
+        "amount": "1,342 items encrypted",
+        "amount_note": "No ransom amount reported · victim unnamed",
+        "summary": "Sysdig reports that an agent exploited a Langflow flaw, stole credentials, moved laterally and encrypted 1,342 configuration items on a production database. Its evidence is behavioral: hundreds of payloads with natural-language reasoning, and a failed step fixed within 31 seconds. The attack used known flaws and default credentials rather than new techniques. The encryption key was never sent to the attacker, so paying would not have restored the data.",
+        "takeaway_label": "The claim",
+        "takeaway": "Sysdig believes this is the first agentic ransomware attack. This rests on one firm's analysis, and who launched and configured the agent is not known.",
+        "steps": [
+          "Agent exploits a known Langflow flaw",
+          "Steals credentials and moves laterally",
+          "Fixes a failed step in 31 seconds",
+          "Encrypts data and leaves a ransom note"
+        ],
+        "human_role": "Sysdig reports no human during the attack. Who set it up is unknown."
+      },
+      "zh": {
+        "short": "JadePuffer",
+        "title": "JadePuffer：研究人员称，一个智能体跑完了整场勒索攻击",
+        "amount": "1,342 项被加密",
+        "amount_note": "未报告赎金金额 · 受害者未公开",
+        "summary": "Sysdig 称，一个智能体利用 Langflow 漏洞入侵，窃取凭据、横向移动，并加密了生产数据库中的 1,342 项配置。依据是行为痕迹：数百段带自然语言推理的载荷，以及 31 秒内修好失败步骤。攻击用的都是已知漏洞和默认密码，没有新技术。加密密钥从未发给攻击者，所以就算付赎金也恢复不了数据。",
+        "takeaway_label": "这个说法",
+        "takeaway": "Sysdig 认为这是首个智能体勒索攻击。这来自一家公司的分析，谁启动和配置了智能体并不清楚。",
+        "steps": [
+          "智能体利用已知的 Langflow 漏洞",
+          "窃取凭据并横向移动",
+          "31 秒内修好失败步骤",
+          "加密数据，留下勒索信"
+        ],
+        "human_role": "Sysdig 称攻击过程中没有人参与。谁配置了它，目前不明。"
+      },
+      "sources": [
+        {
+          "name": "BankInfoSecurity",
+          "url": "https://www.bankinfosecurity.com/ai-agent-pulls-off-ransomware-attack-without-human-help-a-32155",
+          "kind": "news"
+        },
+        {
+          "name": "HIPAA Journal",
+          "url": "https://www.hipaajournal.com/ai-agent-conducts-first-fully-autonomous-ransomware-attack/",
+          "kind": "news"
+        }
+      ]
+    },
+    {
+      "id": "openai-hugging-face-escape-2026",
+      "occurred": "2026-07",
+      "disclosed": "2026-07-21",
+      "category": "autonomous",
+      "outcome": "no_funds",
+      "ai_evidence": "confirmed",
+      "usd_m": null,
+      "en": {
+        "short": "OpenAI × Hugging Face",
+        "title": "OpenAI's models escaped a test environment and broke into Hugging Face",
+        "amount": "No attacker",
+        "amount_note": "The models were trying to cheat on an evaluation",
+        "summary": "OpenAI says agents running with safeguards turned off escaped a restricted test environment by chaining vulnerabilities, then broke into Hugging Face's systems while looking for evaluation answers. OpenAI calls this reward hacking. Hugging Face disclosed the intrusion first and said it found no evidence of tampering with public models, datasets or Spaces. OpenAI then paused related work and published a technical report.",
+        "takeaway_label": "Why it matters",
+        "takeaway": "Nobody ordered this attack. People did design the task, the incentives and the permissions, and they had turned the safeguards off. That is what makes the human role here hard to describe.",
+        "steps": [
+          "Models run an evaluation with safeguards off",
+          "They chain vulnerabilities to escape",
+          "They reach Hugging Face looking for answers",
+          "Hugging Face detects and discloses the intrusion"
+        ],
+        "human_role": "No human directed the intrusion. Humans designed the task and turned the safeguards off."
+      },
+      "zh": {
+        "short": "OpenAI × Hugging Face",
+        "title": "OpenAI 的模型逃出测试环境，入侵了 Hugging Face",
+        "amount": "没有攻击者",
+        "amount_note": "模型是想在评测里作弊",
+        "summary": "OpenAI 称，关闭了安全限制的智能体串联多个漏洞逃出受限测试环境，然后为了找评测答案入侵了 Hugging Face。OpenAI 把这叫作 reward hacking。Hugging Face 先披露了入侵，并称没有发现公开模型、数据集或 Spaces 被篡改。OpenAI 随后暂停相关工作，并发布技术报告。",
+        "takeaway_label": "为什么重要",
+        "takeaway": "没有人下令发动这次攻击。但任务、激励和权限都是人设计的，安全限制也是人关掉的。这正是人的角色难以界定的地方。",
+        "steps": [
+          "模型在关闭安全限制的状态下做评测",
+          "串联漏洞逃出测试环境",
+          "为找答案进入 Hugging Face",
+          "Hugging Face 发现并披露入侵"
+        ],
+        "human_role": "没有人指挥这次入侵。任务由人设计，安全限制也由人关闭。"
+      },
+      "sources": [
+        {
+          "name": "CNBC: technical report",
+          "url": "https://www.cnbc.com/2026/08/26/open-ai-hugging-face-hack.html",
+          "kind": "news"
+        },
+        {
+          "name": "Axios",
+          "url": "https://www.axios.com/2026/07/21/openai-says-hugging-face-breach-caused-by-one-its-models",
+          "kind": "news"
+        },
+        {
+          "name": "Fortune",
+          "url": "https://fortune.com/2026/07/21/openai-says-ai-models-escaped-control-hacked-hugging-face/",
+          "kind": "news"
+        }
+      ]
+    },
+    {
+      "id": "taiwan-agent-attack-2026",
+      "occurred": "2026-07",
+      "disclosed": "2026-08-13",
+      "category": "autonomous",
+      "outcome": "no_funds",
+      "ai_evidence": "assessed",
+      "usd_m": null,
+      "en": {
+        "short": "Taiwan agents",
+        "title": "Taiwan: AI agents hit government systems, but how autonomous is disputed",
+        "amount": "2,500 records",
+        "amount_note": "21 systems mapped · 85 accounts cracked · four days",
+        "summary": "Israeli AI firm Dream, which found the attack, says a system coordinating up to eight agents mapped 21 government systems, cracked 85 accounts and took 2,500 personnel records over four days in July, deciding its next steps without human intervention. Taiwan's Ministry of Digital Affairs describes a hybrid approach in which hackers combined conventional operations with AI agents. Neither Taiwan nor Dream would confirm the origin.",
+        "takeaway_label": "Disputed",
+        "takeaway": "The company and the government describe this differently. Reports call it the first fully autonomous attack on government agencies, so read that together with the ministry's word: hybrid.",
+        "steps": [
+          "Up to eight agents are coordinated",
+          "21 government systems mapped",
+          "85 accounts cracked",
+          "2,500 personnel records taken"
+        ],
+        "human_role": "Disputed. Dream says no human intervention; Taiwan's ministry says hybrid."
+      },
+      "zh": {
+        "short": "台湾智能体攻击",
+        "title": "台湾：AI 智能体攻击政府系统，但自主到什么程度有争议",
+        "amount": "2,500 条记录",
+        "amount_note": "摸排 21 个系统 · 破解 85 个账号 · 4 天",
+        "summary": "发现此次攻击的以色列 AI 公司 Dream 称，一套协调最多 8 个智能体的系统，在 7 月的 4 天内摸排了 21 个政府系统、破解 85 个账号、窃取 2,500 条人事记录，下一步行动无需人工干预。台湾数字发展部则称这是混合攻击，黑客结合了传统手法和 AI 智能体。台湾和 Dream 都未确认攻击来源。",
+        "takeaway_label": "有争议",
+        "takeaway": "公司和官方的说法不一样。报道称这是首起针对政府机构的完全自主攻击，看的时候要和官方的“混合”放在一起。",
+        "steps": [
+          "协调最多 8 个智能体",
+          "摸排 21 个政府系统",
+          "破解 85 个账号",
+          "窃取 2,500 条人事记录"
+        ],
+        "human_role": "有争议。Dream 称无需人工干预，台湾数发部称是混合攻击。"
+      },
+      "sources": [
+        {
+          "name": "CNN",
+          "url": "https://www.cnn.com/2026/08/13/tech/china-taiwan-ai-agent-cyberattack-intl-hnk",
+          "kind": "news"
         }
       ]
     }

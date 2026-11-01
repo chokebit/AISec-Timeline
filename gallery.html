@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <link rel="icon" href="data:," />
+    <title>AI 乱纪元</title>
+    <meta name="description" content="A walk-through chronicle of AI security: major losses, turning points and the moments that broke expectations, with the human role in each one spelled out." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700;900&family=Noto+Sans+SC:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <style>
+      :root{--bg:#f7f6f1;--ink:#17171a;--dim:#6d6d70;--line:#17171a;--panel:rgba(247,246,241,.86);--red:#c8281c;
+        --serif:"Noto Serif SC","Songti SC","STSong",serif;--sans:"Noto Sans SC",-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;--mono:"IBM Plex Mono",ui-monospace,monospace}
+      *{box-sizing:border-box}
+      html,body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-text-size-adjust:100%}
+      a{color:inherit}
+      button{font:inherit;color:inherit;cursor:pointer}
+      :focus-visible{outline:2px solid var(--red);outline-offset:2px}
+      [hidden]{display:none!important}
+
+      .world{position:fixed;inset:0;z-index:0;overflow:hidden;perspective:640px;perspective-origin:50% 46%;background:var(--bg)}
+      .scene{position:absolute;left:50%;top:46%;width:0;height:0;transform-style:preserve-3d;will-change:transform}
+      .plane{position:absolute;transform-style:preserve-3d;backface-visibility:visible;
+        background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:160px 160px;opacity:.2}
+      .frame{position:absolute;left:-150px;top:-190px;width:300px;height:380px;background:var(--bg);border:1.5px solid var(--ink);padding:14px;display:flex;flex-direction:column;gap:8px;backface-visibility:visible}
+      .frame svg{flex:1;min-height:0;width:100%;color:var(--ink)}
+      .frame.loss svg{color:var(--red)}
+      .frame b{font-family:var(--serif);font-weight:900;font-size:29px;line-height:1.1;white-space:nowrap;overflow:hidden}
+      .frame.loss b{color:var(--red)}
+      .frame span{font-family:var(--mono);font-size:12px;color:var(--dim)}
+      .fog{position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 50% 46%,var(--bg) 0,var(--bg) 3%,transparent 16%)}
+
+      .bar{position:fixed;z-index:20;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:14px 22px;pointer-events:none}
+      .bar>*{pointer-events:auto}
+      .mark{appearance:none;border:0;background:none;padding:0;font-family:var(--serif);font-weight:700;font-size:16px;letter-spacing:.04em}
+      .lang{display:flex;gap:12px;font-family:var(--mono);font-size:13px}
+      .lang button{appearance:none;border:0;background:none;padding:0;color:var(--dim)}
+      .lang button[aria-pressed="true"]{color:var(--ink);text-decoration:underline;text-underline-offset:4px}
+
+      .intro{position:fixed;z-index:10;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;pointer-events:none}
+      .intro h1{margin:0;font-family:var(--serif);font-weight:400;font-size:clamp(46px,8vw,92px);line-height:1.15;letter-spacing:.06em}
+      .intro .en{margin-top:6px;font-size:clamp(18px,2.2vw,26px)}
+      .intro .typed{margin-top:16px;min-height:1.7em;font-size:clamp(15px,1.5vw,18px);color:var(--dim)}
+      .intro .typed::after{content:"|";margin-left:2px;animation:blink 1s steps(1) infinite}
+      @keyframes blink{50%{opacity:0}}
+      .intro .hint{margin-top:30px;font-family:var(--mono);font-size:12.5px;color:var(--dim);display:flex;flex-direction:column;gap:6px;align-items:center}
+      .intro .hint i{font-style:normal;animation:bob 1.8s ease-in-out infinite}
+      @keyframes bob{50%{transform:translateY(5px)}}
+
+      .label{position:fixed;z-index:12;left:22px;bottom:18px;font-family:var(--mono);font-size:12.5px;color:var(--dim);pointer-events:none}
+      .label b{display:block;font-family:var(--serif);font-weight:400;font-size:30px;color:var(--ink)}
+      .nav{position:fixed;z-index:12;right:22px;bottom:20px;display:flex;gap:8px}
+      .nav button{appearance:none;width:38px;height:34px;border:1px solid var(--ink);background:var(--panel);font-family:var(--mono)}
+      .nav button:disabled{opacity:.3;cursor:default}
+
+      .panel{position:fixed;z-index:15;left:50%;top:50%;width:min(600px,calc(100vw - 32px));max-height:min(74vh,600px);overflow-y:auto;padding:22px 26px;background:var(--panel);border:1px solid var(--ink);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);transform:translate(-50%,-50%);opacity:0;pointer-events:none;overscroll-behavior:contain}
+      .panel.on{opacity:1;pointer-events:auto}
+      .p-meta{font-family:var(--mono);font-size:12px;color:var(--dim);display:flex;flex-wrap:wrap;gap:4px 12px}
+      .p-meta em{font-style:normal;color:var(--ink);border:1px solid currentColor;padding:0 6px}
+      .p-meta em.none{color:var(--red)}
+      .panel h2{margin:9px 0 0;font-family:var(--serif);font-weight:700;font-size:clamp(20px,2.4vw,25px);line-height:1.4;text-wrap:pretty}
+      .p-amt{margin-top:7px;font-family:var(--serif);font-weight:900;font-size:clamp(32px,4.4vw,46px);line-height:1.1}
+      .p-amt.loss{color:var(--red)}
+      .p-note{margin-top:5px;font-size:13.5px;color:var(--dim);line-height:1.6}
+      .p-human{margin-top:13px;padding-top:11px;border-top:1px solid var(--ink);font-size:15px;line-height:1.7}
+      .p-human b{display:block;font-family:var(--mono);font-size:11.5px;font-weight:500;color:var(--dim)}
+      .panel details{margin-top:11px;font-size:14.5px;line-height:1.8}
+      .panel summary{cursor:pointer;font-family:var(--mono);font-size:12.5px;color:var(--dim)}
+      .panel details p{margin:7px 0 0}
+      .panel details ol{margin:7px 0 0;padding-left:20px}
+      .p-src{margin-top:11px;display:flex;flex-wrap:wrap;gap:3px 13px;font-size:12.5px;color:var(--dim)}
+      .p-src a{text-underline-offset:3px}
+
+      .track{position:relative;pointer-events:none}
+      .error{position:fixed;z-index:30;inset:auto 0 40%;text-align:center}
+      @media (max-width:640px){
+        .world{perspective:420px}
+        .panel{top:auto;bottom:66px;transform:translateX(-50%);max-height:62vh;padding:15px 16px}
+        .label{bottom:16px;left:16px}.label b{font-size:22px}
+        .nav{right:16px;bottom:16px}
+        .bar{padding:12px 16px}
+      }
+      @media (prefers-reduced-motion:reduce){.intro .hint i,.intro .typed::after{animation:none}}
+    </style>
+  </head>
+  <body>
+    <div class="track" id="track"></div>
+    <div class="world" id="world" aria-hidden="true">
+      <div class="scene" id="scene"></div>
+      <div class="fog"></div>
+    </div>
+
+    <div class="bar">
+      <button type="button" class="mark" id="mark"></button>
+      <div class="lang" id="lang">
+        <button type="button" data-lang="zh">中文</button>
+        <button type="button" data-lang="en">EN</button>
+      </div>
+    </div>
+
+    <section class="intro" id="intro">
+      <h1 id="iTitle"></h1>
+      <div class="en" id="iEn"></div>
+      <div class="typed" id="iTyped"></div>
+      <div class="hint"><span id="iHint"></span><i>↓</i></div>
+    </section>
+
+    <div class="label" id="label"></div>
+    <article class="panel" id="panel"></article>
+    <div class="nav">
+      <button type="button" id="prev" aria-label="Previous">←</button>
+      <button type="button" id="next" aria-label="Next">→</button>
+    </div>
+
+    <script>
+      var UI = {
+        zh: { lang: "zh-CN", title: "AI 乱纪元", en: "AI Chaotic Era", typed: ["AI 安全编年史。", "记录金钱、失控和突破想象的时刻。", "每一条都写清楚：人，还在不在。"], hint: "向前走", mark: "AI 乱纪元",
+          human: "人在哪里", more: "展开经过", trace: "攻击链路",
+          ev: { confirmed: "AI 已确认", assessed: "AI 研判", self_reported: "AI 自报", none: "无 AI 证据" },
+          occurred: "发生 ", disclosed: "披露 " },
+        en: { lang: "en", title: "AI Chaotic Era", en: "A security chronicle", typed: ["A chronicle of AI security.", "Money, loss of control, and what nobody expected.", "Each entry says it plainly: were humans still there?"], hint: "Walk forward", mark: "AI Chaotic Era",
+          human: "Where the humans were", more: "Read the details", trace: "Attack trace",
+          ev: { confirmed: "AI confirmed", assessed: "AI assessed", self_reported: "AI self-reported", none: "No AI evidence" },
+          occurred: "Occurred ", disclosed: "Disclosed " }
+      };
+      var STEP = 900, W = 1120, H = 640, PAD = 700;
+      var ORDER = [], lang = pickLang(), cur = -2, typeTimer = null;
+
+      function pickLang() {
+        var q = new URLSearchParams(location.search).get("lang");
+        if (q === "en" || q === "zh") return q;
+        try { var s = localStorage.getItem("aisec-lang"); if (s === "en" || s === "zh") return s; } catch (e) {}
+        return /^zh/i.test(navigator.language || "") ? "zh" : "en";
+      }
+      function $(id) { return document.getElementById(id); }
+      function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+      function sortDate(e) { return e.occurred || e.disclosed; }
+      function mix(a, b, t) { return a.map(function (v, i) { return Math.round(v + (b[i] - v) * t); }); }
+      function rgb(c) { return "rgb(" + c.join(",") + ")"; }
+      function dateText(d) {
+        var p = d.split("-");
+        if (lang === "zh") return p[0] + " 年" + (p[1] ? " " + Number(p[1]) + " 月" : "") + (p[2] ? " " + Number(p[2]) + " 日" : "");
+        var m = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        return (p[2] ? Number(p[2]) + " " : "") + (p[1] ? m[Number(p[1]) - 1] + " " : "") + p[0];
+      }
+      function dateLine(e) {
+        var t = UI[lang], o = [];
+        if (e.occurred) o.push(t.occurred + dateText(e.occurred));
+        if (e.disclosed && e.disclosed !== e.occurred) o.push(t.disclosed + dateText(e.disclosed));
+        return o.join(" · ");
+      }
+
+      /* 展品是代码生成的线描：越靠后的事件，线条越乱 */
+      function art(ev, i) {
+        var h = 7, k, s = "";
+        for (k = 0; k < ev.id.length; k++) h = (h * 31 + ev.id.charCodeAt(k)) >>> 0;
+        function r() { h = (h * 1664525 + 1013904223) >>> 0; return h / 4294967296; }
+        var chaos = i / Math.max(1, ORDER.length - 1), lines = 15;
+        for (k = 0; k < lines; k++) {
+          var y = 12 + k * (176 / (lines - 1)), d = "M0 " + y.toFixed(1), x;
+          for (x = 10; x <= 240; x += 10) {
+            var wob = (r() - 0.5) * (1 + chaos * 34) * Math.sin(x / 240 * Math.PI);
+            d += "L" + x + " " + (y + wob).toFixed(1);
+          }
+          s += '<path d="' + d + '"/>';
+        }
+        return '<svg viewBox="0 0 240 200" preserveAspectRatio="none" fill="none" stroke="currentColor" stroke-width=".9" aria-hidden="true">' + s + "</svg>";
+      }
+
+      function build() {
+        var L = (ORDER.length + 3) * STEP, html = "";
+        var flat = "width:" + W + "px;height:" + L + "px;transform-origin:0 0;";
+        html += '<div class="plane" style="' + flat + "transform:translate3d(" + (-W / 2) + "px," + H / 2 + 'px,0) rotateX(-90deg)"></div>';
+        html += '<div class="plane" style="' + flat + "transform:translate3d(" + (-W / 2) + "px," + (-H / 2) + 'px,0) rotateX(-90deg)"></div>';
+        var side = "width:" + L + "px;height:" + H + "px;";
+        html += '<div class="plane" style="' + side + "transform:translate3d(" + (-W / 2) + "px," + (-H / 2) + "px,0) rotateY(90deg);transform-origin:0 0\"></div>";
+        html += '<div class="plane" style="' + side + "transform:translate3d(" + W / 2 + "px," + (-H / 2) + "px,0) rotateY(90deg);transform-origin:0 0\"></div>";
+        ORDER.forEach(function (ev, i) {
+          var right = i % 2 === 1, x = (right ? W / 2 - 6 : -W / 2 + 6), z = -(i + 1) * STEP - PAD + 260;
+          var tilt = (i / ORDER.length) * (i % 3 - 1) * 5;
+          html += '<div class="frame ' + (ev.outcome === "loss" ? "loss" : "") + '" data-f="' + i + '" style="transform:translate3d(' + x + "px,0," + z + "px) rotateY(" + (right ? -90 : 90) + "deg) rotateZ(" + tilt.toFixed(2) + 'deg)">' +
+            art(ev, i) + "<b></b><span></span></div>";
+        });
+        $("scene").innerHTML = html;
+        $("track").style.height = (ORDER.length + 1) * 100 + 100 + "vh";
+      }
+
+      function fillText() {
+        var t = UI[lang];
+        document.documentElement.lang = t.lang;
+        document.title = t.title;
+        $("mark").textContent = t.mark;
+        $("iTitle").textContent = t.title;
+        $("iEn").textContent = t.en;
+        $("iHint").textContent = t.hint;
+        [].forEach.call($("lang").children, function (b) { b.setAttribute("aria-pressed", b.dataset.lang === lang ? "true" : "false"); });
+        [].forEach.call(document.querySelectorAll(".frame"), function (f) {
+          var e = ORDER[Number(f.dataset.f)];
+          f.querySelector("b").textContent = e[lang].amount;
+          f.querySelector("span").textContent = sortDate(e).slice(0, 4) + " · " + e[lang].short;
+        });
+        typeLine();
+        cur = -2;
+        onScroll();
+      }
+
+      function typeLine() {
+        clearTimeout(typeTimer);
+        var lines = UI[lang].typed, li = 0, ch = 0, el = $("iTyped");
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) { el.textContent = lines[0]; return; }
+        (function tick() {
+          var text = lines[li];
+          el.textContent = text.slice(0, ch);
+          if (ch < text.length) { ch++; typeTimer = setTimeout(tick, 70); }
+          else { typeTimer = setTimeout(function () { ch = 0; li = (li + 1) % lines.length; tick(); }, 1700); }
+        })();
+      }
+
+      function panelHtml(e) {
+        var l = e[lang], t = UI[lang];
+        var src = e.sources.map(function (s) {
+          return '<a href="' + esc(encodeURI(s.url)) + '" target="_blank" rel="noopener noreferrer">' + esc(s.name) + " ↗</a>";
+        }).join("");
+        return '<div class="p-meta"><span>' + esc(dateLine(e)) + '</span><em class="' + (e.ai_evidence === "none" ? "none" : "") + '">' + esc(t.ev[e.ai_evidence]) + "</em></div>" +
+          "<h2>" + esc(l.title) + "</h2>" +
+          '<div class="p-amt ' + (e.outcome === "loss" ? "loss" : "") + '">' + esc(l.amount) + "</div>" +
+          '<div class="p-note">' + esc(l.amount_note) + "</div>" +
+          '<div class="p-human"><b>' + esc(t.human) + "</b>" + esc(l.human_role) + "</div>" +
+          "<details><summary>" + esc(t.more) + "</summary><p>" + esc(l.summary) + "</p><ol>" +
+            l.steps.map(function (s) { return "<li>" + esc(s) + "</li>"; }).join("") + "</ol><p><b>" + esc(l.takeaway_label) + "</b> " + esc(l.takeaway) + "</p></details>" +
+          '<div class="p-src">' + src + "</div>";
+      }
+
+      var PAPER = [247, 246, 241], VOID = [9, 9, 11], INK = [23, 23, 26], BONE = [232, 231, 224];
+      function onScroll() {
+        var vh = window.innerHeight, pos = window.scrollY / vh - 1;     /* pos<0 在门口；pos=i 站在第 i 件展品前 */
+        var n = ORDER.length, p = Math.max(0, Math.min(1, pos / (n - 1)));
+        var z = (Math.max(-1, pos) + 1) * STEP;
+        var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        var sway = reduce ? 0 : Math.pow(p, 2.2) * 5 * Math.sin(pos * 1.7);
+        $("scene").style.transform = "translateZ(" + (z + 120) + "px) rotateZ(" + sway.toFixed(2) + "deg)";
+
+        /* 恒纪元到乱纪元：从白纸走进黑暗 */
+        var e = Math.max(0, Math.min(1, (p - 0.5) / 0.3)), dark = e * e * (3 - 2 * e);
+        var root = document.documentElement.style, night = dark > 0.5;
+        var bg = mix(PAPER, VOID, dark), ink = night ? BONE : INK;
+        root.setProperty("--bg", rgb(bg));
+        root.setProperty("--ink", rgb(ink));
+        root.setProperty("--line", rgb(ink));
+        root.setProperty("--dim", night ? "rgb(160,160,160)" : "rgb(96,96,100)");
+        root.setProperty("--panel", "rgba(" + (night ? VOID : PAPER).join(",") + ",.93)");
+        root.setProperty("--red", night ? "rgb(255,88,70)" : "rgb(200,40,28)");
+
+        var fade = Math.max(0, Math.min(1, (-0.62 - pos) / 0.3));
+        $("intro").style.opacity = fade;
+        $("intro").hidden = fade === 0;
+
+        var i = Math.round(pos);
+        var near = i >= 0 && i < n && Math.abs(pos - i) < 0.34;
+        var want = near ? i : -1;
+        if (want !== cur) {
+          cur = want;
+          $("panel").classList.toggle("on", near);
+          if (near) { $("panel").innerHTML = panelHtml(ORDER[i]); $("panel").scrollTop = 0; }
+          history.replaceState(null, "", location.pathname + location.search + (near ? "#" + ORDER[i].id : ""));
+        }
+        var idx = Math.max(0, Math.min(n - 1, i));
+        $("label").innerHTML = pos < -0.5 ? "" : "<b>" + esc(sortDate(ORDER[idx]).slice(0, 4)) + "</b>" + String(idx + 1).padStart(2, "0") + " / " + n;
+        $("prev").disabled = pos <= -0.9;
+        $("next").disabled = pos >= n - 1.05;
+      }
+
+      function jump(i) {
+        var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        window.scrollTo({ top: (i + 1) * window.innerHeight, behavior: reduce ? "auto" : "smooth" });
+      }
+      function nowIndex() { return Math.round(window.scrollY / window.innerHeight - 1); }
+
+      window.addEventListener("scroll", onScroll, { passive: true });
+      window.addEventListener("resize", onScroll);
+      $("prev").addEventListener("click", function () { jump(Math.max(-1, nowIndex() - 1)); });
+      $("next").addEventListener("click", function () { jump(Math.min(ORDER.length - 1, nowIndex() + 1)); });
+      $("mark").addEventListener("click", function () { jump(-1); });
+      document.addEventListener("keydown", function (e) {
+        if (e.altKey || e.ctrlKey || e.metaKey) return;
+        if (e.key === "ArrowRight" || e.key === "ArrowDown") { e.preventDefault(); jump(Math.min(ORDER.length - 1, nowIndex() + 1)); }
+        if (e.key === "ArrowLeft" || e.key === "ArrowUp") { e.preventDefault(); jump(Math.max(-1, nowIndex() - 1)); }
+      });
+      $("lang").addEventListener("click", function (e) {
+        var v = e.target.dataset.lang;
+        if (!v) return;
+        lang = v;
+        try { localStorage.setItem("aisec-lang", v); } catch (err) {}
+        fillText();
+      });
+
+      fetch("data/events.json")
+        .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+        .then(function (d) {
+          ORDER = d.events.slice().sort(function (a, b) {
+            var x = sortDate(a), y = sortDate(b);
+            return x === y ? (a.disclosed < b.disclosed ? -1 : 1) : x < y ? -1 : 1;
+          });
+          var h = decodeURIComponent(location.hash.slice(1));
+          var at = ORDER.map(function (e) { return e.id; }).indexOf(h);
+          build();
+          fillText();
+          if (at >= 0) window.scrollTo(0, (at + 1) * window.innerHeight);
+          onScroll();
+        })
+        .catch(function () {
+          var p = document.createElement("p");
+          p.className = "error";
+          p.textContent = "Could not load data/events.json. Open this page through a web server.";
+          document.body.appendChild(p);
+        });
+    </script>
+  </body>
+</html>

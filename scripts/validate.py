@@ -7,11 +7,11 @@ from pathlib import Path
 
 DATA = Path(__file__).resolve().parent.parent / "data" / "events.json"
 DATE = re.compile(r"^\d{4}(-\d{2}(-\d{2})?)?$")
-CATEGORIES = {"voice", "video", "breach", "market", "aggregate"}
+CATEGORIES = {"voice", "video", "breach", "market", "aggregate", "autonomous", "theft", "supply"}
 OUTCOMES = {"loss", "blocked", "no_funds", "aggregate"}
-EVIDENCE = {"confirmed", "assessed", "self_reported"}
+EVIDENCE = {"confirmed", "assessed", "self_reported", "none"}
 KINDS = {"official", "news", "secondary"}
-TEXT = ("short", "title", "amount", "amount_note", "summary", "takeaway_label", "takeaway")
+TEXT = ("short", "title", "amount", "amount_note", "summary", "takeaway_label", "takeaway", "human_role")
 
 
 def check(ev):
