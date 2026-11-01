@@ -117,11 +117,11 @@
       var UI = {
         zh: { lang: "zh-CN", title: "AI 乱纪元", en: "AI Chaotic Era", typed: ["AI 安全编年史。", "记录金钱、失控和突破想象的时刻。", "每一条都写清楚：人，还在不在。"], hint: "向前走", mark: "AI 乱纪元",
           human: "人在哪里", more: "展开经过", trace: "攻击链路",
-          ev: { confirmed: "AI 已确认", assessed: "AI 研判", self_reported: "AI 自报", none: "无 AI 证据" },
+          ev: { confirmed: "AI 已确认", assessed: "AI 研判", self_reported: "AI 自报", unknown: "AI 参与未明" },
           occurred: "发生 ", disclosed: "披露 " },
         en: { lang: "en", title: "AI Chaotic Era", en: "A security chronicle", typed: ["A chronicle of AI security.", "Money, loss of control, and what nobody expected.", "Each entry says it plainly: were humans still there?"], hint: "Walk forward", mark: "AI Chaotic Era",
           human: "Where the humans were", more: "Read the details", trace: "Attack trace",
-          ev: { confirmed: "AI confirmed", assessed: "AI assessed", self_reported: "AI self-reported", none: "No AI evidence" },
+          ev: { confirmed: "AI confirmed", assessed: "AI assessed", self_reported: "AI self-reported", unknown: "AI role unknown" },
           occurred: "Occurred ", disclosed: "Disclosed " }
       };
       var STEP = 900, W = 1120, H = 640, PAD = 700;
@@ -222,7 +222,7 @@
         var src = e.sources.map(function (s) {
           return '<a href="' + esc(encodeURI(s.url)) + '" target="_blank" rel="noopener noreferrer">' + esc(s.name) + " ↗</a>";
         }).join("");
-        return '<div class="p-meta"><span>' + esc(dateLine(e)) + '</span><em class="' + (e.ai_evidence === "none" ? "none" : "") + '">' + esc(t.ev[e.ai_evidence]) + "</em></div>" +
+        return '<div class="p-meta"><span>' + esc(dateLine(e)) + '</span><em class="' + (e.ai_evidence === "unknown" ? "none" : "") + '">' + esc(t.ev[e.ai_evidence]) + "</em></div>" +
           "<h2>" + esc(l.title) + "</h2>" +
           '<div class="p-amt ' + (e.outcome === "loss" ? "loss" : "") + '">' + esc(l.amount) + "</div>" +
           '<div class="p-note">' + esc(l.amount_note) + "</div>" +

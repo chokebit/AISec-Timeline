@@ -17,7 +17,7 @@ Corrections and new events are both welcome. Open an issue, or send a pull reque
 | `disclosed` | When it first became public, in the same format |
 | `category` | `voice`, `video`, `breach`, `market` or `aggregate` |
 | `outcome` | `loss`, `blocked`, `no_funds` or `aggregate` |
-| `ai_evidence` | `confirmed`, `assessed` or `self_reported` |
+| `ai_evidence` | `confirmed`, `assessed`, `self_reported` or `unknown` |
 | `usd_m` | Approximate USD in millions. `0` for `blocked`, `null` for `no_funds` |
 | `short` | In `en` and `zh`: a label of a few words for the time navigator |
 | `steps` | In `en` and `zh`: the attack chain in order, in short phrases, with the same number of items |

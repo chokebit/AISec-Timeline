@@ -222,12 +222,12 @@
           kvConf: function (n) { return "AI confirmed, " + n + " cases"; },
           kvStop: "Stopped at $0",
           start: "Play from the first case", browse: "Open the index",
-          evLabel: { confirmed: "AI confirmed", assessed: "AI assessed", self_reported: "AI self-reported", none: "No AI evidence" },
+          evLabel: { confirmed: "AI confirmed", assessed: "AI assessed", self_reported: "AI self-reported", unknown: "AI role unknown" },
           evNote: {
             confirmed: "An authority, a court filing or the affected company says AI was used.",
             assessed: "Police, insurers, security firms or informed sources believe so. Not established.",
             self_reported: "Complainants mentioned AI.",
-            none: "Included for scale. Not counted in AI totals."
+            unknown: "No public evidence of AI use so far. Not counted in AI totals."
           },
           evHead: "AI evidence", traceHead: "Attack trace", srcHead: "Sources",
           evAll: "All", evConfirmed: "AI confirmed", evAssessed: "AI assessed",
@@ -262,12 +262,12 @@
           kvConf: function (n) { return "AI 已确认的 " + n + " 起"; },
           kvStop: "被拦下，转出 $0",
           start: "从第一起开始播放", browse: "打开索引",
-          evLabel: { confirmed: "AI 已确认", assessed: "AI 研判", self_reported: "AI 自报", none: "无 AI 证据" },
+          evLabel: { confirmed: "AI 已确认", assessed: "AI 研判", self_reported: "AI 自报", unknown: "AI 参与未明" },
           evNote: {
             confirmed: "官方、法庭文件或受害公司明确说用了 AI。",
             assessed: "警方、保险商、安全公司或知情人士认为用了，尚未坐实。",
             self_reported: "投诉人提到了 AI。",
-            none: "只作量级参照，不计入 AI 合计。"
+            unknown: "目前没有公开证据显示 AI 参与，不计入 AI 合计。"
           },
           evHead: "AI 证据", traceHead: "攻击链路", srcHead: "来源",
           evAll: "全部", evConfirmed: "AI 已确认", evAssessed: "AI 研判",
@@ -295,7 +295,7 @@
       };
 
       var CATS = ["all", "voice", "video", "breach", "market", "aggregate", "blocked"];
-      var EVBARS = { confirmed: 3, assessed: 2, self_reported: 1, none: 0 };
+      var EVBARS = { confirmed: 3, assessed: 2, self_reported: 1, unknown: 0 };
       var BARS = 240;
       var DATA = null, ORDER = [], waveBars = [];
       var state = { lang: pickLang(), view: "story", index: -1, ev: "all", cat: "all", sort: "time-desc", q: "" };
@@ -316,7 +316,7 @@
       }
       function t() { return UI[state.lang]; }
       function loc(ev) { return ev[state.lang]; }
-      function isCase(ev) { return ev.outcome === "loss" && ev.ai_evidence !== "none"; }
+      function isCase(ev) { return ev.outcome === "loss" && ev.ai_evidence !== "unknown"; }
       function sortDate(ev) { return ev.occurred || ev.disclosed; }
       function tone(ev) { return ev.outcome === "loss" ? "loss" : ev.outcome === "blocked" ? "blocked" : "info"; }
       function sumLoss(list) { return list.filter(isCase).reduce(function (s, ev) { return s + ev.usd_m; }, 0); }

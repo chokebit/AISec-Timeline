@@ -620,7 +620,7 @@
       "disclosed": "2026-10-29",
       "category": "theft",
       "outcome": "loss",
-      "ai_evidence": "none",
+      "ai_evidence": "unknown",
       "usd_m": 6300,
       "en": {
         "short": "Binance",
@@ -629,14 +629,14 @@
         "amount_note": "Binance's estimate · about $3B frozen · not counted in AI totals",
         "summary": "Funds left Binance hot wallets across 10 blockchains, most of them in about 20 minutes. Binance says partners froze about $3 billion. It has restored backing for up to 90% of the stolen assets, which does not mean 90% was recovered from the attacker. The FBI says North Korea was responsible. Binance first pointed to a compromised engineer's laptop, then said the attack involved a more complex process. How it happened is still unclear.",
         "takeaway_label": "Why it is here",
-        "takeaway": "There is no evidence AI caused this. It is here as a scale marker for the era, so it stays outside every AI total.",
+        "takeaway": "No public evidence so far links AI to this attack, and with the investigation still open it cannot be ruled out. It is here as a scale marker for the era and stays outside every AI total until that changes.",
         "steps": [
           "Funds start leaving hot wallets",
           "About 20 minutes across 10 blockchains",
           "About $3B frozen by partners",
           "Binance covers user losses from its own funds"
         ],
-        "human_role": "No evidence that AI was involved."
+        "human_role": "Unknown. No public evidence of AI use so far, and the investigation is still open."
       },
       "zh": {
         "short": "币安",
@@ -645,14 +645,14 @@
         "amount_note": "币安自估 · 约 $30 亿被冻结 · 不计入 AI 合计",
         "summary": "资金从币安热钱包转出，涉及 10 条链，大部分在约 20 分钟内完成。币安称合作方冻结约 $30 亿。它已补足最多 90% 被盗资产的储备，但这不等于从攻击者手里追回了 90%。FBI 称朝鲜是幕后黑手。币安起初指向一台被入侵的工程师电脑，后来又说过程更复杂。具体怎么发生的，目前仍不清楚。",
         "takeaway_label": "为什么收录",
-        "takeaway": "没有证据表明这起案件由 AI 造成。它在这里是这个时代的量级标尺，所以不计入任何 AI 合计。",
+        "takeaway": "目前没有公开证据显示 AI 参与，调查还没结束，也不能排除。它在这里是这个时代的量级标尺，在有证据之前不计入 AI 合计。",
         "steps": [
           "资金开始从热钱包转出",
           "约 20 分钟，涉及 10 条链",
           "合作方冻结约 $30 亿",
           "币安用自有资金承担用户损失"
         ],
-        "human_role": "没有证据表明 AI 参与。"
+        "human_role": "未知。目前没有公开证据显示 AI 参与，调查仍在进行。"
       },
       "sources": [
         {
@@ -678,7 +678,7 @@
       "disclosed": "2026-10",
       "category": "supply",
       "outcome": "loss",
-      "ai_evidence": "none",
+      "ai_evidence": "unknown",
       "usd_m": 2.7,
       "en": {
         "short": "Ledger implant",
@@ -687,14 +687,14 @@
         "amount_note": "About $2.7M confirmed by Singapore police · not counted in AI totals",
         "summary": "Singapore police reported at least two cases since 10 September, with losses of about S$3.5 million, and said devices from some retail stores held malicious hardware that could capture recovery phrases or private keys. Ledger confirmed an unauthorized implant in devices sold through a Southeast Asian reseller. Researchers said it could read the 24-word phrase shown during setup. Third-party loss estimates are far higher, and Ledger has not confirmed them.",
         "takeaway_label": "Why it is here",
-        "takeaway": "There is no evidence AI caused this. It marks how far theft now reaches into hardware, so it stays outside every AI total.",
+        "takeaway": "No public evidence so far links AI to this attack, and with the investigation still open it cannot be ruled out. It marks how far theft now reaches into hardware, and stays outside every AI total until that changes.",
         "steps": [
           "Devices reach buyers through a reseller",
           "Hidden hardware reads the recovery phrase",
           "Wallets are drained",
           "Ledger asks sellers to halt sales"
         ],
-        "human_role": "No evidence that AI was involved."
+        "human_role": "Unknown. No public evidence of AI use so far, and police are still investigating."
       },
       "zh": {
         "short": "Ledger 植入",
@@ -703,14 +703,14 @@
         "amount_note": "新加坡警方确认，约 $270 万 · 不计入 AI 合计",
         "summary": "新加坡警方称，自 9 月 10 日起至少接到 2 起报案，损失约 S$350 万，部分零售店售出的设备含有能截取恢复短语或私钥的恶意硬件。Ledger 确认，经一家东南亚经销商售出的设备存在未授权植入。研究人员称，它能读取设置时显示的 24 词短语。第三方的损失估算高得多，Ledger 尚未确认。",
         "takeaway_label": "为什么收录",
-        "takeaway": "没有证据表明这起案件由 AI 造成。它说明盗窃已经深入到硬件，所以不计入任何 AI 合计。",
+        "takeaway": "目前没有公开证据显示 AI 参与，调查还没结束，也不能排除。它说明盗窃已经深入到硬件，在有证据之前不计入 AI 合计。",
         "steps": [
           "设备经经销商到达买家",
           "隐藏硬件读取恢复短语",
           "钱包被盗空",
           "Ledger 要求经销商暂停销售"
         ],
-        "human_role": "没有证据表明 AI 参与。"
+        "human_role": "未知。目前没有公开证据显示 AI 参与，警方仍在调查。"
       },
       "sources": [
         {

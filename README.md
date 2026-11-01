@@ -22,6 +22,7 @@ Incidents where AI systems themselves are compromised, such as prompt injection 
 | `confirmed` | An authority, a court filing or the affected company says AI was used |
 | `assessed` | Police, insurers, security firms or informed sources believe AI was used, but it is not established |
 | `self_reported` | Complainants mentioned AI, as in FBI IC3 data |
+| `unknown` | No public evidence of AI use so far, and it cannot be ruled out |
 
 ## How amounts work
 
@@ -30,14 +31,9 @@ Incidents where AI systems themselves are compromised, such as prompt injection 
 - Third-party estimates that nobody has verified do not count as the amount.
 - Original currency is kept. USD figures are approximate.
 
-## Considered and left out
+## Major events with an unknown AI role
 
-These are large incidents with no evidence so far that AI caused them:
-
-- **Binance, October 2026:** about $6.3B stolen.
-- **Ledger hardware implants, 2026:** S$3.5M confirmed by Singapore police.
-
-An event can be added if credible evidence of AI use appears.
+Some entries are here for their scale or as turning points, even though no public evidence so far shows AI was involved. Binance (October 2026, about $6.3B) and the Ledger hardware implants are examples. Investigations are still open, so AI is neither claimed nor ruled out. These entries are marked `unknown` and stay out of every AI total.
 
 ## Data
 
