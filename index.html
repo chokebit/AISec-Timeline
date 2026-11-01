@@ -4,227 +4,236 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="color-scheme" content="dark" />
-    <meta name="theme-color" content="#0b0d0f" />
+    <meta name="theme-color" content="#08090d" />
     <link rel="icon" href="data:," />
-    <title>AI Security Incident Timeline</title>
-    <meta name="description" content="A sourced timeline of AI-enabled fraud and security incidents, with amounts, recovery figures and the strength of the evidence for AI use kept separate." />
+    <title>AISec Timeline</title>
+    <meta name="description" content="AI-enabled fraud and security incidents drawn as one signal: red spikes are money lost, silence is an attack someone stopped. Sourced, with the evidence for AI use graded." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600;700;900&family=Noto+Sans+SC:wght@400;500;700;900&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..900&family=Noto+Sans+SC:wght@400;500;700;900&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <style>
       :root{
-        --bg:#0b0d0f; --bg-2:#111417; --surface:#16191d; --surface-2:#1e2227; --surface-3:#282d33;
-        --ink:#f1f2ee; --ink-2:#b8bdc0; --ink-3:#858b91;
-        --line:#2a2f35; --line-2:#3a4047;
-        --red:#ff6b5c; --red-soft:#3a1d1a; --red-deep:#5c1a14;
-        --teal:#4cc9a8; --teal-soft:#12322a; --teal-deep:#0d4a3b;
-        --amber:#eeb34a; --amber-soft:#35290f; --amber-deep:#54400f;
-        --serif:"Noto Serif SC",Georgia,serif;
+        --bg:#08090d; --bg-2:#0e1016; --raise:#151821; --raise-2:#1e2230;
+        --ink:#eceee6; --ink-2:#b4b8bb; --ink-3:#7e848c;
+        --line:#23262f; --line-2:#363b47;
+        --loss:#ff4d3d; --stop:#c6f135; --other:#8ea2ff;
+        --head:Archivo,"Noto Sans SC",-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
         --sans:"Noto Sans SC",-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
-        --mono:"IBM Plex Mono",ui-monospace,monospace;
+        --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
         color-scheme:dark;
       }
       *{box-sizing:border-box}
       html{-webkit-text-size-adjust:100%}
       body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.7}
-      ::selection{background:var(--red);color:#17100f}
+      ::selection{background:var(--stop);color:#0b0d06}
       a{color:inherit}
       button,select,input{font:inherit;color:inherit}
       button{cursor:pointer}
-      :focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+      :focus-visible{outline:2px solid var(--stop);outline-offset:2px}
       [hidden]{display:none!important}
 
-      /* ========== 外框 ========== */
-      .app{height:100vh;height:100dvh;display:grid;grid-template-rows:auto minmax(0,1fr) auto}
+      .app{height:100vh;height:100dvh;display:grid;grid-template-rows:auto auto minmax(0,1fr)}
       .app.list-mode{height:auto;min-height:100vh;grid-template-rows:auto 1fr}
-      .topbar{display:flex;align-items:center;gap:14px;padding:12px 24px;border-bottom:1px solid var(--line);background:var(--bg)}
-      .brand{appearance:none;border:0;background:none;padding:0;font-family:var(--mono);font-size:12.5px;font-weight:700;letter-spacing:.14em;color:var(--ink);display:inline-flex;align-items:center;gap:10px;white-space:nowrap}
-      .brand::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--red);box-shadow:0 0 0 4px var(--red-soft)}
+
+      /* 顶栏 */
+      .topbar{display:flex;align-items:center;gap:12px;padding:12px 28px}
+      .brand{appearance:none;border:0;background:none;padding:0;font-family:var(--mono);font-size:13px;font-weight:700;letter-spacing:.02em;display:inline-flex;align-items:center;gap:9px;white-space:nowrap}
+      .brand svg{width:22px;height:16px;color:var(--stop)}
       .top-gap{flex:1}
-      .toggle{display:inline-flex;border:1px solid var(--line-2);border-radius:8px;overflow:hidden}
-      .toggle button{appearance:none;border:0;background:transparent;color:var(--ink-2);padding:5px 13px;font-size:13px;font-weight:700;white-space:nowrap}
-      .toggle button+button{border-left:1px solid var(--line-2)}
-      .toggle button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+      .toggle{display:inline-flex;gap:2px}
+      .toggle button{appearance:none;border:0;background:none;color:var(--ink-3);padding:3px 9px;font-family:var(--mono);font-size:12.5px;font-weight:600;white-space:nowrap;border-radius:4px}
+      .toggle button:hover{color:var(--ink)}
+      .toggle button[aria-pressed="true"]{color:#0b0d06;background:var(--stop)}
 
-      /* ========== 故事舞台 ========== */
-      .stage{position:relative;min-height:0;display:flex}
-      .slide{flex:1;min-width:0;display:grid;grid-template-columns:minmax(0,46fr) minmax(0,54fr);gap:clamp(24px,4vw,56px);align-items:center;padding:clamp(18px,3.4vh,40px) clamp(72px,8vw,112px);overflow-y:auto;animation:enter .32s ease both}
-      @keyframes enter{from{opacity:0;transform:translateX(var(--dir,18px))}to{opacity:1;transform:none}}
-      @media (prefers-reduced-motion:reduce){.slide{animation:none}}
+      /* 信号带：整条时间线就是一段波形 */
+      .signal{position:relative;padding:0 28px;border-bottom:1px solid var(--line)}
+      .wave-wrap{position:relative;height:clamp(112px,20vh,172px);padding-top:18px;transition:height .36s cubic-bezier(.3,.8,.3,1);touch-action:pan-y}
+      .is-cover .wave-wrap{height:clamp(170px,42vh,380px)}
+      .wave{display:block;width:100%;height:100%}
+      .wave rect{fill:var(--line-2);transition:fill .2s}
+      .wave rect.loss{fill:color-mix(in srgb,var(--loss) 62%,transparent)}
+      .wave rect.other{fill:color-mix(in srgb,var(--other) 60%,transparent)}
+      .wave rect.on.loss{fill:var(--loss)}
+      .wave rect.on.other{fill:var(--other)}
+      .hits{position:absolute;inset:0}
+      .hit{position:absolute;top:0;bottom:0;appearance:none;border:0;background:none;padding:0;transform:translateX(-50%)}
+      .hit::after{content:"";position:absolute;left:50%;top:50%;width:9px;height:9px;margin:-4.5px;border-radius:50%;background:var(--bg);border:2px solid var(--stop);opacity:0}
+      .hit.stop::after{opacity:1}
+      .hit[aria-current="true"].stop::after{background:var(--stop)}
+      .hit:hover{background:rgba(255,255,255,.035)}
+      .head{position:absolute;top:18px;bottom:0;width:1px;background:var(--ink);pointer-events:none;transition:left .34s cubic-bezier(.3,.8,.3,1)}
+      .head span{position:absolute;bottom:100%;transform:translateX(-50%);padding:0 6px;font-family:var(--mono);font-size:11.5px;font-weight:600;line-height:18px;white-space:nowrap;color:var(--ink);background:var(--bg)}
+      .head.left span{transform:none;left:0}.head.right span{transform:none;right:0}
+      .years{position:relative;height:22px;font-family:var(--mono);font-size:11px;color:var(--ink-3)}
+      .years span{position:absolute;top:2px;transform:translateX(-50%)}
+      @media (prefers-reduced-motion:reduce){.head,.wave rect,.wave-wrap{transition:none}}
 
-      .poster{--tone:var(--red);--deep:var(--red-deep);position:sticky;top:0;align-self:center;overflow:hidden;border-radius:16px;min-height:min(62vh,500px);padding:clamp(22px,3vw,36px);display:flex;flex-direction:column;justify-content:flex-end;background:radial-gradient(120% 100% at 85% 0%,var(--deep) 0%,#101316 62%);border:1px solid color-mix(in srgb,var(--tone) 28%,transparent)}
-      .poster.blocked{--tone:var(--teal);--deep:var(--teal-deep)}
-      .poster.info{--tone:var(--amber);--deep:var(--amber-deep)}
-      .motif{position:absolute;top:58px;left:0;width:100%;height:auto;color:var(--tone);opacity:.55}
-      .poster>*:not(.motif){position:relative}
-      .p-label{position:absolute!important;top:clamp(20px,2.6vw,30px);left:clamp(22px,3vw,36px);font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.12em;color:var(--tone);text-transform:uppercase}
-      .p-amount{font-family:var(--mono);font-weight:700;font-size:clamp(46px,7.2vw,92px);line-height:1;letter-spacing:-.03em;color:#fff;text-shadow:0 2px 28px rgba(0,0,0,.55)}
-      .p-amount.long{font-family:var(--serif);font-size:clamp(26px,3.3vw,40px);letter-spacing:0;line-height:1.25}
-      .p-note{margin-top:12px;font-size:14.5px;line-height:1.6;color:#dfe2e0;max-width:32em}
-      .p-scale{margin-top:16px}
-      .p-scale .t{height:5px;border-radius:3px;background:rgba(255,255,255,.16);overflow:hidden}
-      .p-scale .f{height:100%;background:var(--tone);border-radius:3px}
-      .p-scale .c{margin-top:6px;font-size:11.5px;color:#a9afb2}
+      /* 档案：三栏 */
+      .sheet{min-height:0;overflow-y:auto;display:grid;grid-template-columns:minmax(230px,300px) minmax(0,1fr) minmax(220px,290px);gap:0 clamp(24px,3.6vw,56px);padding:22px 28px 26px;align-content:start}
+      .col{min-width:0;animation:rise .3s ease both}
+      .col:nth-child(2){animation-delay:.04s}.col:nth-child(3){animation-delay:.08s}
+      @keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+      @media (prefers-reduced-motion:reduce){.col,.step{animation:none!important}}
+      .lbl{font-family:var(--mono);font-size:11.5px;font-weight:600;letter-spacing:.06em;color:var(--ink-3);text-transform:uppercase}
+      .tone-loss{--tone:var(--loss)}.tone-blocked{--tone:var(--stop)}.tone-info{--tone:var(--other)}
+      .amt{margin-top:6px;font-family:var(--head);font-stretch:125%;font-weight:900;font-size:clamp(44px,5.4vw,72px);line-height:1;letter-spacing:-.025em;color:var(--tone);overflow-wrap:anywhere}
+      .amt.long{font-size:clamp(23px,2.3vw,30px);line-height:1.2;letter-spacing:-.01em;font-stretch:100%}
+      .amt-note{margin-top:10px;font-size:14px;line-height:1.6;color:var(--ink-2)}
+      .ev{margin-top:20px;padding-top:14px;border-top:1px solid var(--line)}
+      .bars{display:flex;align-items:flex-end;gap:3px;height:20px;margin-top:8px}
+      .bars i{width:7px;background:var(--line-2)}
+      .bars i:nth-child(1){height:7px}.bars i:nth-child(2){height:13px}.bars i:nth-child(3){height:20px}
+      .bars i.lit{background:var(--stop)}
+      .bars b{margin-left:9px;align-self:center;font-size:13.5px}
+      .ev p{margin:6px 0 0;font-size:12.5px;line-height:1.6;color:var(--ink-3)}
 
-      .copy{min-width:0;align-self:center}
-      .c-meta{display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center;font-size:13px;font-weight:700;color:var(--ink-2)}
-      .tag{font-size:11.5px;font-weight:700;line-height:1.5;padding:2px 9px;border-radius:6px;white-space:nowrap}
-      .tag.confirmed{background:var(--teal-soft);color:var(--teal)}
-      .tag.assessed{background:var(--amber-soft);color:var(--amber)}
-      .tag.self_reported,.tag.cat{background:var(--surface-3);color:var(--ink-2)}
-      .copy h1,.copy h2{font-family:var(--serif);font-weight:900;font-size:clamp(23px,2.4vw,32px);line-height:1.32;margin:12px 0 0;text-wrap:balance}
-      .copy h1{font-size:clamp(28px,3.2vw,42px);word-break:keep-all}
-      .c-summary{margin:14px 0 0;color:var(--ink-2);font-size:15.5px;line-height:1.85}
-      .c-take{margin-top:14px;padding:12px 16px;border-left:3px solid var(--amber);background:var(--surface);border-radius:0 10px 10px 0;font-size:14px;line-height:1.75;color:var(--ink-2)}
-      .c-take b{display:block;color:var(--ink)}
-      .c-src{margin-top:14px;display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center;font-size:12.5px;color:var(--ink-3)}
-      .c-src a{color:var(--ink-2);text-decoration:none;border:1px solid var(--line-2);border-radius:999px;padding:2px 11px}
-      .c-src a:hover{color:var(--ink);border-color:var(--ink-3)}
+      .meta{font-family:var(--mono);font-size:12px;color:var(--ink-3)}
+      .sheet h1,.sheet h2{font-family:var(--head);font-weight:800;font-size:clamp(23px,2.5vw,33px);line-height:1.22;letter-spacing:-.012em;margin:7px 0 0;text-wrap:balance}
+      .sheet h1{font-size:clamp(24px,2.9vw,38px);font-weight:900;letter-spacing:-.02em;word-break:keep-all}
+      .sum{margin:12px 0 0;color:var(--ink-2);font-size:15.5px;line-height:1.8;max-width:42em}
+      .take{margin-top:13px;font-size:14.5px;line-height:1.7;color:var(--ink);max-width:42em}
+      .take b{font-family:var(--mono);font-size:11.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--tone);display:block}
+      .src{margin-top:13px;display:flex;flex-wrap:wrap;gap:2px 14px;font-size:12.5px}
+      .src a{color:var(--ink-3);text-underline-offset:3px}
+      .src a:hover{color:var(--ink)}
+
+      .trace{list-style:none;margin:10px 0 0;padding:0}
+      .step{position:relative;padding:0 0 15px 21px;font-size:14px;line-height:1.5;color:var(--ink-2);animation:rise .3s ease both}
+      .step::before{content:"";position:absolute;left:0;top:6px;width:7px;height:7px;border-radius:50%;background:var(--ink-3)}
+      .step::after{content:"";position:absolute;left:3px;top:13px;bottom:-6px;width:1px;background:var(--line-2)}
+      .step:last-child{padding-bottom:0;color:var(--tone);font-weight:700}
+      .step:last-child::after{display:none}
+      .step:last-child::before{background:var(--tone);box-shadow:0 0 0 3px color-mix(in srgb,var(--tone) 25%,transparent)}
+      .pager{display:flex;align-items:center;gap:8px;margin-top:18px}
+      .pager span{font-family:var(--mono);font-size:12px;color:var(--ink-3);margin-right:auto}
+      .pg{appearance:none;width:34px;height:30px;border:1px solid var(--line-2);border-radius:4px;background:none;font-family:var(--mono);font-size:14px;line-height:1}
+      .pg:hover:not(:disabled){border-color:var(--ink-3)}
+      .pg:disabled{opacity:.3;cursor:default}
 
       /* 封面 */
-      .cover .p-amount{font-size:clamp(40px,6vw,78px)}
-      .cover .p-arrow{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--tone);margin:6px 0;letter-spacing:.06em}
-      .cover-lede{margin:16px 0 0;font-size:clamp(16px,1.5vw,18.5px);line-height:1.8;color:var(--ink-2)}
-      .cover-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:22px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden}
-      .cover-stats div{background:var(--bg-2);padding:12px 14px}
-      .cover-stats b{display:block;font-family:var(--mono);font-size:clamp(20px,2.2vw,26px);line-height:1.2;white-space:nowrap}
-      .cover-stats span{display:block;margin-top:4px;font-size:12.5px;line-height:1.5;color:var(--ink-2)}
-      .cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
-      .btn{appearance:none;border:1px solid var(--line-2);background:transparent;color:var(--ink);border-radius:10px;padding:10px 18px;font-size:14.5px;font-weight:700}
-      .btn.primary{background:var(--red);border-color:var(--red);color:#1a0f0d}
-      .btn:hover{filter:brightness(1.1)}
+      .hook{font-family:var(--head);font-stretch:125%;font-weight:900;font-size:clamp(38px,4.6vw,62px);line-height:1.02;letter-spacing:-.025em}
+      .hook.a{color:var(--ink-3)}.hook.b{color:var(--loss)}
+      .hook-mid{font-family:var(--mono);font-size:12px;color:var(--ink-3);margin:5px 0}
+      .kv{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:9px 0;border-bottom:1px solid var(--line);font-size:13px;line-height:1.45;color:var(--ink-2)}
+      .kv:first-of-type{border-top:1px solid var(--line);margin-top:10px}
+      .kv b{font-family:var(--mono);font-size:15.5px;color:var(--ink);white-space:nowrap}
+      .cta{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+      .btn{appearance:none;border:1px solid var(--line-2);background:none;border-radius:4px;padding:8px 15px;font-size:14px;font-weight:700}
+      .btn.go{background:var(--stop);border-color:var(--stop);color:#0b0d06}
+      .btn:hover{filter:brightness(1.12)}
 
-      /* 左右箭头 */
-      .arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:5;width:64px;display:flex;flex-direction:column;align-items:center;gap:6px;appearance:none;border:0;background:none;color:var(--ink-2);padding:8px 4px}
-      .arrow svg{width:30px;height:30px}
-      .arrow:hover{color:var(--ink)}
-      .arrow span{font-size:11px;line-height:1.3;font-weight:700;color:var(--ink-3);text-align:center;max-width:62px}
-      .arrow.prev{left:6px}.arrow.next{right:6px}
-
-      /* ========== 底部时间导航 ========== */
-      .tnav{border-top:1px solid var(--line);background:var(--bg-2);display:grid;grid-template-columns:auto minmax(0,1fr);min-height:0}
-      .lanes{display:grid;grid-template-rows:repeat(3,32px) 24px;border-right:1px solid var(--line);padding:6px 0 0}
-      .lanes div{display:flex;align-items:center;gap:7px;padding:0 14px;font-size:11.5px;font-weight:700;color:var(--ink-2);white-space:nowrap}
-      .lanes i{width:8px;height:8px;border-radius:50%}
-      .scroller{overflow-x:auto;overflow-y:hidden;scrollbar-width:thin;scrollbar-color:var(--line-2) transparent}
-      .track{position:relative;height:126px;margin:0 auto}
-      .lane-bg{position:absolute;left:0;right:0;height:32px}
-      .lane-bg.l1{top:38px;background:rgba(255,255,255,.018)}
-      .chip{position:absolute;width:144px;height:26px;appearance:none;display:flex;align-items:center;gap:6px;padding:0 8px;border-radius:6px;border:1px solid var(--line-2);background:var(--surface);color:var(--ink-2);font-size:11.5px;font-weight:700;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;text-align:left;transition:background .15s,color .15s,border-color .15s}
-      .chip i{flex:none;width:7px;height:7px;border-radius:50%;background:var(--tone)}
-      .chip span{overflow:hidden;text-overflow:ellipsis}
-      .chip:hover{color:var(--ink);border-color:var(--ink-3)}
-      .chip[aria-current="true"]{background:var(--tone);border-color:var(--tone);color:#111}
-      .chip[aria-current="true"] i{background:#111}
-      .chip.loss{--tone:var(--red)}.chip.blocked{--tone:var(--teal)}.chip.info{--tone:var(--amber)}
-      .tick{position:absolute;bottom:0;height:24px;border-left:1px solid var(--line-2);padding-left:6px;font-family:var(--mono);font-size:11.5px;font-weight:700;color:var(--ink-3);display:flex;align-items:center}
-
-      /* ========== 列表视图 ========== */
-      .list{max-width:1000px;width:100%;margin:0 auto;padding:22px 20px 64px}
-      .controls{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px}
-      .ctl{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
-      .ctl+.ctl{margin-top:11px}
-      .search{flex:1 1 220px;background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:8px 12px;font-size:14.5px;min-width:0}
+      /* 列表 */
+      .list{max-width:1000px;width:100%;margin:0 auto;padding:14px 20px 64px}
+      .ctl{display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center}
+      .ctl+.ctl{margin-top:10px}
+      .search{flex:1 1 240px;min-width:0;background:var(--raise);border:1px solid var(--line);border-radius:4px;padding:8px 12px;font-size:14.5px}
       .search::placeholder{color:var(--ink-3)}
-      .sort{background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:14px}
-      .pill{appearance:none;border:1px solid var(--line-2);background:transparent;color:var(--ink-2);border-radius:999px;padding:4px 12px;font-size:13px;font-weight:500}
+      .sort{background:var(--raise);border:1px solid var(--line);border-radius:4px;padding:8px 10px;font-size:14px}
+      .pill{appearance:none;border:1px solid var(--line-2);background:none;color:var(--ink-2);border-radius:4px;padding:3px 10px;font-size:13px}
       .pill[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--bg);font-weight:700}
-      .count{font-family:var(--mono);font-size:13px;font-weight:700}
+      .count{font-family:var(--mono);font-size:12.5px;font-weight:600}
       .count-note{font-size:12.5px;color:var(--ink-3)}
-      .row{appearance:none;display:grid;grid-template-columns:88px minmax(0,1fr) auto;gap:16px;width:100%;align-items:center;text-align:left;background:none;border:0;border-bottom:1px solid var(--line);padding:15px 4px}
+      .rows{margin-top:10px;border-top:1px solid var(--line)}
+      .row{appearance:none;display:grid;grid-template-columns:82px minmax(0,1fr) auto;gap:14px;width:100%;align-items:center;text-align:left;background:none;border:0;border-bottom:1px solid var(--line);padding:13px 4px}
       .row:hover{background:var(--bg-2)}
-      .row .d{font-family:var(--mono);font-size:12.5px;color:var(--ink-3)}
-      .row .t{font-weight:700;font-size:15.5px;line-height:1.5}
-      .row .m{display:flex;flex-wrap:wrap;gap:6px;margin-top:5px}
-      .row .a{font-family:var(--mono);font-weight:700;font-size:17px;white-space:nowrap;text-align:right}
-      .row .a.loss{color:var(--red)}.row .a.blocked{color:var(--teal)}.row .a.info{color:var(--amber);font-family:var(--sans);font-size:13px}
-      .rows{margin-top:10px}
+      .row .d{font-family:var(--mono);font-size:12px;color:var(--ink-3)}
+      .row .t{display:block;font-weight:700;font-size:15.5px;line-height:1.5}
+      .row .m{display:block;margin-top:2px;font-family:var(--mono);font-size:11.5px;color:var(--ink-3)}
+      .row .a{font-family:var(--head);font-weight:800;font-size:18px;white-space:nowrap;text-align:right;color:var(--tone)}
+      .row .a.small{font-family:var(--sans);font-size:13px;font-weight:700}
       .empty{padding:48px 20px;text-align:center;color:var(--ink-3)}
-      .method{margin-top:32px;padding:22px 24px;background:var(--surface);border:1px solid var(--line);border-radius:14px}
+      .method{margin-top:30px}
       .method h2{margin:0;font-size:17px;font-weight:900}
-      .method p{margin:4px 0 16px;font-size:13.5px;color:var(--ink-3)}
-      .m-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px 28px}
+      .method>p{margin:4px 0 16px;font-size:13.5px;color:var(--ink-3)}
+      .m-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px 30px}
       .m-grid div{font-size:13.5px;line-height:1.75;color:var(--ink-2)}
       .m-grid b{display:block;color:var(--ink)}
-      .links{margin-top:18px;display:flex;flex-wrap:wrap;gap:8px}
-      .links a{font-size:13px;font-weight:700;color:var(--ink-2);text-decoration:none;border:1px solid var(--line-2);border-radius:999px;padding:5px 13px}
-      .links a:hover{color:var(--ink);border-color:var(--ink-3)}
+      .links{margin-top:18px;display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px}
+      .links a{color:var(--ink-2);text-underline-offset:3px}
       .error{padding:60px 24px;text-align:center;color:var(--ink-2)}
 
-      @media (max-width:980px){
-        .slide{display:block;padding:16px 16px 72px}
-        .poster{position:relative;min-height:0;padding:44px 20px 18px}
-        .motif{top:0;opacity:.35}
-        .p-amount{font-size:clamp(40px,13vw,64px)}
-        .p-amount.long{font-size:24px}
-        .copy{margin-top:18px}
-        .copy h1,.copy h2{margin-top:12px}
-        .arrow{top:auto;bottom:calc(var(--nav,70px) * 0 + 10px);transform:none;width:44px;height:44px;justify-content:center;background:var(--surface-2);border:1px solid var(--line-2);border-radius:50%;padding:0}
-        .arrow span{display:none}
-        .arrow svg{width:20px;height:20px}
-        .arrow.prev{left:16px}.arrow.next{right:16px;left:auto}
-        .stage{overflow:hidden}
-        .lanes{display:none}
-        .tnav{grid-template-columns:minmax(0,1fr)}
-        .track{height:60px}
-        .lane-bg{display:none}
-        .chip{top:6px!important}
-        .tick{height:20px}
-        .topbar{padding:10px 14px;gap:8px}
-        .brand{font-size:11px;letter-spacing:.08em}
-        .toggle button{padding:4px 9px;font-size:12px}
-        .m-grid{grid-template-columns:1fr}
+      @media (max-width:1040px){
+        .sheet{grid-template-columns:minmax(200px,260px) minmax(0,1fr);gap:20px 28px}
+        .col.c3{grid-column:1 / -1}
+        .trace{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px 18px}
+        .step{padding-bottom:0}
+        .step::after{display:none}
       }
-      @media (max-width:560px){
-        .brand span{display:none}
-        .row{grid-template-columns:minmax(0,1fr) auto;gap:10px}
-        .row .d{grid-column:1/-1}
-        .cover-stats{grid-template-columns:1fr}
-        .cover-stats div{display:flex;align-items:baseline;gap:10px}
-        .cover-stats span{margin:0}
+      @media (max-width:680px){
+        .topbar{padding:9px 14px;gap:6px}
+        .signal{padding:0 14px}
+        .wave-wrap{height:84px;padding-top:16px}
+        .is-cover .wave-wrap{height:150px}
+        .head{top:16px}
+        .years{height:18px;font-size:10px}
+        .hit::after{width:7px;height:7px;margin:-3.5px}
+        .sheet{display:block;padding:14px 14px 30px}
+        .col+.col{margin-top:18px}
+        .amt{font-size:clamp(42px,14vw,60px)}
+        .amt.long{font-size:24px}
+        .ev{margin-top:14px;padding-top:10px}
+        .trace{display:block}
+        .step{padding-bottom:12px}
+        .step::after{display:block}
+        .list{padding:10px 14px 48px}
+        .row{grid-template-columns:minmax(0,1fr) auto;gap:2px 10px}
+        .row .d{grid-column:1 / -1}
+        .m-grid{grid-template-columns:1fr}
       }
     </style>
   </head>
   <body>
     <div class="app" id="app">
       <header class="topbar">
-        <button type="button" class="brand" id="brand"><span>AI SECURITY TIMELINE</span></button>
+        <button type="button" class="brand" id="brand">
+          <svg viewBox="0 0 22 16" fill="currentColor" aria-hidden="true"><rect x="0" y="6" width="2" height="4"/><rect x="4" y="3" width="2" height="10"/><rect x="8" y="0" width="2" height="16"/><rect x="12" y="7" width="2" height="2"/><rect x="16" y="7" width="2" height="2"/><rect x="20" y="7" width="2" height="2"/></svg>
+          AISec Timeline
+        </button>
         <div class="top-gap"></div>
         <div class="toggle" id="viewToggle" role="group"></div>
         <div class="toggle" id="langToggle" role="group">
-          <button type="button" data-lang="zh">中文</button>
+          <button type="button" data-lang="zh">中</button>
           <button type="button" data-lang="en">EN</button>
         </div>
       </header>
 
-      <main class="stage" id="stage"></main>
+      <section class="signal" id="signal">
+        <div class="wave-wrap" id="waveWrap">
+          <svg class="wave" id="wave" preserveAspectRatio="none" aria-hidden="true"></svg>
+          <div class="hits" id="hits"></div>
+          <div class="head" id="head"><span id="headLbl"></span></div>
+        </div>
+        <div class="years" id="years"></div>
+      </section>
+
+      <main class="sheet" id="sheet"></main>
       <main class="list" id="list" hidden></main>
-      <nav class="tnav" id="tnav" aria-label="Timeline">
-        <div class="lanes" id="lanes"></div>
-        <div class="scroller" id="scroller"><div class="track" id="track"></div></div>
-      </nav>
     </div>
 
     <script>
       var UI = {
         en: {
-          htmlLang: "en", title: "AI Security Incident Timeline", nav: "Timeline",
-          story: "Story", all: "All events",
-          coverTitle: "The same trick, on a far bigger scale",
-          coverLede: "A trusted voice, an urgent request, and a transfer before anyone checks. Each entry here keeps apart what was lost, what was recovered, and how strong the evidence is that AI was used at all.",
-          coverBig: "largest single case",
-          statLoss: function (n) { return "reported loss, " + n + " single cases"; },
-          statConfirmed: function (n) { return "of that in " + n + " cases with AI use confirmed"; },
-          statBlocked: "attempts stopped at $0",
-          start: "Start from the first case", browse: "Browse all events",
+          htmlLang: "en", title: "AISec Timeline", story: "Signal", all: "Index",
+          intro: "Start",
+          coverTitle: "Red spikes are money gone. Silence is someone who didn't fall for it.",
+          coverLede: "AI-enabled fraud and security incidents, drawn as one signal. Height shows the amount on a log scale. Blue marks events with no single loss, and flat points are attacks that were stopped.",
+          hookMid: function (x, a, b) { return "≈ " + x + "× · " + a + " → " + b; },
+          kvLoss: function (n) { return "Reported loss, " + n + " cases"; },
+          kvConf: function (n) { return "AI confirmed, " + n + " cases"; },
+          kvStop: "Stopped at $0",
+          start: "Play from the first case", browse: "Open the index",
           evLabel: { confirmed: "AI confirmed", assessed: "AI assessed", self_reported: "AI self-reported" },
+          evNote: {
+            confirmed: "An authority, a court filing or the affected company says AI was used.",
+            assessed: "Police, insurers, security firms or informed sources believe so. Not established.",
+            self_reported: "Complainants mentioned AI."
+          },
+          evHead: "AI evidence", traceHead: "Attack trace", srcHead: "Sources",
           evAll: "All", evConfirmed: "AI confirmed", evAssessed: "AI assessed",
           cats: { all: "All types", voice: "Voice", video: "Video", breach: "Data breach", market: "Market", aggregate: "Annual total", blocked: "Stopped" },
-          outcome: { loss: "Reported loss", blocked: "Stopped at $0", no_funds: "No funds reported lost", aggregate: "Annual total" },
-          lanes: ["Loss", "Stopped", "Other"],
+          outcome: { loss: "Reported loss", blocked: "Stopped", no_funds: "No funds reported lost", aggregate: "Annual total" },
           occurred: "Occurred ", disclosed: "Disclosed ",
-          scale: function (top, amt) { return "Log scale, full bar = " + top + " · about " + amt; },
-          sources: "Sources", prev: "Previous", next: "Next", cover: "Intro",
+          prev: "Previous", next: "Next",
           search: "Search: Hong Kong, voice clone, WhatsApp",
           sorts: { "time-desc": "Newest first", "time-asc": "Oldest first", "amount-desc": "Largest amount" },
           count: function (n) { return n + (n === 1 ? " event" : " events"); },
@@ -234,32 +243,36 @@
           methodHead: "How the numbers work",
           methodSub: "Totals are calculated from data/events.json. For a single case, the cited source wins. Data as of ",
           method: [
-            ["How AI use is graded", "Confirmed: an authority, a court filing or the affected company says AI was used. Assessed: police, insurers, security firms or informed sources believe so. Self-reported: filers mentioned AI."],
             ["Loss and recovery stay separate", "Amounts are what was transferred or reported lost. Recovered or frozen funds appear in the notes and are not netted off."],
             ["Annual totals stay separate", "The FBI IC3 figure is a different level of measurement, so it is never added to single cases."],
+            ["The signal is not a clock", "Events are evenly spaced along the signal so close dates stay readable. Heights use a log scale."],
             ["Exchange rates are approximate", ""]
           ],
           fix: "Report a correction",
           loadError: "Could not load data/events.json. Open this page through a web server, not as a local file."
         },
         zh: {
-          htmlLang: "zh-CN", title: "AI 安全事件时间轴", nav: "时间轴",
-          story: "故事", all: "全部事件",
-          coverTitle: "同一个套路，规模已经完全不同",
-          coverLede: "一个可信的声音，一句很急的话，核实之前钱已转走。这里的每条事件都把三件事分开写：损失多少、追回多少、用了 AI 的证据有多强。",
-          coverBig: "最大单案",
-          statLoss: function (n) { return n + " 起单案的报告损失"; },
-          statConfirmed: function (n) { return "其中 " + n + " 起 AI 使用已确认"; },
-          statBlocked: "起未遂，转出 $0",
-          start: "从第一起看起", browse: "查看全部事件",
+          htmlLang: "zh-CN", title: "AISec Timeline · AI 安全事件时间轴", story: "信号", all: "索引",
+          intro: "开始",
+          coverTitle: "红色波峰是被骗走的钱，静音是有人没上当。",
+          coverLede: "AI 诈骗与安全事件，画成同一段信号。高度代表金额（对数刻度），蓝色是没有单笔损失的事件，平直的地方是被拦下的攻击。",
+          hookMid: function (x, a, b) { return "≈ " + x + " 倍 · " + a + " → " + b; },
+          kvLoss: function (n) { return n + " 起单案报告损失"; },
+          kvConf: function (n) { return "AI 已确认的 " + n + " 起"; },
+          kvStop: "被拦下，转出 $0",
+          start: "从第一起开始播放", browse: "打开索引",
           evLabel: { confirmed: "AI 已确认", assessed: "AI 研判", self_reported: "AI 自报" },
+          evNote: {
+            confirmed: "官方、法庭文件或受害公司明确说用了 AI。",
+            assessed: "警方、保险商、安全公司或知情人士认为用了，尚未坐实。",
+            self_reported: "投诉人提到了 AI。"
+          },
+          evHead: "AI 证据", traceHead: "攻击链路", srcHead: "来源",
           evAll: "全部", evConfirmed: "AI 已确认", evAssessed: "AI 研判",
           cats: { all: "全部类型", voice: "语音", video: "视频", breach: "数据泄露", market: "市场误导", aggregate: "年度总数", blocked: "已拦截" },
-          outcome: { loss: "报告损失", blocked: "已拦截 · 转出 $0", no_funds: "未报告资金损失", aggregate: "年度总数" },
-          lanes: ["损失", "拦截", "其他"],
+          outcome: { loss: "报告损失", blocked: "已拦截", no_funds: "未报告资金损失", aggregate: "年度总数" },
           occurred: "发生 ", disclosed: "披露 ",
-          scale: function (top, amt) { return "对数刻度，满格 = " + top + " · 约 " + amt; },
-          sources: "来源", prev: "上一条", next: "下一条", cover: "开篇",
+          prev: "上一条", next: "下一条",
           search: "搜索：香港、声音克隆、WhatsApp",
           sorts: { "time-desc": "时间 · 新 → 旧", "time-asc": "时间 · 旧 → 新", "amount-desc": "金额 · 高 → 低" },
           count: function (n) { return "共 " + n + " 条"; },
@@ -269,9 +282,9 @@
           methodHead: "数字怎么算",
           methodSub: "合计由 data/events.json 自动计算；单案金额以所引来源为准。数据截至 ",
           method: [
-            ["AI 证据怎么分级", "已确认：官方、法庭文件或受害公司明确说用了 AI。研判：警方、保险商、安全公司或知情人士认为用了。自报：投诉人提到了 AI。"],
             ["损失和追回分开", "金额指转出或报告的损失。追回、冻结写在说明里，不扣减成净额。"],
             ["年度总数分开", "FBI IC3 的数字是另一层级的统计，不与单案相加。"],
+            ["信号不是时钟", "事件在信号上等距排列，日期接近的也能看清。高度用对数刻度。"],
             ["汇率是约数", ""]
           ],
           fix: "提交更正",
@@ -280,13 +293,10 @@
       };
 
       var CATS = ["all", "voice", "video", "breach", "market", "aggregate", "blocked"];
-      var CHEVRON = {
-        prev: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 4l-8 8 8 8"/></svg>',
-        next: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4l8 8-8 8"/></svg>'
-      };
-
-      var DATA = null, ORDER = [];
-      var state = { lang: pickLang(), view: "story", index: -1, dir: 1, ev: "all", cat: "all", sort: "time-desc", q: "" };
+      var EVBARS = { confirmed: 3, assessed: 2, self_reported: 1 };
+      var BARS = 240;
+      var DATA = null, ORDER = [], waveBars = [];
+      var state = { lang: pickLang(), view: "story", index: -1, ev: "all", cat: "all", sort: "time-desc", q: "" };
 
       function pickLang() {
         var q = new URLSearchParams(location.search).get("lang");
@@ -311,8 +321,8 @@
 
       function usd(m) {
         if (state.lang === "zh") {
-          if (m >= 100) return "$" + (m / 100).toFixed(2) + " 亿";
-          return "$" + (Math.round(m * (m >= 10 ? 10 : 100)) * (m >= 10 ? 10 : 1)).toLocaleString("en-US") + " 万";
+          if (m >= 100) return "$" + (m / 100).toFixed(2) + "亿";
+          return "$" + (Math.round(m * (m >= 10 ? 10 : 100)) * (m >= 10 ? 10 : 1)).toLocaleString("en-US") + "万";
         }
         if (m >= 1) return "$" + m.toLocaleString("en-US", { maximumFractionDigits: m >= 100 ? 0 : m >= 10 ? 1 : 2 }) + "M";
         return "$" + Math.round(m * 1000) + "K";
@@ -331,69 +341,77 @@
         return out.join(" · ");
       }
 
-      function topEvent() {
-        return DATA.events.reduce(function (a, b) { return (b.usd_m || 0) > (a.usd_m || 0) ? b : a; });
-      }
-      function scalePct(v, top) {
-        return Math.max(4, Math.min(100, Math.log10(v + 1) / Math.log10(top + 1) * 100));
+      /* 事件在信号上的横向位置，0–1 */
+      function pos(i) { return (i + 0.5) / ORDER.length; }
+
+      /* 用固定种子生成波形，每次打开都一样 */
+      function buildWave() {
+        var h = 2166136261;
+        function rnd() { h = (h * 1664525 + 1013904223) >>> 0; return h / 4294967296; }
+        var top = Math.log10(Math.max.apply(null, ORDER.map(function (e) { return e.usd_m || 0; })) + 1);
+        var bars = [], i, k;
+        for (i = 0; i < BARS; i++) bars.push({ h: 0.035 + rnd() * 0.05, tone: "", owner: -1 });
+        ORDER.forEach(function (ev, n) {
+          var c = pos(n) * BARS, st = tone(ev);
+          var peak = ev.usd_m > 0 ? 0.2 + 0.8 * Math.log10(ev.usd_m + 1) / top : ev.usd_m === 0 ? 0 : 0.3;
+          var w = 3.2 + peak * 3.4;
+          for (k = Math.floor(c - w * 2.4); k <= Math.ceil(c + w * 2.4); k++) {
+            if (k < 0 || k >= BARS) continue;
+            var dist = (k + 0.5 - c) / w, env = Math.exp(-dist * dist);
+            if (ev.usd_m === 0) {
+              /* 被拦下：这一段信号静音 */
+              bars[k].h = Math.min(bars[k].h, 0.012);
+              bars[k].owner = n;
+              bars[k].tone = "";
+            } else if (env > 0.03) {
+              var v = peak * env * (0.62 + rnd() * 0.38);
+              if (v > bars[k].h) {
+                bars[k].h = v;
+                bars[k].tone = st === "loss" ? "loss" : "other";
+                bars[k].owner = n;
+              }
+            }
+          }
+        });
+        var svg = $("wave");
+        svg.setAttribute("viewBox", "0 0 " + BARS * 4 + " 100");
+        svg.innerHTML = bars.map(function (b, n) {
+          var bh = Math.max(0.8, b.h * 100);
+          return '<rect x="' + (n * 4 + 0.6) + '" y="' + (50 - bh / 2).toFixed(2) + '" width="2.8" height="' + bh.toFixed(2) + '"' + (b.tone ? ' class="' + b.tone + '"' : "") + "/>";
+        }).join("");
+        waveBars = [].slice.call(svg.querySelectorAll("rect")).map(function (r, n) { return { el: r, owner: bars[n].owner }; });
       }
 
-      /* 海报背景：事件没有配图，按类型画一个抽象图形 */
-      function seeded(id) {
-        var h = 7;
-        for (var i = 0; i < id.length; i++) h = (h * 31 + id.charCodeAt(i)) >>> 0;
-        return function () { h = (h * 1664525 + 1013904223) >>> 0; return h / 4294967296; };
-      }
-      function motif(ev) {
-        var r = seeded(ev ? ev.id : "cover"), kind = ev ? ev.category : "voice", s = "", i, x, y, h;
-        if (kind === "video") {
-          for (y = 0; y < 3; y++) for (x = 0; x < 4; x++) {
-            var cx = 180 + x * 56, cy = 34 + y * 56, real = x === 2 && y === 1;
-            s += '<rect x="' + (cx - 25) + '" y="' + (cy - 25) + '" width="50" height="50" rx="7" fill="' + (real ? "currentColor" : "none") + '" fill-opacity=".28" stroke="currentColor" stroke-opacity="' + (real ? 1 : .55) + '"/>';
-            s += '<circle cx="' + cx + '" cy="' + (cy - 5) + '" r="8" fill="none" stroke="currentColor" stroke-opacity=".7"/><path d="M' + (cx - 14) + " " + (cy + 18) + "c4-13 24-13 28 0" + '" fill="none" stroke="currentColor" stroke-opacity=".7"/>';
-          }
-        } else if (kind === "breach") {
-          var nodes = [];
-          for (i = 0; i < 16; i++) nodes.push([190 + r() * 200, 16 + r() * 150]);
-          nodes.forEach(function (n, k) {
-            var m = nodes[(k + 3) % nodes.length], o = nodes[(k + 7) % nodes.length];
-            s += '<path d="M' + n[0] + " " + n[1] + "L" + m[0] + " " + m[1] + "M" + n[0] + " " + n[1] + "L" + o[0] + " " + o[1] + '" stroke="currentColor" stroke-opacity=".28"/>';
-            s += '<circle cx="' + n[0] + '" cy="' + n[1] + '" r="' + (k % 4 === 0 ? 5 : 3) + '" fill="currentColor"/>';
-          });
-        } else if (kind === "market") {
-          var p = "M0 70", v = 70;
-          for (i = 1; i <= 40; i++) {
-            v += (r() - .5) * 8;
-            if (i === 24) v += 52;
-            if (i === 27) v -= 46;
-            p += "L" + i * 10 + " " + v.toFixed(1);
-          }
-          s = '<path d="' + p + '" fill="none" stroke="currentColor" stroke-width="2"/>';
-        } else if (kind === "aggregate") {
-          for (i = 0; i < 48; i++) {
-            x = 12 * (i % 34) + 6; y = 14 + 14 * Math.floor(i / 8);
-            s += '<circle cx="' + (x * .6 + 190) + '" cy="' + ((i % 8) * 22 + 12) + '" r="3" fill="currentColor" fill-opacity="' + (.25 + r() * .75).toFixed(2) + '"/>';
-          }
-        } else {
-          for (i = 0; i < 62; i++) {
-            var env = Math.sin(i / 61 * Math.PI);
-            h = (10 + r() * 150) * (.2 + env * .8);
-            s += '<rect x="' + (i * 6.6 + 2) + '" y="' + (90 - h / 2).toFixed(1) + '" width="3" height="' + h.toFixed(1) + '" rx="1.5" fill="currentColor"/>';
-          }
-        }
-        return '<svg class="motif" viewBox="0 0 410 180" preserveAspectRatio="xMidYMin meet" aria-hidden="true">' + s + "</svg>";
+      function renderSignal() {
+        $("hits").innerHTML = ORDER.map(function (ev, i) {
+          return '<button type="button" class="hit' + (ev.outcome === "blocked" ? " stop" : "") + '" data-i="' + i + '" style="left:' + pos(i) * 100 + "%;width:" + 100 / ORDER.length + '%" aria-label="' + esc(loc(ev).short) + '" title="' + esc(loc(ev).short) + '"></button>';
+        }).join("");
+        var seen = {}, years = "";
+        ORDER.forEach(function (ev, i) {
+          var y = sortDate(ev).slice(0, 4);
+          if (seen[y]) return;
+          seen[y] = 1;
+          years += '<span style="left:' + pos(i) * 100 + '%">' + y + "</span>";
+        });
+        $("years").innerHTML = years;
       }
 
-      function arrows() {
-        var i = state.index, h = "";
-        if (i >= 0) {
-          var before = i === 0 ? t().cover : loc(ORDER[i - 1]).short;
-          h += '<button type="button" class="arrow prev" data-go="-1" aria-label="' + esc(t().prev) + '">' + CHEVRON.prev + "<span>" + esc(before) + "</span></button>";
-        }
-        if (i < ORDER.length - 1) {
-          h += '<button type="button" class="arrow next" data-go="1" aria-label="' + esc(t().next) + '">' + CHEVRON.next + "<span>" + esc(loc(ORDER[i + 1]).short) + "</span></button>";
-        }
-        return h;
+      function updateHead() {
+        var i = state.index, head = $("head"), p = i < 0 ? 0 : pos(i);
+        head.style.left = p * 100 + "%";
+        head.className = "head" + (p < 0.1 ? " left" : p > 0.9 ? " right" : "");
+        $("headLbl").textContent = i < 0 ? "" : loc(ORDER[i]).short;
+        head.style.visibility = i < 0 ? "hidden" : "";
+        waveBars.forEach(function (b) { b.el.classList.toggle("on", i < 0 || b.owner === i); });
+        var hits = $("hits").children;
+        for (var k = 0; k < hits.length; k++) hits[k].setAttribute("aria-current", k === i ? "true" : "false");
+      }
+
+      function pager() {
+        var i = state.index;
+        return '<div class="pager"><span>' + String(i + 1).padStart(2, "0") + " / " + String(ORDER.length).padStart(2, "0") + "</span>" +
+          '<button type="button" class="pg" data-go="-1" aria-label="' + esc(t().prev) + '">←</button>' +
+          '<button type="button" class="pg" data-go="1" aria-label="' + esc(t().next) + '"' + (i >= ORDER.length - 1 ? " disabled" : "") + ">→</button></div>";
       }
 
       function coverHtml() {
@@ -402,80 +420,47 @@
         var blocked = DATA.events.filter(function (e) { return e.outcome === "blocked"; });
         var first = cases.slice().sort(function (a, b) { return sortDate(a) < sortDate(b) ? -1 : 1; })[0];
         var big = cases.reduce(function (a, b) { return b.usd_m > a.usd_m ? b : a; });
-        return '<section class="slide cover" style="--dir:' + state.dir * 18 + 'px">' +
-          '<div class="poster">' + motif(null) +
-            '<div class="p-label">' + esc(sortDate(first).slice(0, 4)) + " → " + esc(sortDate(big).slice(0, 4)) + "</div>" +
-            '<div class="p-amount">' + esc(usd(first.usd_m).replace(" ", "")) + "</div>" +
-            '<div class="p-arrow">↓ ≈ ' + Number((big.usd_m / first.usd_m).toPrecision(2)) + "× · " + esc(t().coverBig) + "</div>" +
-            '<div class="p-amount">' + esc(usd(big.usd_m).replace(" ", "")) + "</div>" +
-          "</div>" +
-          '<div class="copy"><h1>' + esc(t().coverTitle) + "</h1>" +
-            '<p class="cover-lede">' + esc(t().coverLede) + "</p>" +
-            '<div class="cover-stats">' +
-              "<div><b>≈ " + esc(usd(sumLoss(cases))) + "</b><span>" + esc(t().statLoss(cases.length)) + "</span></div>" +
-              "<div><b>≈ " + esc(usd(sumLoss(confirmed))) + "</b><span>" + esc(t().statConfirmed(confirmed.length)) + "</span></div>" +
-              "<div><b>" + blocked.length + "</b><span>" + esc(t().statBlocked) + "</span></div>" +
-            "</div>" +
-            '<div class="cta"><button type="button" class="btn primary" data-go="1">' + esc(t().start) + ' →</button><button type="button" class="btn" data-view="list">' + esc(t().browse) + "</button></div>" +
-          "</div></section>";
+        var ratio = Number((big.usd_m / first.usd_m).toPrecision(2));
+        return '<div class="col"><div class="hook a">' + esc(usd(first.usd_m)) + "</div>" +
+            '<div class="hook-mid">' + esc(t().hookMid(ratio, sortDate(first).slice(0, 4), sortDate(big).slice(0, 4))) + "</div>" +
+            '<div class="hook b">' + esc(usd(big.usd_m)) + "</div></div>" +
+          '<div class="col"><h1>' + esc(t().coverTitle) + "</h1>" +
+            '<p class="sum">' + esc(t().coverLede) + "</p>" +
+            '<div class="cta"><button type="button" class="btn go" data-go="1">' + esc(t().start) + ' →</button><button type="button" class="btn" data-view="list">' + esc(t().browse) + "</button></div></div>" +
+          '<div class="col c3">' +
+            '<div class="kv"><span>' + esc(t().kvLoss(cases.length)) + "</span><b>≈ " + esc(usd(sumLoss(cases))) + "</b></div>" +
+            '<div class="kv"><span>' + esc(t().kvConf(confirmed.length)) + "</span><b>≈ " + esc(usd(sumLoss(confirmed))) + "</b></div>" +
+            '<div class="kv"><span>' + esc(t().kvStop) + "</span><b>" + blocked.length + "</b></div></div>";
       }
 
-      function slideHtml(ev) {
-        var l = loc(ev), top = topEvent(), scale = "";
-        if (ev.usd_m > 0) {
-          scale = '<div class="p-scale"><div class="t"><div class="f" style="width:' + scalePct(ev.usd_m, top.usd_m).toFixed(1) + '%"></div></div><div class="c">' + esc(t().scale(loc(top).amount, usd(ev.usd_m))) + "</div></div>";
-        }
-        var long = ev.usd_m === null;
+      function caseHtml(ev) {
+        var l = loc(ev), n = EVBARS[ev.ai_evidence], bars = "";
+        for (var i = 1; i <= 3; i++) bars += "<i" + (i <= n ? ' class="lit"' : "") + "></i>";
         var srcs = ev.sources.map(function (s) {
           return '<a href="' + esc(encodeURI(s.url)) + '" target="_blank" rel="noopener noreferrer">' + esc(s.name) + " ↗</a>";
         }).join("");
-        return '<section class="slide" style="--dir:' + state.dir * 18 + 'px">' +
-          '<div class="poster ' + tone(ev) + '">' + motif(ev) +
-            '<div class="p-label">' + esc(t().outcome[ev.outcome]) + "</div>" +
-            '<div class="p-amount' + (long ? " long" : "") + '">' + esc(l.amount) + "</div>" +
-            '<div class="p-note">' + esc(l.amount_note) + "</div>" + scale +
-          "</div>" +
-          '<div class="copy">' +
-            '<div class="c-meta"><span>' + esc(dateLine(ev)) + '</span><span class="tag ' + esc(ev.ai_evidence) + '">' + esc(t().evLabel[ev.ai_evidence]) + "</span>" +
-              (ev.category === "aggregate" ? "" : '<span class="tag cat">' + esc(t().cats[ev.category]) + "</span>") + "</div>" +
+        var steps = l.steps.map(function (s, k) {
+          return '<li class="step" style="animation-delay:' + (0.08 + k * 0.05) + 's">' + esc(s) + "</li>";
+        }).join("");
+        return '<div class="col"><div class="lbl">' + esc(t().outcome[ev.outcome]) + "</div>" +
+            '<div class="amt' + (ev.usd_m === null ? " long" : "") + '">' + esc(l.amount) + "</div>" +
+            '<div class="amt-note">' + esc(l.amount_note) + "</div>" +
+            '<div class="ev"><div class="lbl">' + esc(t().evHead) + '</div><div class="bars">' + bars + "<b>" + esc(t().evLabel[ev.ai_evidence]) + "</b></div><p>" + esc(t().evNote[ev.ai_evidence]) + "</p></div></div>" +
+          '<div class="col"><div class="meta">' + esc(dateLine(ev)) + "</div>" +
             "<h2>" + esc(l.title) + "</h2>" +
-            '<p class="c-summary">' + esc(l.summary) + "</p>" +
-            '<div class="c-take"><b>' + esc(l.takeaway_label) + "</b>" + esc(l.takeaway) + "</div>" +
-            '<div class="c-src"><span>' + esc(t().sources) + "</span>" + srcs + "</div>" +
-          "</div></section>";
+            '<p class="sum">' + esc(l.summary) + "</p>" +
+            '<div class="take"><b>' + esc(l.takeaway_label) + "</b>" + esc(l.takeaway) + "</div>" +
+            '<div class="src">' + srcs + "</div></div>" +
+          '<div class="col c3"><div class="lbl">' + esc(t().traceHead) + '</div><ol class="trace">' + steps + "</ol>" + pager() + "</div>";
       }
 
-      function renderStage() {
-        var i = state.index;
-        $("stage").innerHTML = (i < 0 ? coverHtml() : slideHtml(ORDER[i])) + arrows();
-        var chips = $("track").querySelectorAll(".chip");
-        for (var k = 0; k < chips.length; k++) {
-          var on = k === i;
-          chips[k].setAttribute("aria-current", on ? "true" : "false");
-          if (on) centerChip(chips[k]);
-        }
-        if (i < 0) $("scroller").scrollTo({ left: 0, behavior: reduced() ? "auto" : "smooth" });
-      }
-      function reduced() { return window.matchMedia("(prefers-reduced-motion: reduce)").matches; }
-      function centerChip(c) {
-        var sc = $("scroller");
-        sc.scrollTo({ left: c.offsetLeft + c.offsetWidth / 2 - sc.clientWidth / 2, behavior: reduced() ? "auto" : "smooth" });
-      }
-
-      function renderNav() {
-        var STEP = 156, PAD = 12, lastYear = null, html = '<div class="lane-bg l1"></div>';
-        var laneTop = { loss: 8, blocked: 40, info: 72 };
-        ORDER.forEach(function (ev, i) {
-          var x = PAD + i * STEP, y = sortDate(ev).slice(0, 4);
-          html += '<button type="button" class="chip ' + tone(ev) + '" data-i="' + i + '" style="left:' + x + "px;top:" + laneTop[tone(ev)] + 'px" title="' + esc(loc(ev).title) + '"><i></i><span>' + esc(loc(ev).short) + "</span></button>";
-          if (y !== lastYear) { html += '<div class="tick" style="left:' + x + 'px">' + y + "</div>"; lastYear = y; }
-        });
-        $("track").innerHTML = html;
-        $("track").style.width = PAD * 2 + ORDER.length * STEP - 12 + "px";
-        $("lanes").innerHTML = t().lanes.map(function (n, i) {
-          return '<div><i style="background:var(--' + ["red", "teal", "amber"][i] + ')"></i>' + esc(n) + "</div>";
-        }).join("") + "<div></div>";
-        $("tnav").setAttribute("aria-label", t().nav);
+      function renderSheet() {
+        var i = state.index, sheet = $("sheet");
+        sheet.className = "sheet" + (i >= 0 ? " tone-" + tone(ORDER[i]) : "");
+        sheet.innerHTML = i < 0 ? coverHtml() : caseHtml(ORDER[i]);
+        sheet.scrollTop = 0;
+        $("app").classList.toggle("is-cover", i < 0);
+        updateHead();
       }
 
       function renderChrome() {
@@ -488,8 +473,8 @@
         for (var i = 0; i < b.length; i++) b[i].setAttribute("aria-pressed", b[i].getAttribute("data-lang") === state.lang ? "true" : "false");
         var list = state.view === "list";
         $("app").classList.toggle("list-mode", list);
-        $("stage").hidden = list;
-        $("tnav").hidden = list;
+        $("sheet").hidden = list;
+        $("signal").hidden = list;
         $("list").hidden = !list;
       }
 
@@ -500,7 +485,7 @@
           if (state.cat !== "all" && state.cat !== "blocked" && ev.category !== state.cat) return false;
           if (q) {
             var l = loc(ev);
-            if ([l.title, l.amount, l.amount_note, l.summary, l.takeaway, t().cats[ev.category], dateLine(ev)].join(" ").toLowerCase().indexOf(q) === -1) return false;
+            if ([l.title, l.amount, l.amount_note, l.summary, l.takeaway, l.steps.join(" "), t().cats[ev.category], dateLine(ev)].join(" ").toLowerCase().indexOf(q) === -1) return false;
           }
           return true;
         });
@@ -516,10 +501,10 @@
         $("countNote").textContent = state.sort === "amount-desc" ? t().noteAmount : t().noteSum(usd(sumLoss(rows)));
         $("rows").innerHTML = rows.length ? rows.map(function (ev) {
           var l = loc(ev);
-          return '<button type="button" class="row" data-id="' + esc(ev.id) + '">' +
+          return '<button type="button" class="row tone-' + tone(ev) + '" data-id="' + esc(ev.id) + '">' +
             '<span class="d">' + esc(sortDate(ev)) + "</span>" +
-            '<span><span class="t">' + esc(l.title) + '</span><span class="m"><span class="tag ' + esc(ev.ai_evidence) + '">' + esc(t().evLabel[ev.ai_evidence]) + '</span><span class="tag cat">' + esc(t().outcome[ev.outcome]) + "</span></span></span>" +
-            '<span class="a ' + tone(ev) + '">' + esc(l.amount) + "</span></button>";
+            '<span><span class="t">' + esc(l.title) + '</span><span class="m">' + esc(t().evLabel[ev.ai_evidence]) + " · " + esc(t().outcome[ev.outcome]) + "</span></span>" +
+            '<span class="a' + (ev.usd_m === null ? " small" : "") + '">' + esc(l.amount) + "</span></button>";
         }).join("") : '<div class="empty">' + esc(t().empty) + "</div>";
       }
 
@@ -538,8 +523,10 @@
           return "<div><b>" + esc(m[0]) + "</b>" + esc(i === u.method.length - 1 ? DATA.fx_note[state.lang] : m[1]) + "</div>";
         }).join("");
         $("list").innerHTML =
-          '<div class="controls"><div class="ctl">' + segs + '<input id="q" class="search" type="search" placeholder="' + esc(u.search) + '" aria-label="' + esc(u.search) + '" value="' + esc(state.q) + '" /><select id="sortSel" class="sort" aria-label="Sort">' + sorts + "</select></div>" +
-          '<div class="ctl">' + cats + '</div><div class="ctl"><span class="count" id="count"></span><span class="count-note" id="countNote"></span></div></div>' +
+          '<div class="ctl"><input id="q" class="search" type="search" placeholder="' + esc(u.search) + '" aria-label="' + esc(u.search) + '" value="' + esc(state.q) + '" /><select id="sortSel" class="sort" aria-label="Sort">' + sorts + "</select></div>" +
+          '<div class="ctl">' + segs + "</div>" +
+          '<div class="ctl">' + cats + "</div>" +
+          '<div class="ctl"><span class="count" id="count"></span><span class="count-note" id="countNote"></span></div>' +
           '<div class="rows" id="rows"></div>' +
           '<section class="method"><h2>' + esc(u.methodHead) + "</h2><p>" + esc(u.methodSub + DATA.updated) + '</p><div class="m-grid">' + method + "</div>" +
           '<div class="links"><a href="https://github.com/chokebit/AISec-Timeline" rel="noopener noreferrer">GitHub</a><a href="data/events.json">events.json</a><a href="https://github.com/chokebit/AISec-Timeline/issues/new" rel="noopener noreferrer">' + esc(u.fix) + "</a></div></section>";
@@ -549,20 +536,19 @@
       function renderAll() {
         renderChrome();
         if (state.view === "list") { renderList(); return; }
-        renderNav();
-        renderStage();
+        renderSignal();
+        renderSheet();
       }
 
       function syncHash() {
-        var id = state.view === "list" ? "list" : state.index >= 0 ? ORDER[state.index].id : "";
+        var id = state.view === "list" ? "index" : state.index >= 0 ? ORDER[state.index].id : "";
         history.replaceState(null, "", location.pathname + location.search + (id ? "#" + id : ""));
       }
       function go(i) {
         i = Math.max(-1, Math.min(ORDER.length - 1, i));
         if (i === state.index) return;
-        state.dir = i > state.index ? 1 : -1;
         state.index = i;
-        renderStage();
+        renderSheet();
         syncHash();
       }
       function setView(v) {
@@ -573,7 +559,7 @@
       }
       function readHash() {
         var h = decodeURIComponent(location.hash.slice(1));
-        if (h === "list") { state.view = "list"; return; }
+        if (h === "index") { state.view = "list"; return; }
         state.view = "story";
         state.index = ORDER.map(function (e) { return e.id; }).indexOf(h);
       }
@@ -609,11 +595,22 @@
       });
       window.addEventListener("hashchange", function () { readHash(); renderAll(); });
 
+      /* 在波形上拖动，像拖音频进度条 */
+      var dragging = false;
+      function scrub(e) {
+        var r = $("waveWrap").getBoundingClientRect();
+        var x = (e.clientX - r.left) / r.width;
+        go(Math.max(0, Math.min(ORDER.length - 1, Math.floor(x * ORDER.length))));
+      }
+      $("waveWrap").addEventListener("pointerdown", function (e) { dragging = true; scrub(e); });
+      window.addEventListener("pointermove", function (e) { if (dragging) scrub(e); });
+      window.addEventListener("pointerup", function () { dragging = false; });
+
       var touchX = null, touchY = null;
-      $("stage").addEventListener("touchstart", function (e) {
+      $("sheet").addEventListener("touchstart", function (e) {
         touchX = e.touches[0].clientX; touchY = e.touches[0].clientY;
       }, { passive: true });
-      $("stage").addEventListener("touchend", function (e) {
+      $("sheet").addEventListener("touchend", function (e) {
         if (touchX === null) return;
         var dx = e.changedTouches[0].clientX - touchX, dy = e.changedTouches[0].clientY - touchY;
         touchX = null;
@@ -628,11 +625,12 @@
             var x = sortDate(a), y = sortDate(b);
             return x === y ? (a.disclosed < b.disclosed ? -1 : 1) : x < y ? -1 : 1;
           });
+          buildWave();
           readHash();
           renderAll();
         })
         .catch(function () {
-          $("stage").innerHTML = '<p class="error">' + esc(t().loadError) + "</p>";
+          $("sheet").innerHTML = '<p class="error">' + esc(t().loadError) + "</p>";
         });
     </script>
   </body>

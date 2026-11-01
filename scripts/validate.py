@@ -45,6 +45,11 @@ def check(ev):
         for key in TEXT:
             if not str(block.get(key, "")).strip():
                 errors.append(f"{lang}.{key} is empty")
+        if len(block.get("steps", [])) < 2:
+            errors.append(f"{lang}.steps needs at least two items")
+
+    if len(ev.get("en", {}).get("steps", [])) != len(ev.get("zh", {}).get("steps", [])):
+        errors.append("en.steps and zh.steps must have the same length")
 
     sources = ev.get("sources", [])
     if not sources:
