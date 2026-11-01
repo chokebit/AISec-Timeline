@@ -14,6 +14,7 @@
       "ai_evidence": "confirmed",
       "usd_m": 0.43,
       "en": {
+        "short": "Dutch fake bank calls",
         "title": "Netherlands: AI-recorded fake bank calls cost about 170 victims €380,000",
         "amount": "€380K",
         "amount_note": "About $430K · around 170 victims · about three weeks",
@@ -22,6 +23,7 @@
         "takeaway": "AI made the recordings, while people ran the live calls. Dutch police warn that a bank will never ask you to install an app during a call, hold your card to your phone, or share your PIN."
       },
       "zh": {
+        "short": "荷兰假银行电话",
         "title": "荷兰：AI 录音冒充银行来电，约 170 人被骗 €38 万",
         "amount": "€38万",
         "amount_note": "约 $43 万 · 约 170 名受害者 · 约 3 周",
@@ -30,8 +32,16 @@
         "takeaway": "AI 负责录音，现场通话的是真人。荷兰警方提醒：银行不会要求你在通话中安装 App、把银行卡贴到手机上，或透露 PIN 码。"
       },
       "sources": [
-        { "name": "NL Times", "url": "https://nltimes.nl/2026/10/21/police-arrest-two-suspects-ai-powered-bank-fraud-cost-victims-eu380000", "kind": "news" },
-        { "name": "SecurityAffairs", "url": "https://securityaffairs.com/201786/cyber-crime/ai-generated-fake-bank-calls-and-nfc-app-enabled-e380000-fraud-dutch-police-say.html", "kind": "news" }
+        {
+          "name": "NL Times",
+          "url": "https://nltimes.nl/2026/10/21/police-arrest-two-suspects-ai-powered-bank-fraud-cost-victims-eu380000",
+          "kind": "news"
+        },
+        {
+          "name": "SecurityAffairs",
+          "url": "https://securityaffairs.com/201786/cyber-crime/ai-generated-fake-bank-calls-and-nfc-app-enabled-e380000-fraud-dutch-police-say.html",
+          "kind": "news"
+        }
       ]
     },
     {
@@ -43,6 +53,7 @@
       "ai_evidence": "assessed",
       "usd_m": null,
       "en": {
+        "short": "Korea financial breaches",
         "title": "South Korea: seven financial firms breached in attacks linked to an AI pentest tool",
         "amount": "No direct loss disclosed",
         "amount_note": "About 67,000–68,000 people affected at the first seven firms",
@@ -51,6 +62,7 @@
         "takeaway": "CrowdStrike names no adversary. It assesses with moderate confidence that the actor is likely a Chinese speaker and financially motivated. A separate Seoul police case, involving seven suspects and 8.2 million records from more than 90 organizations, also used ARTEX. Keep the two cases apart."
       },
       "zh": {
+        "short": "韩国金融机构入侵",
         "title": "韩国：7 家金融机构遭入侵，攻击与一款 AI 渗透测试工具有关",
         "amount": "未披露直接资金损失",
         "amount_note": "最初 7 家约 6.7–6.8 万人受影响",
@@ -59,10 +71,26 @@
         "takeaway": "CrowdStrike 没有点名任何组织，只以中等置信度判断攻击者可能说中文、以牟利为目的。另一起首尔警方案件（7 名嫌疑人、90 多个机构、820 万条记录）也用了 ARTEX，两案不要合并。"
       },
       "sources": [
-        { "name": "Yonhap", "url": "https://en.yna.co.kr/view/AEN20261008002200320", "kind": "news" },
-        { "name": "BleepingComputer: bank attacks", "url": "https://www.bleepingcomputer.com/news/security/hacker-used-artex-ai-and-claude-agents-to-target-south-korean-banks/", "kind": "news" },
-        { "name": "Reuters via The Star: 16 firms", "url": "https://www.thestar.com.my/tech/tech-news/2026/10/14/south-korea-finds-hacking-incidents-at-total-of-16-financial-firms", "kind": "news" },
-        { "name": "BleepingComputer: Seoul police case", "url": "https://bleepingcomputer.com/news/security/former-pentester-used-artex-ai-to-steal-82-million-data-records", "kind": "news" }
+        {
+          "name": "Yonhap",
+          "url": "https://en.yna.co.kr/view/AEN20261008002200320",
+          "kind": "news"
+        },
+        {
+          "name": "BleepingComputer: bank attacks",
+          "url": "https://www.bleepingcomputer.com/news/security/hacker-used-artex-ai-and-claude-agents-to-target-south-korean-banks/",
+          "kind": "news"
+        },
+        {
+          "name": "Reuters via The Star: 16 firms",
+          "url": "https://www.thestar.com.my/tech/tech-news/2026/10/14/south-korea-finds-hacking-incidents-at-total-of-16-financial-firms",
+          "kind": "news"
+        },
+        {
+          "name": "BleepingComputer: Seoul police case",
+          "url": "https://bleepingcomputer.com/news/security/former-pentester-used-artex-ai-to-steal-82-million-data-records",
+          "kind": "news"
+        }
       ]
     },
     {
@@ -74,6 +102,7 @@
       "ai_evidence": "assessed",
       "usd_m": 1.27,
       "en": {
+        "short": "Hong Kong \"father\" voice",
         "title": "Hong Kong: a hijacked WhatsApp and a voice like his father's cost one man over HK$10M",
         "amount": "HK$10M+",
         "amount_note": "About $1.27M · savings emptied",
@@ -82,6 +111,7 @@
         "takeaway": "In the same two weeks, Hong Kong police received more than 150 WhatsApp hijacking cases with total losses above HK$26 million. Police advise calling the person directly before any transfer."
       },
       "zh": {
+        "short": "香港“父亲”语音",
         "title": "香港：WhatsApp 被骑劫，酷似父亲的语音骗走儿子逾 HK$1,000 万",
         "amount": "HK$1,000万+",
         "amount_note": "约 $127 万 · 储蓄清零",
@@ -90,8 +120,16 @@
         "takeaway": "同期两周内，香港警方接获逾 150 宗 WhatsApp 账户骑劫案，总损失逾 HK$2,600 万。警方建议转账前先致电对方本人核实。"
       },
       "sources": [
-        { "name": "HK01 (police briefing)", "url": "https://global.hk01.com/突发/60384733/whatsapp骑劫-ai扮声学打字-变父亲上司经纪-有人买楼失百万订", "kind": "news" },
-        { "name": "RTHK", "url": "https://news.rthk.hk/rthk/ch/component/k2/1864225-20260729.htm", "kind": "news" }
+        {
+          "name": "HK01 (police briefing)",
+          "url": "https://global.hk01.com/突发/60384733/whatsapp骑劫-ai扮声学打字-变父亲上司经纪-有人买楼失百万订",
+          "kind": "news"
+        },
+        {
+          "name": "RTHK",
+          "url": "https://news.rthk.hk/rthk/ch/component/k2/1864225-20260729.htm",
+          "kind": "news"
+        }
       ]
     },
     {
@@ -103,6 +141,7 @@
       "ai_evidence": "self_reported",
       "usd_m": 893.35,
       "en": {
+        "short": "FBI IC3 annual total",
         "title": "FBI IC3 reports AI-related complaints as their own category: 22,364 complaints, $893M",
         "amount": "$893M",
         "amount_note": "US complaints for 2025 · annual aggregate, never added to single cases",
@@ -111,6 +150,7 @@
         "takeaway": "Business email compromise cost $3.05B in 2025, but IC3 ties only over $30M of that to AI. Do not count the whole category as AI fraud."
       },
       "zh": {
+        "short": "FBI IC3 年度总数",
         "title": "FBI IC3 单列 AI 相关投诉：22,364 起，损失 $8.93 亿",
         "amount": "$8.93亿",
         "amount_note": "美国 2025 年度投诉 · 年度聚合，不与单案相加",
@@ -119,7 +159,11 @@
         "takeaway": "商业邮件诈骗（BEC）2025 年损失 $30.5 亿，但 IC3 只把其中 $3,000 多万与 AI 挂钩。不能把整个类别都算成 AI 诈骗。"
       },
       "sources": [
-        { "name": "FBI IC3 2025 Annual Report (PDF)", "url": "https://www.ic3.gov/AnnualReport/Reports/2025_IC3Report.pdf", "kind": "official" }
+        {
+          "name": "FBI IC3 2025 Annual Report (PDF)",
+          "url": "https://www.ic3.gov/AnnualReport/Reports/2025_IC3Report.pdf",
+          "kind": "official"
+        }
       ]
     },
     {
@@ -131,6 +175,7 @@
       "ai_evidence": "assessed",
       "usd_m": 108,
       "en": {
+        "short": "Fideuram",
         "title": "Italy: a fake WhatsApp and a cloned lawyer's voice moved about €95M out of Fideuram",
         "amount": "€95M",
         "amount_note": "About $108M · about €53M recovered · at least €36M missing",
@@ -139,6 +184,7 @@
         "takeaway": "Il Sole 24 Ore itemizes €40M returned by a Chinese institution and €13M seized in Portugal, which matches the €53M in Reuters-based reports, although its subheadline says €59M. At least €36M reportedly went abroad and was converted to crypto. The remaining difference is unexplained."
       },
       "zh": {
+        "short": "Fideuram 银行",
         "title": "意大利：一条假 WhatsApp 加一通克隆律师声音的电话，约 €9,500 万转出 Fideuram",
         "amount": "€9,500万",
         "amount_note": "约 $1.08 亿 · 已追回约 €5,300 万 · 至少 €3,600 万下落不明",
@@ -147,9 +193,21 @@
         "takeaway": "《24 小时太阳报》列出中国一家机构退回 €4,000 万、葡萄牙查封 €1,300 万，合计与路透系报道的 €5,300 万一致，但该报副标题写的是 €5,900 万。至少 €3,600 万据报已转往海外并换成加密货币。剩余差额暂无解释。"
       },
       "sources": [
-        { "name": "Reuters via Deccan Chronicle", "url": "https://www.deccanchronicle.com/artificial-intelligence/ai-messaging-scam-costs-italys-top-bank-intesa-millions-sources-say-1990765", "kind": "news" },
-        { "name": "Il Sole 24 Ore", "url": "https://en.ilsole24ore.com/art/the-former-boss-of-fideuram-was-scammed-via-whatsapp-and-36-million-have-gone-missing-AJXuauOB", "kind": "news" },
-        { "name": "OECD AI Incidents Monitor", "url": "https://oecd.ai/en/incidents/2026-09-25-b291", "kind": "secondary" }
+        {
+          "name": "Reuters via Deccan Chronicle",
+          "url": "https://www.deccanchronicle.com/artificial-intelligence/ai-messaging-scam-costs-italys-top-bank-intesa-millions-sources-say-1990765",
+          "kind": "news"
+        },
+        {
+          "name": "Il Sole 24 Ore",
+          "url": "https://en.ilsole24ore.com/art/the-former-boss-of-fideuram-was-scammed-via-whatsapp-and-36-million-have-gone-missing-AJXuauOB",
+          "kind": "news"
+        },
+        {
+          "name": "OECD AI Incidents Monitor",
+          "url": "https://oecd.ai/en/incidents/2026-09-25-b291",
+          "kind": "secondary"
+        }
       ]
     },
     {
@@ -161,6 +219,7 @@
       "ai_evidence": "assessed",
       "usd_m": 0,
       "en": {
+        "short": "Ferrari",
         "title": "Ferrari: an executive stopped a cloned CEO voice with a question about a book",
         "amount": "$0",
         "amount_note": "Stopped by a shared-knowledge question",
@@ -169,6 +228,7 @@
         "takeaway": "Ask something only the real person would know. That context is not in public audio or video, so it cannot be cloned."
       },
       "zh": {
+        "short": "Ferrari",
         "title": "Ferrari：高管用一本书的问题，问倒了克隆的 CEO 声音",
         "amount": "$0",
         "amount_note": "拦截方式：只有本人知道的验证问题",
@@ -177,8 +237,16 @@
         "takeaway": "问只有本人才知道的事。这类信息不在任何公开音视频里，克隆不出来。"
       },
       "sources": [
-        { "name": "MIT Sloan Management Review", "url": "https://sloanreview.mit.edu/article/how-ferrari-hit-the-brakes-on-a-deepfake-ceo/", "kind": "secondary" },
-        { "name": "The Drive", "url": "https://www.thedrive.com/news/ferrari-thwarted-an-ai-deepfake-scammer-posing-as-its-ceo-with-an-age-old-trick", "kind": "news" }
+        {
+          "name": "MIT Sloan Management Review",
+          "url": "https://sloanreview.mit.edu/article/how-ferrari-hit-the-brakes-on-a-deepfake-ceo/",
+          "kind": "secondary"
+        },
+        {
+          "name": "The Drive",
+          "url": "https://www.thedrive.com/news/ferrari-thwarted-an-ai-deepfake-scammer-posing-as-its-ceo-with-an-age-old-trick",
+          "kind": "news"
+        }
       ]
     },
     {
@@ -190,6 +258,7 @@
       "ai_evidence": "assessed",
       "usd_m": 0,
       "en": {
+        "short": "WPP",
         "title": "WPP: a fake CEO account, a voice clone and a Teams meeting failed to fool staff",
         "amount": "$0",
         "amount_note": "Stopped by staff vigilance",
@@ -198,6 +267,7 @@
         "takeaway": "A familiar photo proves nothing. Treat any request to move to a new channel or to a chat-only participant as a reason to verify separately."
       },
       "zh": {
+        "short": "WPP",
         "title": "WPP：假 CEO 账号、声音克隆和 Teams 会议，没能骗过员工",
         "amount": "$0",
         "amount_note": "拦截方式：员工警觉",
@@ -206,7 +276,11 @@
         "takeaway": "头像熟悉不代表是本人。凡是要求换渠道，或对方只在聊天框出现，都要另找渠道核实。"
       },
       "sources": [
-        { "name": "The Guardian", "url": "https://www.theguardian.com/technology/article/2024/may/10/ceo-wpp-deepfake-scam", "kind": "news" }
+        {
+          "name": "The Guardian",
+          "url": "https://www.theguardian.com/technology/article/2024/may/10/ceo-wpp-deepfake-scam",
+          "kind": "news"
+        }
       ]
     },
     {
@@ -218,6 +292,7 @@
       "ai_evidence": "confirmed",
       "usd_m": 0,
       "en": {
+        "short": "LastPass",
         "title": "LastPass: an employee ignored a deepfake of the CEO on WhatsApp",
         "amount": "$0",
         "amount_note": "Stopped by noticing the wrong channel and forced urgency",
@@ -226,6 +301,7 @@
         "takeaway": "An unusual channel combined with urgency is the warning sign. Ignore the request and report it."
       },
       "zh": {
+        "short": "LastPass",
         "title": "LastPass：员工没理会 WhatsApp 上的 CEO 深伪语音",
         "amount": "$0",
         "amount_note": "拦截方式：发现渠道不对、对方刻意施压",
@@ -234,7 +310,11 @@
         "takeaway": "渠道反常加上紧急施压，就是危险信号。不理会，并上报。"
       },
       "sources": [
-        { "name": "LastPass blog", "url": "https://blog.lastpass.com/posts/attempted-audio-deepfake-call-targets-lastpass-employee", "kind": "official" }
+        {
+          "name": "LastPass blog",
+          "url": "https://blog.lastpass.com/posts/attempted-audio-deepfake-call-targets-lastpass-employee",
+          "kind": "official"
+        }
       ]
     },
     {
@@ -246,6 +326,7 @@
       "ai_evidence": "confirmed",
       "usd_m": 25.6,
       "en": {
+        "short": "Arup",
         "title": "Arup: a fully deepfaked video call led to HK$200M in 15 transfers",
         "amount": "HK$200M",
         "amount_note": "About $25.6M · 15 transactions",
@@ -254,6 +335,7 @@
         "takeaway": "A video call is no longer proof. Verify on a separate channel that you start yourself."
       },
       "zh": {
+        "short": "Arup",
         "title": "Arup：一场全员深伪的视频会议，15 笔转出 HK$2 亿",
         "amount": "HK$2亿",
         "amount_note": "约 $2,560 万 · 15 笔转账",
@@ -262,7 +344,11 @@
         "takeaway": "视频会议不再能证明身份。要在你自己发起的另一条渠道上核实。"
       },
       "sources": [
-        { "name": "CNN", "url": "https://www.cnn.com/2024/05/16/tech/arup-deepfake-scam-loss-hong-kong-intl-hnk", "kind": "news" }
+        {
+          "name": "CNN",
+          "url": "https://www.cnn.com/2024/05/16/tech/arup-deepfake-scam-loss-hong-kong-intl-hnk",
+          "kind": "news"
+        }
       ]
     },
     {
@@ -274,6 +360,7 @@
       "ai_evidence": "assessed",
       "usd_m": null,
       "en": {
+        "short": "Fake Pentagon image",
         "title": "Fake Pentagon explosion image: nothing stolen, but the S&P 500 dipped 0.29%",
         "amount": "No funds stolen",
         "amount_note": "S&P 500 briefly down 0.29% from Friday's close",
@@ -282,6 +369,7 @@
         "takeaway": "AI forgery can do harm without any transfer of money. The cost here was market disruption, so no loss figure is counted."
       },
       "zh": {
+        "short": "五角大楼假图",
         "title": "五角大楼假爆炸图：没有一分钱被盗，标普 500 却跌了 0.29%",
         "amount": "无资金被盗",
         "amount_note": "标普 500 较上周五收盘一度下跌 0.29%",
@@ -290,7 +378,11 @@
         "takeaway": "AI 伪造不必转走一分钱也能造成损害。这里的代价是市场波动，所以不计入损失合计。"
       },
       "sources": [
-        { "name": "Channel News Asia (AFP)", "url": "https://www.channelnewsasia.com/world/fake-image-pentagon-explosion-united-states-ai-generated-viral-stock-market-3507806", "kind": "news" }
+        {
+          "name": "Channel News Asia (AFP)",
+          "url": "https://www.channelnewsasia.com/world/fake-image-pentagon-explosion-united-states-ai-generated-viral-stock-market-3507806",
+          "kind": "news"
+        }
       ]
     },
     {
@@ -302,6 +394,7 @@
       "ai_evidence": "confirmed",
       "usd_m": 35,
       "en": {
+        "short": "UAE bank",
         "title": "UAE: a cloned director's voice and fake lawyer emails moved $35M",
         "amount": "$35M",
         "amount_note": "At least 17 defendants · funds spread across accounts",
@@ -310,6 +403,7 @@
         "takeaway": "This was an early documented case, at more than 140 times the amount of the 2019 UK case. A familiar voice plus matching emails was enough."
       },
       "zh": {
+        "short": "阿联酋银行",
         "title": "阿联酋：克隆董事声音加假律师邮件，转出 $3,500 万",
         "amount": "$3,500万",
         "amount_note": "至少 17 名被告 · 资金分散到多个账户",
@@ -318,8 +412,16 @@
         "takeaway": "这是较早有文件记录的案件，金额是 2019 年英国案的 140 多倍。熟悉的声音加上吻合的邮件就足够了。"
       },
       "sources": [
-        { "name": "AI Incident Database, report 5135", "url": "https://incidentdatabase.ai/reports/5135/", "kind": "secondary" },
-        { "name": "AI Incident Database, report 1496", "url": "https://incidentdatabase.ai/reports/1496/", "kind": "secondary" }
+        {
+          "name": "AI Incident Database, report 5135",
+          "url": "https://incidentdatabase.ai/reports/5135/",
+          "kind": "secondary"
+        },
+        {
+          "name": "AI Incident Database, report 1496",
+          "url": "https://incidentdatabase.ai/reports/1496/",
+          "kind": "secondary"
+        }
       ]
     },
     {
@@ -331,6 +433,7 @@
       "ai_evidence": "assessed",
       "usd_m": 0.243,
       "en": {
+        "short": "UK energy firm",
         "title": "UK energy firm: a cloned parent-company CEO voice obtained €220,000",
         "amount": "€220K",
         "amount_note": "$243,000 · insurer covered the claim",
@@ -339,6 +442,7 @@
         "takeaway": "The pattern has hardly changed since 2019: a trusted voice, urgency, and a transfer before anyone verifies. The largest case here is about 440 times bigger."
       },
       "zh": {
+        "short": "英国能源公司",
         "title": "英国能源公司：克隆母公司 CEO 声音，骗走 €22 万",
         "amount": "€22万",
         "amount_note": "$243,000 · 保险公司赔付",
@@ -347,7 +451,11 @@
         "takeaway": "从 2019 年到现在，套路几乎没变：可信的声音、紧急施压、核实之前先转账。本表最大一案的金额约是它的 440 倍。"
       },
       "sources": [
-        { "name": "AI Incident Database, report 1653 (WSJ text)", "url": "https://incidentdatabase.ai/reports/1653/", "kind": "secondary" }
+        {
+          "name": "AI Incident Database, report 1653 (WSJ text)",
+          "url": "https://incidentdatabase.ai/reports/1653/",
+          "kind": "secondary"
+        }
       ]
     }
   ]

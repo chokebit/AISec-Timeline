@@ -11,7 +11,7 @@ CATEGORIES = {"voice", "video", "breach", "market", "aggregate"}
 OUTCOMES = {"loss", "blocked", "no_funds", "aggregate"}
 EVIDENCE = {"confirmed", "assessed", "self_reported"}
 KINDS = {"official", "news", "secondary"}
-TEXT = ("title", "amount", "amount_note", "summary", "takeaway_label", "takeaway")
+TEXT = ("short", "title", "amount", "amount_note", "summary", "takeaway_label", "takeaway")
 
 
 def check(ev):

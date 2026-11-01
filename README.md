@@ -41,7 +41,7 @@ An event can be added if credible evidence of AI use appears.
 
 ## Data
 
-All events are in [`data/events.json`](data/events.json), so you can use them without the website. Site totals are calculated from that file.
+All events are in [`data/events.json`](data/events.json), so you can use them without the website. Site totals are calculated from that file. The site has a story view with one event per screen, plus a searchable list. Each event has its own link, such as `#arup-deepfake-meeting-2024`.
 
 ## Contributing
 

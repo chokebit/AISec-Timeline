@@ -19,6 +19,7 @@ Corrections and new events are both welcome. Open an issue, or send a pull reque
 | `outcome` | `loss`, `blocked`, `no_funds` or `aggregate` |
 | `ai_evidence` | `confirmed`, `assessed` or `self_reported` |
 | `usd_m` | Approximate USD in millions. `0` for `blocked`, `null` for `no_funds` |
+| `short` | In `en` and `zh`: a label of a few words for the time navigator |
 | `sources` | At least one, each with `name`, `url` and `kind`: `official`, `news` or `secondary` |
 
 ## Evidence rules
