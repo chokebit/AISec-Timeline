@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-skin="a">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -12,6 +12,12 @@
     <style>
       :root{--bg:#f7f6f1;--ink:#17171a;--dim:#6d6d70;--line:#17171a;--panel:rgba(247,246,241,.86);--red:#c8281c;
         --serif:"Noto Serif SC","Songti SC","STSong",serif;--sans:"Noto Sans SC",-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;--mono:"IBM Plex Mono",ui-monospace,monospace}
+      /* A 暗房：黑色美术馆，暖光打在发光的作品上 */
+      html[data-skin="a"]{--bg:#08080b;--ink:#f3efe6;--dim:#9c978c;--red:#ff6a45;--panel:rgba(18,17,20,.72);--wall:#1b181e;--floor:#17141a;--ceil:#0f0d12;--rib:rgba(255,226,180,.1);--frame:#0d0c10;--edge:rgba(255,226,180,.32);--light:#ffdca8;--panelline:rgba(255,226,180,.16)}
+      /* B 霓虹：紫色电子空间，最接近参考视频的气氛 */
+      html[data-skin="b"]{--bg:#0c0418;--ink:#f6efff;--dim:#b19fce;--red:#ff4fb0;--panel:rgba(26,10,48,.66);--wall:#1a0833;--floor:#12052a;--ceil:#16062e;--rib:rgba(214,120,255,.34);--frame:#12052a;--edge:rgba(230,150,255,.6);--light:#f7c6ff;--panelline:rgba(230,170,255,.28)}
+      /* C 宣纸：水墨和朱砂，东方编年史 */
+      html[data-skin="c"]{--bg:#e9e2d2;--ink:#1c1a17;--dim:#6f6657;--red:#b3261e;--panel:rgba(245,240,228,.82);--wall:#e4dccb;--floor:#d6ccb6;--ceil:#efe9db;--rib:rgba(40,32,20,.16);--frame:#f3eee1;--edge:rgba(40,32,20,.5);--light:transparent;--panelline:rgba(40,32,20,.2)}
       *{box-sizing:border-box}
       html,body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-text-size-adjust:100%}
       a{color:inherit}
@@ -21,16 +27,24 @@
 
       .world{position:fixed;inset:0;z-index:0;overflow:hidden;perspective:1000px;perspective-origin:50% 48%;background:var(--bg)}
       .scene{position:absolute;left:50%;top:48%;width:0;height:0;transform-style:preserve-3d;will-change:transform}
-      .plane{position:absolute;background:var(--ink);opacity:.03}
-      .plane.side{opacity:.016}
-      .rib{position:absolute;border:1px solid var(--ink);opacity:.2}
-      .frame{position:absolute;left:-200px;top:-250px;width:400px;height:500px;background:var(--bg);border:1px solid var(--ink);padding:20px;box-shadow:0 18px 50px rgba(0,0,0,.14);display:flex;flex-direction:column;gap:8px;backface-visibility:visible}
-      .frame svg{flex:1;min-height:0;width:100%;color:var(--ink)}
-      .frame.loss svg{color:var(--red)}
+      .plane{position:absolute;background:var(--floor)}
+      .plane.top{background:var(--ceil)}
+      .plane.side{background:var(--wall)}
+      html[data-skin="a"] .plane.side{background:linear-gradient(180deg,#141216,#28232b 58%,#141216)}
+      html[data-skin="a"] .plane:not(.side):not(.top){background:linear-gradient(90deg,#141116,#2b2630 50%,#141116)}
+      html[data-skin="b"] .plane{background-image:linear-gradient(rgba(214,120,255,.3) 1px,transparent 1px),linear-gradient(90deg,rgba(214,120,255,.3) 1px,transparent 1px);background-size:150px 150px}
+      .rib{position:absolute;border:1px solid var(--rib)}
+      .lamp{position:absolute;width:300px;height:12px;margin-left:-150px;background:var(--light);border-radius:2px;box-shadow:0 0 34px 10px color-mix(in srgb,var(--light) 55%,transparent)}
+      html[data-skin="c"] .lamp{display:none}
+      .frame{position:absolute;left:-200px;top:-250px;width:400px;height:500px;background:var(--frame);border:1px solid var(--edge);padding:16px 16px 14px;box-shadow:0 0 90px 6px color-mix(in srgb,var(--light) 16%,transparent),0 24px 60px rgba(0,0,0,.4);display:flex;flex-direction:column;gap:8px;backface-visibility:visible}
+      .frame canvas{flex:1;min-height:0;width:100%;display:block}
       .frame b{font-family:var(--serif);font-weight:900;font-size:40px;line-height:1.1;white-space:nowrap;overflow:hidden}
       .frame.loss b{color:var(--red)}
       .frame span{font-family:var(--mono);font-size:14px;color:var(--dim)}
-      .fog{position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 50% 48%,var(--bg) 0,var(--bg) 5%,transparent 30%)}
+      .fog{position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 50% 48%,var(--bg) 0,var(--bg) 4%,transparent 26%),radial-gradient(ellipse at 50% 50%,transparent 52%,color-mix(in srgb,var(--bg) 78%,transparent) 100%)}
+      .skins{position:fixed;z-index:20;top:12px;left:50%;transform:translateX(-50%);display:flex;gap:4px;font-size:13px}
+      .skins a{padding:3px 11px;border-radius:999px;color:var(--dim);text-decoration:none;border:1px solid var(--panelline)}
+      .skins a[aria-current="true"]{color:var(--bg);background:var(--ink);border-color:var(--ink)}
 
       .bar{position:fixed;z-index:20;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:14px 22px;pointer-events:none}
       .bar>*{pointer-events:auto}
@@ -52,10 +66,10 @@
       .label{position:fixed;z-index:12;left:22px;bottom:18px;font-family:var(--mono);font-size:12.5px;color:var(--dim);pointer-events:none}
       .label b{display:block;font-family:var(--serif);font-weight:400;font-size:30px;color:var(--ink)}
       .nav{position:fixed;z-index:12;right:22px;bottom:20px;display:flex;gap:8px}
-      .nav button{appearance:none;width:38px;height:34px;border:1px solid var(--ink);background:var(--panel);font-family:var(--mono)}
+      .nav button{appearance:none;width:38px;height:34px;border:1px solid var(--panelline);border-radius:8px;background:var(--panel);color:var(--ink);font-family:var(--mono)}
       .nav button:disabled{opacity:.3;cursor:default}
 
-      .panel{position:fixed;z-index:15;top:50%;left:calc(50% + 36px);width:min(470px,calc(50vw - 64px));max-height:min(80vh,620px);overflow-y:auto;padding:24px 26px;background:var(--panel);box-shadow:0 18px 60px rgba(0,0,0,.16);transform:translateY(-50%);opacity:0;pointer-events:none;overscroll-behavior:contain;transition:background-color .35s,color .35s}
+      .panel{position:fixed;z-index:15;top:50%;left:calc(50% + 36px);width:min(470px,calc(50vw - 64px));max-height:min(80vh,620px);overflow-y:auto;padding:24px 26px;background:var(--panel);border:1px solid var(--panelline);border-radius:14px;-webkit-backdrop-filter:blur(18px) saturate(1.3);backdrop-filter:blur(18px) saturate(1.3);box-shadow:0 24px 70px rgba(0,0,0,.4);transform:translateY(-50%);opacity:0;pointer-events:none;overscroll-behavior:contain;transition:background-color .35s,color .35s}
       .panel.flip{left:auto;right:calc(50% + 36px)}
       .panel.on{pointer-events:auto}
       .p-meta{margin-top:14px;font-family:var(--mono);font-size:12px;color:var(--dim);display:flex;flex-wrap:wrap;gap:4px 12px;align-items:center}
@@ -96,6 +110,7 @@
 
     <div class="bar">
       <button type="button" class="mark" id="mark"></button>
+      <nav class="skins" id="skins"></nav>
       <div class="lang" id="lang">
         <button type="button" data-lang="zh">中文</button>
         <button type="button" data-lang="en">EN</button>
@@ -154,30 +169,77 @@
         return o.join(" · ");
       }
 
-      /* 展品是代码生成的线描：越靠后的事件，线条越乱 */
-      function art(ev, i) {
-        var h = 7, k, s = "";
-        for (k = 0; k < ev.id.length; k++) h = (h * 31 + ev.id.charCodeAt(k)) >>> 0;
-        function r() { h = (h * 1664525 + 1013904223) >>> 0; return h / 4294967296; }
-        var chaos = i / Math.max(1, ORDER.length - 1), lines = 11;
-        for (k = 0; k < lines; k++) {
-          var y = 12 + k * (176 / (lines - 1)), d = "M0 " + y.toFixed(1), x;
-          for (x = 10; x <= 240; x += 10) {
-            var wob = (r() - 0.5) * (1 + chaos * 24) * Math.sin(x / 240 * Math.PI);
-            d += "L" + x + " " + (y + wob).toFixed(1);
-          }
-          s += '<path d="' + d + '"/>';
+      var SKIN = new URLSearchParams(location.search).get("style");
+      if (SKIN !== "b" && SKIN !== "c") SKIN = "a";
+      document.documentElement.setAttribute("data-skin", SKIN);
+      var PALETTE = {
+        a: { loss: ["#ff5a2c", "#ffb04a", "#ffe2a8"], blocked: ["#39e6b4", "#a4ffe0", "#e8fff6"], other: ["#6f8cff", "#c5a8ff", "#eadcff"] },
+        b: { loss: ["#ff2bb4", "#ff7a3c", "#ffe14a"], blocked: ["#00e5ff", "#7dffcf", "#e9ff5a"], other: ["#7a5cff", "#29b6ff", "#ff7ae0"] },
+        c: { loss: ["#1c1a17", "#3a342b", "#b3261e"], blocked: ["#1c1a17", "#4c5a50", "#7b8a7d"], other: ["#1c1a17", "#3d4656", "#7c8596"] }
+      };
+
+      /* 展品由代码生成：流场线条，越靠后的事件越乱 */
+      function paint(cv, ev, i) {
+        var c = cv.getContext("2d"), w = cv.width, h = cv.height, seed = 7, k;
+        for (k = 0; k < ev.id.length; k++) seed = (seed * 31 + ev.id.charCodeAt(k)) >>> 0;
+        function r() { seed = (seed * 1664525 + 1013904223) >>> 0; return seed / 4294967296; }
+        var chaos = i / Math.max(1, ORDER.length - 1), tone = ev.outcome === "loss" ? "loss" : ev.outcome === "blocked" ? "blocked" : "other";
+        var pal = PALETTE[SKIN][tone];
+        var g = c.createLinearGradient(0, 0, w, h);
+        if (SKIN === "c") { g.addColorStop(0, "#f4efe2"); g.addColorStop(1, "#e7dfcc"); }
+        else if (SKIN === "b") { g.addColorStop(0, "#1b0838"); g.addColorStop(1, "#07021a"); }
+        else { g.addColorStop(0, "#15131a"); g.addColorStop(1, "#08070a"); }
+        c.fillStyle = g; c.fillRect(0, 0, w, h);
+        c.globalCompositeOperation = SKIN === "c" ? "multiply" : "screen";
+        var blobs = SKIN === "c" ? 5 : 4;
+        for (k = 0; k < blobs; k++) {
+          var bx = r() * w, by = r() * h, br = 110 + r() * 190, wash = c.createRadialGradient(bx, by, 0, bx, by, br);
+          var col = SKIN === "c" ? "#2a241c" : pal[k % pal.length];
+          wash.addColorStop(0, col); wash.addColorStop(1, "rgba(0,0,0,0)");
+          c.globalAlpha = SKIN === "c" ? 0.3 : 0.5;
+          if (SKIN === "c") { wash = c.createRadialGradient(bx, by, 0, bx, by, br); wash.addColorStop(0, "rgba(42,36,28,.8)"); wash.addColorStop(1, "rgba(42,36,28,0)"); }
+          c.fillStyle = wash; c.fillRect(0, 0, w, h);
         }
-        return '<svg viewBox="0 0 240 200" preserveAspectRatio="none" fill="none" stroke="currentColor" stroke-width=".8" aria-hidden="true">' + s + "</svg>";
+        /* 几组频率随种子变化，每件作品的走向都不同 */
+        var f = [], fi;
+        for (fi = 0; fi < 4; fi++) f.push({ x: (0.5 + r() * 3) / w, y: (0.5 + r() * 3) / h, p: r() * 6.28 });
+        var bend = 1.1 + chaos * 2.6, cx = w * (0.2 + r() * 0.6), cy = h * (0.2 + r() * 0.6);
+        c.globalCompositeOperation = SKIN === "c" ? "multiply" : "lighter";
+        function run(n, len, width, alpha) {
+          c.lineWidth = width;
+          for (var q = 0; q < n; q++) {
+            var a0 = r() * 6.28, rad = Math.pow(r(), 0.6) * w * 0.62, x = cx + Math.cos(a0) * rad, y = cy + Math.sin(a0) * rad;
+            c.strokeStyle = pal[Math.floor(r() * pal.length)];
+            c.globalAlpha = alpha * (0.5 + r());
+            c.beginPath(); c.moveTo(x, y);
+            for (var t = 0; t < len; t++) {
+              var a = 0;
+              for (fi = 0; fi < 4; fi++) a += Math.sin(x * f[fi].x * 6.28 + y * f[fi].y * 6.28 + f[fi].p);
+              a *= bend;
+              x += Math.cos(a) * 3; y += Math.sin(a) * 3;
+              c.lineTo(x, y);
+            }
+            c.stroke();
+          }
+        }
+        if (SKIN === "c") { run(170, 70, 1.6, 0.1); run(110, 90, 0.6, 0.3); }
+        else { run(150, 70, 5, 0.035); run(320, 60, 1, 0.16); run(46, 110, 1.4, 0.6); }
+        c.globalCompositeOperation = "source-over"; c.globalAlpha = 1;
+        if (SKIN === "c" && ev.outcome === "loss") {
+          c.fillStyle = "#b3261e"; c.fillRect(w - 58, 20, 38, 38);
+        }
       }
 
       function build() {
         var small = window.innerWidth < 640, L = (ORDER.length + 4) * STEP, html = "";
-        W = small ? 620 : 1120;
+        W = small ? 640 : 1280;
         var flat = "width:" + W + "px;height:" + L + "px;transform-origin:0 0;";
         var side = "width:" + L + "px;height:" + H + "px;transform-origin:0 0;";
         html += '<div class="plane" style="' + flat + "transform:translate3d(" + (-W / 2) + "px," + H / 2 + 'px,0) rotateX(-90deg)"></div>';
-        html += '<div class="plane" style="' + flat + "transform:translate3d(" + (-W / 2) + "px," + (-H / 2) + 'px,0) rotateX(-90deg)"></div>';
+        html += '<div class="plane top" style="' + flat + "transform:translate3d(" + (-W / 2) + "px," + (-H / 2) + 'px,0) rotateX(-90deg)"></div>';
+        for (var q = 0; q < ORDER.length + 4; q++) {
+          html += '<div class="lamp" style="left:0;top:' + (-H / 2 + 4) + "px;transform:translateZ(" + (-q * STEP - 500) + 'px) rotateX(90deg)"></div>';
+        }
         html += '<div class="plane side" style="' + side + "transform:translate3d(" + (-W / 2) + "px," + (-H / 2) + 'px,0) rotateY(90deg)"></div>';
         html += '<div class="plane side" style="' + side + "transform:translate3d(" + W / 2 + "px," + (-H / 2) + 'px,0) rotateY(90deg)"></div>';
         /* 门框给出纵深，越往后越歪 */
@@ -186,11 +248,12 @@
           html += '<div class="rib" style="left:' + (-W / 2) + "px;top:" + (-H / 2) + "px;width:" + W + "px;height:" + H + "px;transform:translateZ(" + (-k * STEP / 2) + "px) rotateZ(" + rot.toFixed(2) + 'deg)"></div>';
         }
         ORDER.forEach(function (ev, i) {
-          var left = i % 2 === 0, x = (left ? -1 : 1) * (W / 2 - 34), z = -(i + 1) * STEP - 640;
+          var left = i % 2 === 0, x = (left ? -1 : 1) * (W / 2 - (small ? 130 : 180)), z = -(i + 1) * STEP - 640;
           html += '<div class="frame ' + (ev.outcome === "loss" ? "loss" : "") + '" data-f="' + i + '" style="transform:translate3d(' + x + "px,0," + z + "px) rotateY(" + (left ? 50 : -50) + 'deg)">' +
-            art(ev, i) + "<b></b><span></span></div>";
+            '<canvas width="368" height="370"></canvas><b></b><span></span></div>';
         });
         $("scene").innerHTML = html;
+        [].forEach.call(document.querySelectorAll(".frame canvas"), function (cv, n) { paint(cv, ORDER[n], n); });
         $("track").style.height = (ORDER.length + 1) * 100 + 100 + "vh";
       }
 
@@ -208,6 +271,10 @@
           f.querySelector("b").textContent = e[lang].amount;
           f.querySelector("span").textContent = sortDate(e).slice(0, 4) + " · " + e[lang].short;
         });
+        $("skins").innerHTML = [["a", "A 暗房"], ["b", "B 霓虹"], ["c", "C 宣纸"]].map(function (x) {
+          var q = new URLSearchParams(location.search); q.set("style", x[0]);
+          return '<a href="?' + q.toString() + location.hash + '" aria-current="' + (x[0] === SKIN) + '">' + x[1] + "</a>";
+        }).join("");
         typeLine();
         cur = -2;
         onScroll();
@@ -240,7 +307,6 @@
           '<div class="p-src">' + src + "</div>";
       }
 
-      var PAPER = [247, 246, 241], VOID = [9, 9, 11], INK = [23, 23, 26], BONE = [232, 231, 224];
       function dwell(raw) {
         var i = Math.floor(raw), t = raw - i;
         if (t <= 0.24) return i;
@@ -253,16 +319,6 @@
         var vh = window.innerHeight, raw = window.scrollY / vh - 1, n = ORDER.length;
         var pos = dwell(Math.max(-1, raw)), p = Math.max(0, Math.min(1, pos / (n - 1)));
         $("scene").style.transform = "translateZ(" + (pos + 1) * STEP + "px)";
-
-        /* 恒纪元到乱纪元：灰色的中段走得很快，避免长时间发闷 */
-        var e = Math.max(0, Math.min(1, (p - 0.6) / 0.14)), dark = e * e * (3 - 2 * e);
-        var root = document.documentElement.style, night = dark > 0.5;
-        var bg = mix(PAPER, VOID, dark);
-        root.setProperty("--bg", rgb(bg));
-        root.setProperty("--ink", rgb(night ? BONE : INK));
-        root.setProperty("--dim", night ? "rgb(160,160,160)" : "rgb(96,96,100)");
-        root.setProperty("--panel", "rgba(" + (night ? [20, 20, 23] : [255, 254, 250]).join(",") + ",.94)");
-        root.setProperty("--red", night ? "rgb(255,88,70)" : "rgb(200,40,28)");
 
         var fade = Math.max(0, Math.min(1, (-0.7 - raw) / 0.3));
         $("intro").style.opacity = fade;
@@ -287,6 +343,7 @@
             panel.classList.toggle("flip", i % 2 === 1);
           }
           history.replaceState(null, "", location.pathname + location.search + (inside ? "#" + ORDER[i].id : ""));
+          [].forEach.call($("skins").children, function (a) { a.hash = inside ? ORDER[i].id : ""; });
         }
         var idx = Math.max(0, Math.min(n - 1, i));
         $("label").innerHTML = raw < -0.6 ? "" : "<b>" + esc(sortDate(ORDER[idx]).slice(0, 4)) + "</b>" + String(idx + 1).padStart(2, "0") + " / " + n;
