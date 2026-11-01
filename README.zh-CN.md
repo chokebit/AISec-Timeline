@@ -1,10 +1,12 @@
-# AI 安全事件时间轴
+# AI 乱纪元
+
+AI 时代安全大事件。
 
 [English](README.md) | 中文
 
 **在线页面：<https://chokebit.github.io/AISec-Timeline/>**
 
-一份带来源的 AI 诈骗与安全事件时间轴。每条事件都把三件常被混在一起的事分开写：损失多少、追回多少、用了 AI 的证据有多强。
+一份带来源的编年史，记录 AI 时代最大的损失、转折点和突破想象的时刻。每条事件都分开写清楚：损失多少、追回多少、用了 AI 的证据有多强、人在哪里。
 
 ## 收录范围
 
@@ -55,6 +57,6 @@ python3 -m http.server 8000
 ## 许可
 
 - 代码：[MIT](LICENSE)
-- 数据和文字：[CC BY 4.0](LICENSE-DATA)。使用时请注明“AI Security Incident Timeline”并附上本仓库链接。
+- 数据和文字：[CC BY 4.0](LICENSE-DATA)。使用时请注明“AI 乱纪元”并附上本仓库链接。
 
 本项目整理公开报道，不构成法律、金融或安全建议。嫌疑人的指控在法院判决前都未被证实。

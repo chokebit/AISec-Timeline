@@ -1,10 +1,12 @@
-# AI Security Incident Timeline
+# AI Chaotic Era
+
+Major security events of the AI era.
 
 English | [中文](README.zh-CN.md)
 
 **Live site: <https://chokebit.github.io/AISec-Timeline/>**
 
-A sourced timeline of AI-enabled fraud and security incidents. Each entry separates three things that are often mixed up: what was lost, what was recovered, and how strong the evidence is that AI was used at all.
+A sourced chronicle of the biggest losses, turning points and unexpected moments in security during the AI era. Each entry separates what was lost, what was recovered, how strong the evidence for AI use is, and where the humans were.
 
 ## Scope
 
@@ -55,6 +57,6 @@ Then open <http://localhost:8000/>. The page reads a JSON file, so opening `inde
 ## License
 
 - Code: [MIT](LICENSE)
-- Data and text: [CC BY 4.0](LICENSE-DATA). Credit "AI Security Incident Timeline" and link to this repository.
+- Data and text: [CC BY 4.0](LICENSE-DATA). Credit "AI Chaotic Era" and link to this repository.
 
 This project summarizes public reporting. It is not legal, financial or security advice, and allegations against suspects remain unproven until a court decides.
