@@ -20,6 +20,7 @@ Corrections and new events are both welcome. Open an issue, or send a pull reque
 | `ai_evidence` | `confirmed`, `assessed`, `self_reported` or `unknown` |
 | `usd_m` | Approximate USD in millions. `0` for `blocked`, `null` for `no_funds` |
 | `short` | In `en` and `zh`: a label of a few words for the time navigator |
+| `plate` | The name on the exhibit label, in capitals. Text only, no logos |
 | `steps` | In `en` and `zh`: the attack chain in order, in short phrases, with the same number of items |
 | `sources` | At least one, each with `name`, `url` and `kind`: `official`, `news` or `secondary` |
 

@@ -52,6 +52,9 @@
       .tag{position:absolute;left:20px;bottom:15px;right:20px;display:flex;justify-content:space-between;align-items:flex-end;gap:14px;text-shadow:0 2px 16px rgba(0,0,0,.8)}
       .tag b{font-family:var(--serif);font-weight:900;font-size:clamp(30px,3.8vw,52px);line-height:1;color:var(--tone,var(--ink))}
       .tag b.long{font-size:clamp(22px,2.4vw,32px)}
+      .plate{position:absolute;right:14px;bottom:14px;max-width:62%;padding:7px 11px 6px;background:rgba(243,239,230,.93);color:#17140f;box-shadow:0 6px 20px rgba(0,0,0,.5)}
+      .plate b{display:block;font-family:var(--mono);font-weight:500;font-size:13px;line-height:1.3;letter-spacing:.09em}
+      .plate span{display:block;margin-top:1px;font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:#5f594e}
       .cap{margin:9px 2px 0;font-size:13px;line-height:1.5;color:var(--ink-2)}
 
       .text{min-width:0;max-height:100%;overflow-y:auto;padding:20px 24px;background:var(--glass);border:1px solid var(--line);border-radius:14px;-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);overscroll-behavior:contain;animation:textIn .55s ease both .12s}
@@ -107,6 +110,8 @@
         .piece{transform:none}
         .piece canvas{max-height:36vh}
         .tag{left:13px;right:13px;bottom:10px}
+        .plate{right:9px;bottom:9px;padding:5px 8px 4px}
+        .plate b{font-size:11px}
         .text{margin-top:12px;max-height:none;overflow:visible;padding:14px 15px}
         .text.cover{padding:0}
         .arrow{position:fixed;top:auto;bottom:100px;width:38px;height:38px}
@@ -285,7 +290,7 @@
         var src = e.sources.map(function (s) {
           return '<a href="' + esc(encodeURI(s.url)) + '" target="_blank" rel="noopener noreferrer">' + esc(s.name) + " ↗</a>";
         }).join("");
-        return '<div class="art ' + toneOf(e) + '" id="art"><div class="piece"><div class="tag"><b class="' + (e.usd_m === null ? "long" : "") + '">' + esc(l.amount) + '</b></div></div><p class="cap">' + esc(AISecArt.note(e.id, lang)) + "</p></div>" +
+        return '<div class="art ' + toneOf(e) + '" id="art"><div class="piece"><div class="tag"><b class="' + (e.usd_m === null ? "long" : "") + '">' + esc(l.amount) + '</b></div><div class="plate"><b>' + esc(e.plate) + "</b><span>" + esc(sortDate(e).split("-").slice(0, 2).join(".")) + '</span></div></div><p class="cap">' + esc(AISecArt.note(e.id, lang)) + "</p></div>" +
           '<section class="text"><div class="meta"><span>' + esc(dateLine(e)) + '</span><em class="' + esc(e.ai_evidence) + '">' + esc(t.ev[e.ai_evidence]) + "</em></div>" +
           "<h2>" + esc(l.title) + "</h2>" +
           '<div class="note">' + esc(l.amount_note) + "</div>" +

@@ -18,6 +18,8 @@ def check(ev):
     errors = []
     if not re.fullmatch(r"[a-z0-9-]+", ev.get("id", "")):
         errors.append("id must be lowercase letters, digits and hyphens")
+    if not ev.get("plate"):
+        errors.append("needs plate")
     if not ev.get("occurred") and not ev.get("disclosed"):
         errors.append("needs occurred or disclosed")
     for key in ("occurred", "disclosed"):
