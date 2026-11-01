@@ -1,0 +1,608 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:," />
+    <title>AI Security Incident Timeline</title>
+    <meta name="description" content="A sourced timeline of AI-enabled fraud and security incidents, with amounts, recovery figures and the strength of the evidence for AI use kept separate." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600;700;900&family=Noto+Sans+SC:wght@400;500;700;900&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
+    <style>
+      :root{
+        --bg:#eef0ec; --bg2:#e6e9e3;
+        --surface:#ffffff; --surface-2:#f2f3ef; --surface-3:#e9ebe6;
+        --ink:#14161a; --ink-2:#454a52; --ink-3:#7d828c;
+        --line:#d8dbd3; --line-strong:#c3c7bd;
+        --red:#c1271b; --red-ink:#a91f14; --red-soft:#fbeae7; --red-dim:#e8a49d;
+        --teal:#0b6b57; --teal-soft:#e0efea;
+        --amber:#8a5a00; --amber-soft:#f6ecd1;
+        --violet:#4c3d99; --violet-soft:#e9e6f7;
+        --hero:#101215; --hero-2:#171a1e; --hero-ink:#f2f3f0; --hero-ink2:#b9beba; --hero-line:#2b2f33;
+        --rail:#c9ccc2;
+        --shadow:0 1px 2px rgba(18,20,18,.05),0 16px 36px -24px rgba(18,20,18,.35);
+        --shadow-lg:0 2px 4px rgba(18,20,18,.06),0 24px 48px -28px rgba(18,20,18,.4);
+        color-scheme:light dark;
+      }
+      @media (prefers-color-scheme:dark){
+        :root{
+          --bg:#0c0e10; --bg2:#0c0e10;
+          --surface:#17191d; --surface-2:#1e2126; --surface-3:#262a30;
+          --ink:#eef0ec; --ink-2:#b6babf; --ink-3:#82868e;
+          --line:#292d33; --line-strong:#363b43;
+          --red:#ff7a6d; --red-ink:#ff9a90; --red-soft:#38201d; --red-dim:#7a3a34;
+          --teal:#4cc2a6; --teal-soft:#143028;
+          --amber:#e3ac3d; --amber-soft:#332a10;
+          --violet:#ab9fec; --violet-soft:#282344;
+          --hero:#08090a; --hero-2:#101215; --hero-ink:#f2f3f0; --hero-ink2:#a9ada9; --hero-line:#23262a;
+          --rail:#2e3237;
+          --shadow:0 1px 2px rgba(0,0,0,.45),0 16px 36px -24px rgba(0,0,0,.85);
+          --shadow-lg:0 2px 4px rgba(0,0,0,.5),0 24px 48px -28px rgba(0,0,0,.9);
+        }
+      }
+      *{box-sizing:border-box}
+      html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+      @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+      body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans SC",-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;font-size:16px;line-height:1.7}
+      ::selection{background:var(--red);color:#fff}
+      .wrap{max-width:1060px;margin:0 auto;padding:22px 20px 80px}
+      a{color:inherit}
+      button,select,input{font:inherit}
+      button:focus-visible,select:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+
+      /* ============ HERO ============ */
+      .hero{background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--shadow)}
+      .hero-main{padding:32px 36px 26px;position:relative}
+      .hero-top{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+      .hero-kicker{font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:600;letter-spacing:.14em;color:var(--red-ink);display:inline-flex;align-items:center;gap:9px}
+      .hero-kicker::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--red);box-shadow:0 0 0 4px var(--red-soft);flex:none}
+      .hero-updated{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--ink-3)}
+      .hero h1{font-family:"Noto Serif SC",serif;font-weight:900;font-size:clamp(32px,5vw,46px);line-height:1.2;margin:18px 0 0;letter-spacing:.01em;max-width:14em}
+      .hero h1 em{font-style:normal;color:var(--red-ink)}
+      .hero-lede{margin:14px 0 0;color:var(--ink-2);font-size:16px;line-height:1.85;max-width:44em}
+      .hero-lede strong{color:var(--ink)}
+      .hero-tracks{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}
+      .trackbox{border:1px solid var(--line);background:var(--surface-2);border-radius:12px;padding:14px 16px}
+      .trackbox .tb-head{display:flex;align-items:center;gap:8px;font-weight:900;font-size:14.5px}
+      .trackbox p{margin:6px 0 0;font-size:13.5px;line-height:1.7;color:var(--ink-2)}
+      .tb-dot{width:9px;height:9px;border-radius:50%;flex:none}
+      .hero-stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);background:var(--surface)}
+      .hstat{padding:18px 22px 16px;border-left:1px solid var(--line)}
+      .hstat:first-child{border-left:0}
+      .hstat .bar{width:26px;height:3px;border-radius:2px;margin-bottom:12px}
+      .hstat .num{font-family:"IBM Plex Mono",monospace;font-weight:700;font-size:clamp(22px,3vw,30px);line-height:1.1;white-space:nowrap}
+      .hstat .num.red{color:var(--red-ink)}.hstat .num.white{color:var(--ink)}
+      .hstat .lbl{font-size:12.5px;line-height:1.6;color:var(--ink-2);margin-top:7px}
+
+      /* ============ GUIDE ============ */
+      .guide{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0 0}
+      .guide-item{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px 14px;box-shadow:var(--shadow)}
+      .guide-item .g-no{font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:700;color:var(--red-ink)}
+      .guide-item h3{margin:6px 0 4px;font-size:15.5px;font-weight:900}
+      .guide-item p{margin:0;font-size:13.5px;line-height:1.75;color:var(--ink-2)}
+
+      /* ============ CONTROLS ============ */
+      .controls{position:sticky;top:12px;z-index:30;margin-top:16px;background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-lg);padding:14px 16px 12px}
+      .ctl-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+      .ctl-row+.ctl-row{margin-top:11px;padding-top:11px;border-top:1px dashed var(--line)}
+      .seg{display:inline-flex;background:var(--surface-2);border:1px solid var(--line);border-radius:999px;padding:3px;gap:2px}
+      .seg button{appearance:none;border:0;background:transparent;cursor:pointer;font-size:14px;font-weight:700;color:var(--ink-2);padding:7px 16px;border-radius:999px;white-space:nowrap}
+      .seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+      @media (prefers-color-scheme:dark){.seg button[aria-pressed="true"]{background:#eef0ec;color:#14161a}}
+      .searchbox{flex:1 1 210px;display:flex;align-items:center;gap:8px;background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:0 12px}
+      .searchbox svg{flex:none;color:var(--ink-3)}
+      .searchbox input{flex:1;min-width:0;border:0;background:transparent;color:var(--ink);font-size:14.5px;padding:9px 0}
+      .searchbox input::placeholder{color:var(--ink-3)}
+      .searchbox input:focus-visible{outline:none}
+      .searchbox:focus-within{border-color:var(--ink-3);box-shadow:0 0 0 2px var(--surface-3)}
+      .sortbox{display:flex;align-items:center;gap:8px;font-size:13.5px;color:var(--ink-2);white-space:nowrap}
+      .sortbox select{font-size:14px;font-weight:500;color:var(--ink);background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:8px 10px;cursor:pointer}
+      .chip{appearance:none;cursor:pointer;font-size:13px;font-weight:500;border:1px solid var(--line);background:var(--surface);color:var(--ink-2);border-radius:999px;padding:6px 13px;white-space:nowrap}
+      .chip:hover{border-color:var(--line-strong);color:var(--ink)}
+      .chip[aria-pressed="true"]{background:var(--red);border-color:var(--red);color:#fff;font-weight:700}
+      @media (prefers-color-scheme:dark){.chip[aria-pressed="true"]{color:#17100f}}
+      .ctl-meta{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:center;width:100%}
+      .count{font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:600;color:var(--ink)}
+      .count-note{font-size:12.5px;color:var(--ink-3)}
+      .legend{display:flex;flex-wrap:wrap;gap:4px 14px;margin-left:auto;font-size:12px;color:var(--ink-2)}
+      .legend span{display:inline-flex;align-items:center;gap:6px}
+      .dot{width:8px;height:8px;border-radius:50%;flex:none}
+      .dot.red{background:var(--red)}.dot.teal{background:var(--teal)}.dot.amber{background:var(--amber)}
+      .yearnav{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:12.5px;color:var(--ink-3)}
+      .yearnav button{appearance:none;border:1px solid var(--line);background:var(--surface-2);color:var(--ink-2);border-radius:8px;font-family:"IBM Plex Mono",monospace;font-size:12.5px;font-weight:600;padding:4px 10px;cursor:pointer}
+      .yearnav button:hover{color:var(--ink);border-color:var(--line-strong)}
+
+      /* ============ TIMELINE ============ */
+      .timeline{margin-top:8px}
+      .yearmark{display:flex;align-items:baseline;gap:14px;padding:38px 0 4px;scroll-margin-top:190px}
+      .yearmark:first-child{padding-top:26px}
+      .yearmark .y{font-family:"IBM Plex Mono",monospace;font-weight:700;font-size:30px;line-height:1;color:var(--ink)}
+      .yearmark .yc{font-size:13px;color:var(--ink-3)}
+      .yearmark::after{content:"";flex:1;height:1px;background:var(--line-strong);align-self:center}
+      .entry{display:grid;grid-template-columns:104px 1fr;gap:0 22px;position:relative}
+      .entry::before{content:"";position:absolute;left:103px;top:0;bottom:0;width:2px;background:var(--rail)}
+      .entry:last-child::before{bottom:auto;height:44px}
+      .entry-side{padding-top:30px;text-align:right}
+      .entry-side .d1{font-family:"IBM Plex Mono",monospace;font-weight:700;font-size:15px;line-height:1.3;color:var(--ink)}
+      .entry-side .d2{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--ink-3);margin-top:3px}
+      .entry-dot{position:absolute;left:97px;top:32px;width:14px;height:14px;border-radius:50%;background:var(--bg);border:3.5px solid var(--ink-3);z-index:1}
+      .tone-loss .entry-dot{border-color:var(--red)}
+      .tone-blocked .entry-dot{border-color:var(--teal)}
+      .tone-info .entry-dot{border-color:var(--amber)}
+      .card{background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:24px 26px 20px;margin:14px 0 6px;min-width:0}
+      .card-head{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+      .date-full{font-size:13px;font-weight:700;color:var(--ink-2);margin-right:4px}
+      .tag{font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:6px;line-height:1.5;white-space:nowrap}
+      .tag.cat{background:var(--surface-3);color:var(--ink-2)}
+      .tag.track-ai{background:var(--red-soft);color:var(--red-ink)}
+      .tag.cal-loss{background:var(--red-soft);color:var(--red-ink)}
+      .tag.cal-ok{background:var(--teal-soft);color:var(--teal)}
+      .tag.cal-info{background:var(--amber-soft);color:var(--amber)}
+      .card h2{font-family:"Noto Serif SC",serif;font-weight:700;font-size:clamp(19px,2.6vw,22.5px);line-height:1.5;margin:12px 0 0;text-wrap:pretty}
+      .amountblock{margin-top:16px;border-radius:12px;padding:16px 18px 14px;background:var(--surface-2);border:1px solid var(--line)}
+      .tone-loss .amountblock{background:var(--red-soft);border-color:transparent}
+      .tone-blocked .amountblock{background:var(--teal-soft);border-color:transparent}
+      .tone-info .amountblock{background:var(--amber-soft);border-color:transparent}
+      .amountline{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px}
+      .amount{font-family:"IBM Plex Mono",monospace;font-weight:700;font-size:clamp(28px,4.4vw,38px);line-height:1.05;color:var(--red-ink);letter-spacing:-.01em}
+      .amount.zero{color:var(--teal)}
+      .amount.none{color:var(--ink);font-size:clamp(20px,3.2vw,25px)}
+      .amount.note{color:var(--ink)}
+      .amount-sub{font-size:13.5px;font-weight:500;color:var(--ink-2)}
+      .scalebar{margin-top:12px}
+      .scalebar .track{height:5px;border-radius:3px;background:rgba(127,127,127,.22);overflow:hidden}
+      .scalebar .fill{height:100%;border-radius:3px;background:var(--red)}
+      .tone-blocked .scalebar .fill{background:var(--teal)}
+      .tone-info .scalebar .fill{background:var(--amber)}
+      .scalebar .cap{font-size:11.5px;color:var(--ink-3);margin-top:5px}
+      .card p.desc{margin:16px 0 0;color:var(--ink-2);font-size:15.5px;line-height:1.9;max-width:62em}
+      .impact{margin-top:16px;display:flex;gap:12px;padding:14px 16px;border-radius:12px;background:var(--surface-2);font-size:14px;line-height:1.8;color:var(--ink-2)}
+      .impact::before{content:"";flex:none;width:3px;border-radius:2px;background:var(--ink-3)}
+      .tone-loss .impact::before{background:var(--red)}
+      .tone-blocked .impact::before{background:var(--teal)}
+      .tone-info .impact::before{background:var(--amber)}
+      .impact b{color:var(--ink)}
+      .src{margin-top:16px;padding-top:12px;border-top:1px dashed var(--line);font-size:12.5px;color:var(--ink-3);display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center}
+      .src .src-lbl{font-weight:700;color:var(--ink-2)}
+      .src a{color:var(--ink-2);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:3px 11px;background:var(--surface)}
+      .src a:hover{color:var(--ink);border-color:var(--line-strong)}
+      .empty{padding:64px 20px;text-align:center;color:var(--ink-3);background:var(--surface);border:1px dashed var(--line-strong);border-radius:16px;margin-top:22px}
+      .empty strong{display:block;color:var(--ink);font-size:16px;margin-bottom:6px}
+
+      /* ============ FOOTER ============ */
+      footer{margin-top:52px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:24px 26px;box-shadow:var(--shadow)}
+      footer h3{font-size:16px;font-weight:900;margin:0 0 4px}
+      footer .f-sub{font-size:13px;color:var(--ink-3);margin:0 0 16px}
+      .f-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px 28px}
+      .f-item{font-size:13.5px;line-height:1.8;color:var(--ink-2)}
+      .f-item b{display:block;color:var(--ink);font-size:13.5px;margin-bottom:2px}
+      .totop{display:inline-block;margin-top:22px;font-size:13px;font-weight:700;color:var(--ink-2);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:7px 16px;background:var(--surface)}
+      .totop:hover{color:var(--ink);border-color:var(--line-strong)}
+
+      @media (max-width:820px){
+        .hero-stats{grid-template-columns:1fr 1fr}
+        .hstat:nth-child(3){border-left:0}
+        .hstat{border-top:1px solid var(--line)}
+        .hstat:nth-child(-n+2){border-top:0}
+        .guide{grid-template-columns:1fr}
+        .hero-tracks{grid-template-columns:1fr}
+        .f-grid{grid-template-columns:1fr}
+      }
+      @media (max-width:640px){
+        .wrap{padding:14px 12px 64px}
+        .hero-main{padding:28px 22px 24px}
+        .hero-stats .hstat{padding:16px 18px 14px}
+        .controls{top:8px;padding:12px}
+        .sortbox{margin-left:auto}
+        .entry{grid-template-columns:1fr}
+        .entry::before{left:6px}
+        .entry-side{display:none}
+        .entry-dot{left:0;top:30px}
+        .card{margin-left:22px;padding:20px 18px 16px}
+        .legend{margin-left:0}
+      }
+      @media (prefers-reduced-motion:no-preference){
+        .card{transition:border-color .18s ease,transform .18s ease}
+        .card:hover{border-color:var(--line-strong)}
+        .chip,.seg button,.src a,.yearnav button{transition:all .15s ease}
+      }
+      .tb-dot{background:var(--red)}.tb-dot.alt{background:var(--amber)}
+      .hero-actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+      .lang-btn{appearance:none;cursor:pointer;border:1px solid var(--line);background:var(--surface-2);color:var(--ink-2);border-radius:999px;padding:4px 12px;font-size:12.5px;font-weight:700}
+      .lang-btn:hover{color:var(--ink);border-color:var(--line-strong)}
+      .tag.ev-confirmed{background:var(--teal-soft);color:var(--teal)}
+      .tag.ev-assessed{background:var(--amber-soft);color:var(--amber)}
+      .tag.ev-self_reported{background:var(--surface-3);color:var(--ink-2)}
+      .impact b{display:block;margin-bottom:2px}
+      .f-links{margin-top:18px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+      .f-links a{font-size:13px;font-weight:700;color:var(--ink-2);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:6px 14px}
+      .f-links a:hover{color:var(--ink);border-color:var(--line-strong)}
+      .totop{margin-top:0}
+      .seg{flex-wrap:wrap;max-width:100%}
+      @media (max-width:640px){.seg{border-radius:14px}.seg button{padding:7px 12px;font-size:13.5px}.card h2{overflow-wrap:anywhere}}
+      .controls{position:static}
+      .entry-side{padding-right:22px}
+    </style>
+  </head>
+  <body>
+    <main class="wrap" id="top">
+      <section class="hero">
+        <div class="hero-main">
+          <div class="hero-top">
+            <span class="hero-kicker">AI SECURITY TIMELINE</span>
+            <div class="hero-actions">
+              <span class="hero-updated" id="updated"></span>
+              <button type="button" class="lang-btn" id="langBtn"></button>
+            </div>
+          </div>
+          <h1 id="heroTitle"></h1>
+          <p class="hero-lede" id="heroLede"></p>
+          <div class="hero-tracks">
+            <div class="trackbox"><div class="tb-head"><i class="tb-dot"></i><span id="box1Head"></span></div><p id="box1"></p></div>
+            <div class="trackbox"><div class="tb-head"><i class="tb-dot alt"></i><span id="box2Head"></span></div><p id="box2"></p></div>
+          </div>
+        </div>
+        <div class="hero-stats" id="stats"></div>
+      </section>
+
+      <div class="controls">
+        <div class="ctl-row">
+          <div class="seg" id="evSeg" role="group"></div>
+          <label class="searchbox">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.8-3.8"/></svg>
+            <input id="q" type="search" />
+          </label>
+          <label class="sortbox"><span id="sortLbl"></span>
+            <select id="sortSel"></select>
+          </label>
+        </div>
+        <div class="ctl-row" id="catRow" role="group"></div>
+        <div class="ctl-row">
+          <div class="ctl-meta">
+            <span class="count" id="count"></span>
+            <span class="count-note" id="countNote"></span>
+            <div class="legend" id="legend" aria-hidden="true"></div>
+          </div>
+        </div>
+        <div class="ctl-row"><div class="yearnav" id="yearNav"></div></div>
+      </div>
+
+      <section class="timeline" id="timeline"></section>
+      <div class="empty" id="empty" hidden><strong id="emptyHead"></strong><span id="emptyBody"></span></div>
+
+      <footer>
+        <h3 id="footHead"></h3>
+        <p class="f-sub" id="footSub"></p>
+        <div class="f-grid" id="footGrid"></div>
+        <div class="f-links">
+          <a href="https://github.com/chokebit/AISec-Timeline" rel="noopener noreferrer">GitHub</a>
+          <a href="data/events.json">events.json</a>
+          <a id="fixLink" href="https://github.com/chokebit/AISec-Timeline/issues/new" rel="noopener noreferrer"></a>
+          <a class="totop" id="toTop" href="#top"></a>
+        </div>
+      </footer>
+    </main>
+
+    <script>
+      var UI = {
+        en: {
+          htmlLang: "en", other: "中文", title: "AI Security Incident Timeline",
+          updated: "Data as of ",
+          heroTitle: "How AI-enabled attacks actually took the money",
+          lede: "Every entry keeps three things apart: what was lost, what was recovered, and how strong the evidence is that AI was used at all. Annual totals are never added to single cases, and figures may change as investigations continue.",
+          box1Head: "What is included",
+          box1: "AI-enabled fraud and security incidents with a public amount or a clear measured impact, plus widely cited cases where the attack failed or no funds moved.",
+          box2Head: "How AI use is graded",
+          box2: "Confirmed: an authority, court filing or the affected company says AI was used. Assessed: police, insurers, security firms or informed sources believe so. Self-reported: filers mentioned AI.",
+          stat1: function (n) { return "Reported loss across " + n + " single cases (annual totals excluded)"; },
+          stat2: function (n) { return "Of that, " + n + " cases where AI use is confirmed"; },
+          stat3: function (t) { return "Largest single case: " + t; },
+          stat4: "Attempts stopped at $0, each by a method you can copy",
+          evAll: "All", evConfirmed: "AI confirmed", evAssessed: "AI assessed",
+          evLabel: { confirmed: "AI confirmed", assessed: "AI assessed", self_reported: "AI self-reported" },
+          search: "Search: Hong Kong, voice clone, WhatsApp",
+          sortLbl: "Sort",
+          sorts: { "time-desc": "Newest first", "time-asc": "Oldest first", "amount-desc": "Largest amount" },
+          cats: { all: "All types", voice: "Voice", video: "Video", breach: "Data breach", market: "Market", aggregate: "Annual total", blocked: "Stopped" },
+          outcome: { loss: "Reported loss", blocked: "Stopped · $0", no_funds: "No funds moved", aggregate: "Annual total" },
+          count: function (n) { return n + (n === 1 ? " event" : " events"); },
+          yearCount: function (n) { return n + (n === 1 ? " event" : " events"); },
+          noteAmount: "Largest first; events with no amount come last",
+          noteSum: function (s) { return "Reported loss in this view: " + s; },
+          legend: { loss: "Reported loss", blocked: "Stopped · $0", info: "No amount or annual total" },
+          years: "Jump to year",
+          occurred: "Occurred ", disclosed: "Disclosed ",
+          scale: function (top, amt) { return "Log scale, full bar = " + top + " · about " + amt; },
+          stopped: "Stopped · $0 transferred",
+          sources: "Sources",
+          emptyHead: "No events match these filters", emptyBody: "Try another type or clear the search.",
+          footHead: "How the numbers work",
+          footSub: "Totals on this page are calculated from data/events.json. For a single case, the cited source wins.",
+          foot: [
+            ["Loss and recovery stay separate", "Amounts are what was transferred or reported lost. Recovered or frozen funds appear in the notes and are not netted off."],
+            ["Annual totals stay separate", "The FBI IC3 figure is a different level of measurement, so it is never added to single cases."],
+            ["Evidence is graded, not assumed", "An entry can be counted as a reported loss while AI use is only assessed. Use the filter to see confirmed cases alone."],
+            ["Exchange rates are approximate", ""]
+          ],
+          fix: "Report a correction", toTop: "Back to top",
+          loadError: "Could not load data/events.json. Open this page through a web server, not as a local file."
+        },
+        zh: {
+          htmlLang: "zh-CN", other: "English", title: "AI 安全事件时间轴",
+          updated: "数据截至 ",
+          heroTitle: "AI 攻击，钱是怎么被骗走的",
+          lede: "每条事件都把三件事分开写：损失多少、追回多少、用了 AI 的证据有多强。年度总数不与单案相加，金额可能随调查进展变化。",
+          box1Head: "收录什么",
+          box1: "有公开金额或明确影响数字的 AI 诈骗与安全事件，以及被广泛引用、但被拦下或没有资金转出的案例。",
+          box2Head: "AI 证据怎么分级",
+          box2: "已确认：官方、法庭文件或受害公司明确说用了 AI。研判：警方、保险商、安全公司或知情人士认为用了。自报：投诉人提到了 AI。",
+          stat1: function (n) { return n + " 起单案的报告损失合计（不含年度总数）"; },
+          stat2: function (n) { return "其中 " + n + " 起的 AI 使用已确认"; },
+          stat3: function (t) { return "最大单案：" + t; },
+          stat4: "被拦下、转出 $0 的未遂案，拦截方法都可以照搬",
+          evAll: "全部", evConfirmed: "AI 已确认", evAssessed: "AI 研判",
+          evLabel: { confirmed: "AI 已确认", assessed: "AI 研判", self_reported: "AI 自报" },
+          search: "搜索：香港、声音克隆、WhatsApp",
+          sortLbl: "排序",
+          sorts: { "time-desc": "时间 · 新 → 旧", "time-asc": "时间 · 旧 → 新", "amount-desc": "金额 · 高 → 低" },
+          cats: { all: "全部类型", voice: "语音", video: "视频", breach: "数据泄露", market: "市场误导", aggregate: "年度总数", blocked: "已拦截" },
+          outcome: { loss: "报告损失", blocked: "已拦截 · $0", no_funds: "无资金转出", aggregate: "年度总数" },
+          count: function (n) { return "共 " + n + " 条"; },
+          yearCount: function (n) { return n + " 条事件"; },
+          noteAmount: "按金额从高到低，无金额的排在最后",
+          noteSum: function (s) { return "当前视图报告损失：" + s; },
+          legend: { loss: "报告损失", blocked: "已拦截 · $0", info: "无金额或年度总数" },
+          years: "跳到年份",
+          occurred: "发生 ", disclosed: "披露 ",
+          scale: function (top, amt) { return "对数刻度，满格 = " + top + " · 约 " + amt; },
+          stopped: "已拦截 · 实际转出 $0",
+          sources: "来源",
+          emptyHead: "没有符合筛选的事件", emptyBody: "换个类型，或清空搜索词再试。",
+          footHead: "数字怎么算",
+          footSub: "本页合计都由 data/events.json 自动计算；单案金额以所引来源为准。",
+          foot: [
+            ["损失和追回分开", "金额指转出或报告的损失。追回、冻结写在说明里，不扣减成净额。"],
+            ["年度总数分开", "FBI IC3 的数字是另一层级的统计，不与单案相加。"],
+            ["证据分级，不靠默认", "一条事件可以计入报告损失，而 AI 使用只是研判。想只看已确认的，用上面的筛选。"],
+            ["汇率是约数", ""]
+          ],
+          fix: "提交更正", toTop: "回到顶部",
+          loadError: "无法加载 data/events.json。请通过网页服务器打开，不要直接打开本地文件。"
+        }
+      };
+
+      var CATS = ["all", "voice", "video", "breach", "market", "aggregate", "blocked"];
+      var state = { lang: pickLang(), ev: "all", cat: "all", sort: "time-desc", q: "" };
+      var DATA = null;
+
+      function pickLang() {
+        var q = new URLSearchParams(location.search).get("lang");
+        if (q === "en" || q === "zh") return q;
+        try {
+          var saved = localStorage.getItem("aisec-lang");
+          if (saved === "en" || saved === "zh") return saved;
+        } catch (e) {}
+        return /^zh/i.test(navigator.language || "") ? "zh" : "en";
+      }
+
+      function $(id) { return document.getElementById(id); }
+      function esc(s) {
+        return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+      }
+      function loc(ev) { return ev[state.lang]; }
+      function isCase(ev) { return ev.outcome === "loss"; }
+      function sortDate(ev) { return ev.occurred || ev.disclosed; }
+
+      function usd(m) {
+        if (state.lang === "zh") {
+          if (m >= 100) return "$" + (m / 100).toFixed(2) + " 亿";
+          return "$" + (Math.round(m * (m >= 10 ? 10 : 100)) * (m >= 10 ? 10 : 1)).toLocaleString("en-US") + " 万";
+        }
+        if (m >= 1) return "$" + m.toLocaleString("en-US", { maximumFractionDigits: m >= 100 ? 0 : m >= 10 ? 1 : 2 }) + "M";
+        return "$" + Math.round(m * 1000) + "K";
+      }
+
+      function sumLoss(list) {
+        return list.filter(isCase).reduce(function (t, ev) { return t + ev.usd_m; }, 0);
+      }
+
+      function dateText(d) {
+        var p = d.split("-");
+        if (state.lang === "zh") {
+          return p[0] + " 年" + (p[1] ? " " + Number(p[1]) + " 月" : "") + (p[2] ? " " + Number(p[2]) + " 日" : "");
+        }
+        var m = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        return (p[2] ? Number(p[2]) + " " : "") + (p[1] ? m[Number(p[1]) - 1] + " " : "") + p[0];
+      }
+
+      function dateLine(ev) {
+        var t = UI[state.lang], out = [];
+        if (ev.occurred) out.push(t.occurred + dateText(ev.occurred));
+        if (ev.disclosed && ev.disclosed !== ev.occurred) out.push(t.disclosed + dateText(ev.disclosed));
+        return out.join(" · ");
+      }
+
+      function scalePct(v, top) {
+        return Math.max(4, Math.min(100, Math.log10(v + 1) / Math.log10(top + 1) * 100));
+      }
+
+      function renderChrome() {
+        var t = UI[state.lang], ev = DATA.events, cases = ev.filter(isCase);
+        var confirmed = cases.filter(function (e) { return e.ai_evidence === "confirmed"; });
+        var largest = cases.slice().sort(function (a, b) { return b.usd_m - a.usd_m; })[0];
+        var blocked = ev.filter(function (e) { return e.outcome === "blocked"; });
+
+        document.documentElement.lang = t.htmlLang;
+        document.title = t.title;
+        $("langBtn").textContent = t.other;
+        $("updated").textContent = t.updated + DATA.updated;
+        $("heroTitle").textContent = t.heroTitle;
+        $("heroLede").textContent = t.lede;
+        $("box1Head").textContent = t.box1Head;
+        $("box1").textContent = t.box1;
+        $("box2Head").textContent = t.box2Head;
+        $("box2").textContent = t.box2;
+
+        var stats = [
+          ["#e5483a", "red", "≈ " + usd(sumLoss(cases)), t.stat1(cases.length)],
+          ["#0b6b57", "white", "≈ " + usd(sumLoss(confirmed)), t.stat2(confirmed.length)],
+          ["#e5483a", "red", usd(largest.usd_m), t.stat3(largest[state.lang].title)],
+          ["#0b6b57", "white", String(blocked.length), t.stat4]
+        ];
+        $("stats").innerHTML = stats.map(function (s) {
+          return '<div class="hstat"><div class="bar" style="background:' + s[0] + '"></div><div class="num ' + s[1] + '">' + esc(s[2]) + '</div><div class="lbl">' + esc(s[3]) + "</div></div>";
+        }).join("");
+
+        var segs = [["all", t.evAll], ["confirmed", t.evConfirmed], ["assessed", t.evAssessed]];
+        $("evSeg").innerHTML = segs.map(function (s) {
+          return '<button type="button" data-ev="' + s[0] + '" aria-pressed="' + (state.ev === s[0]) + '">' + esc(s[1]) + "</button>";
+        }).join("");
+
+        $("q").placeholder = t.search;
+        $("q").setAttribute("aria-label", t.search);
+        $("sortLbl").textContent = t.sortLbl;
+        $("sortSel").innerHTML = Object.keys(t.sorts).map(function (k) {
+          return '<option value="' + k + '"' + (state.sort === k ? " selected" : "") + ">" + esc(t.sorts[k]) + "</option>";
+        }).join("");
+        $("catRow").innerHTML = CATS.map(function (c) {
+          return '<button type="button" class="chip" data-cat="' + c + '" aria-pressed="' + (state.cat === c) + '">' + esc(t.cats[c]) + "</button>";
+        }).join("");
+        $("legend").innerHTML =
+          '<span><i class="dot red"></i>' + esc(t.legend.loss) + '</span><span><i class="dot teal"></i>' + esc(t.legend.blocked) +
+          '</span><span><i class="dot amber"></i>' + esc(t.legend.info) + "</span>";
+        $("emptyHead").textContent = t.emptyHead;
+        $("emptyBody").textContent = t.emptyBody;
+        $("footHead").textContent = t.footHead;
+        $("footSub").textContent = t.footSub;
+        $("footGrid").innerHTML = t.foot.map(function (f, i) {
+          var body = i === t.foot.length - 1 ? DATA.fx_note[state.lang] : f[1];
+          return '<div class="f-item"><b>' + esc(f[0]) + "</b>" + esc(body) + "</div>";
+        }).join("");
+        $("fixLink").textContent = t.fix;
+        $("toTop").textContent = t.toTop;
+      }
+
+      function render() {
+        var t = UI[state.lang];
+        var top = Math.max.apply(null, DATA.events.map(function (e) { return e.usd_m || 0; }));
+        var topEv = DATA.events.filter(function (e) { return e.usd_m === top; })[0];
+
+        var list = DATA.events.filter(function (ev) {
+          if (state.ev !== "all" && ev.ai_evidence !== state.ev) return false;
+          if (state.cat === "blocked" && ev.outcome !== "blocked") return false;
+          if (state.cat !== "all" && state.cat !== "blocked" && ev.category !== state.cat) return false;
+          if (state.q) {
+            var l = loc(ev);
+            var hay = [l.title, l.amount, l.amount_note, l.summary, l.takeaway, t.cats[ev.category], dateLine(ev)].join(" ").toLowerCase();
+            if (hay.indexOf(state.q) === -1) return false;
+          }
+          return true;
+        });
+
+        list.sort(function (a, b) {
+          if (state.sort === "amount-desc") {
+            var av = a.usd_m === null ? -1 : a.usd_m, bv = b.usd_m === null ? -1 : b.usd_m;
+            if (bv !== av) return bv - av;
+          }
+          var cmp = sortDate(a) < sortDate(b) ? 1 : -1;
+          return state.sort === "time-asc" ? -cmp : cmp;
+        });
+
+        var showYears = state.sort !== "amount-desc", yearCounts = {}, html = "", lastYear = null;
+        list.forEach(function (ev) {
+          var y = sortDate(ev).slice(0, 4);
+          yearCounts[y] = (yearCounts[y] || 0) + 1;
+        });
+
+        list.forEach(function (ev) {
+          var l = loc(ev), year = sortDate(ev).slice(0, 4), parts = sortDate(ev).split("-");
+          if (showYears && year !== lastYear) {
+            html += '<div class="yearmark" id="year-' + year + '"><span class="y">' + year + '</span><span class="yc">' + esc(t.yearCount(yearCounts[year])) + "</span></div>";
+            lastYear = year;
+          }
+          var tone = ev.outcome === "loss" ? "loss" : ev.outcome === "blocked" ? "blocked" : "info";
+          var amountClass = ev.outcome === "blocked" ? "zero" : ev.usd_m === null ? "none" : ev.outcome === "aggregate" ? "note" : "";
+          var bar = "";
+          if (ev.usd_m > 0) {
+            bar = '<div class="scalebar"><div class="track"><div class="fill" style="width:' + scalePct(ev.usd_m, top).toFixed(1) + '%"></div></div><div class="cap">' + esc(t.scale(topEv[state.lang].amount, usd(ev.usd_m))) + "</div></div>";
+          } else if (ev.usd_m === 0) {
+            bar = '<div class="scalebar"><div class="cap">' + esc(t.stopped) + "</div></div>";
+          }
+          var srcs = ev.sources.map(function (s) {
+            return '<a href="' + esc(s.url) + '" target="_blank" rel="noopener noreferrer">' + esc(s.name) + " ↗</a>";
+          }).join("");
+          html +=
+            '<div class="entry tone-' + tone + '">' +
+              '<div class="entry-side"><div class="d1">' + esc(parts[1] ? parts[1] + (parts[2] ? " / " + parts[2] : "") : year) + "</div>" + (parts[1] ? '<div class="d2">' + year + "</div>" : "") + "</div>" +
+              '<span class="entry-dot" aria-hidden="true"></span>' +
+              '<article class="card" id="' + esc(ev.id) + '">' +
+                '<div class="card-head"><span class="date-full">' + esc(dateLine(ev)) + "</span>" +
+                  '<span class="tag ev-' + esc(ev.ai_evidence) + '">' + esc(t.evLabel[ev.ai_evidence]) + "</span>" +
+                  (ev.category === "aggregate" ? "" : '<span class="tag cat">' + esc(t.cats[ev.category]) + "</span>") +
+                  '<span class="tag ' + (tone === "loss" ? "cal-loss" : tone === "blocked" ? "cal-ok" : "cal-info") + '">' + esc(t.outcome[ev.outcome]) + "</span>" +
+                "</div>" +
+                "<h2>" + esc(l.title) + "</h2>" +
+                '<div class="amountblock"><div class="amountline"><span class="amount ' + amountClass + '">' + esc(l.amount) + '</span><span class="amount-sub">' + esc(l.amount_note) + "</span></div>" + bar + "</div>" +
+                '<p class="desc">' + esc(l.summary) + "</p>" +
+                '<div class="impact"><div><b>' + esc(l.takeaway_label) + "</b>" + esc(l.takeaway) + "</div></div>" +
+                '<div class="src"><span class="src-lbl">' + esc(t.sources) + "</span>" + srcs + "</div>" +
+              "</article>" +
+            "</div>";
+        });
+
+        $("timeline").innerHTML = html;
+        $("empty").hidden = list.length > 0;
+        $("count").textContent = t.count(list.length);
+        $("countNote").textContent = state.sort === "amount-desc" ? t.noteAmount : t.noteSum(usd(sumLoss(list)));
+
+        var nav = $("yearNav");
+        nav.parentNode.style.display = showYears ? "" : "none";
+        nav.innerHTML = "<span>" + esc(t.years) + "</span>";
+        Object.keys(yearCounts).sort(function (a, b) {
+          return state.sort === "time-asc" ? a - b : b - a;
+        }).forEach(function (y) {
+          var btn = document.createElement("button");
+          btn.type = "button";
+          btn.textContent = y;
+          btn.addEventListener("click", function () {
+            var el = $("year-" + y);
+            if (el) el.scrollIntoView({ block: "start" });
+          });
+          nav.appendChild(btn);
+        });
+      }
+
+      function renderAll() { renderChrome(); render(); }
+
+      $("langBtn").addEventListener("click", function () {
+        state.lang = state.lang === "en" ? "zh" : "en";
+        try { localStorage.setItem("aisec-lang", state.lang); } catch (e) {}
+        renderAll();
+      });
+      $("evSeg").addEventListener("click", function (e) {
+        var v = e.target.getAttribute("data-ev");
+        if (!v) return;
+        state.ev = v;
+        renderAll();
+      });
+      $("catRow").addEventListener("click", function (e) {
+        var v = e.target.getAttribute("data-cat");
+        if (!v) return;
+        state.cat = v;
+        renderAll();
+      });
+      $("sortSel").addEventListener("change", function (e) { state.sort = e.target.value; render(); });
+      $("q").addEventListener("input", function (e) { state.q = e.target.value.trim().toLowerCase(); render(); });
+
+      fetch("data/events.json")
+        .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+        .then(function (d) { DATA = d; renderAll(); })
+        .catch(function () {
+          $("heroTitle").textContent = UI[state.lang].title;
+          $("heroLede").textContent = UI[state.lang].loadError;
+        });
+    </script>
+  </body>
+</html>
