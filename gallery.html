@@ -48,11 +48,11 @@
       @keyframes artIn{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:none}}
       .piece{position:relative;transform:rotateY(4deg);transform-origin:left center;box-shadow:0 0 120px 10px rgba(255,220,168,.13),0 34px 80px rgba(0,0,0,.6);border:1px solid rgba(255,226,180,.3);background:#0d0c10}
       .piece::before{content:"";position:absolute;left:12%;right:12%;top:-22px;height:6px;border-radius:3px;background:var(--light);box-shadow:0 20px 70px 22px rgba(255,220,168,.24),0 0 18px 3px rgba(255,220,168,.55)}
-      .piece canvas{display:block;width:100%;height:auto;max-height:calc(100dvh - 268px);object-fit:cover}
+      .piece canvas{display:block;width:100%;height:auto;max-height:calc(100dvh - 296px);object-fit:contain;background:#0b0a0e}
       .tag{position:absolute;left:20px;bottom:15px;right:20px;display:flex;justify-content:space-between;align-items:flex-end;gap:14px;text-shadow:0 2px 16px rgba(0,0,0,.8)}
       .tag b{font-family:var(--serif);font-weight:900;font-size:clamp(30px,3.8vw,52px);line-height:1;color:var(--tone,var(--ink))}
       .tag b.long{font-size:clamp(22px,2.4vw,32px)}
-      .tag span{font-family:var(--mono);font-size:12.5px;color:var(--ink-2);white-space:nowrap}
+      .cap{margin:9px 2px 0;font-size:13px;line-height:1.5;color:var(--ink-2)}
 
       .text{min-width:0;max-height:100%;overflow-y:auto;padding:20px 24px;background:var(--glass);border:1px solid var(--line);border-radius:14px;-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);overscroll-behavior:contain;animation:textIn .55s ease both .12s}
       @keyframes textIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
@@ -107,7 +107,6 @@
         .piece{transform:none}
         .piece canvas{max-height:36vh}
         .tag{left:13px;right:13px;bottom:10px}
-        .tag span{display:none}
         .text{margin-top:12px;max-height:none;overflow:visible;padding:14px 15px}
         .text.cover{padding:0}
         .arrow{position:fixed;top:auto;bottom:100px;width:38px;height:38px}
@@ -131,6 +130,7 @@
       <nav class="film" id="film"><div class="strip" id="strip"></div></nav>
     </div>
 
+    <script src="art.js"></script>
     <script>
       var UI = {
         zh: { lang: "zh-CN", title: "AI 乱纪元", sub: "AI 时代安全大事件", typed: ["记录金钱、失控和突破想象的时刻。", "每一条都写清楚：人，还在不在。"], go: "从第一件开始",
@@ -228,7 +228,7 @@
           var cv = document.createElement("canvas");
           cv.width = 960; cv.height = 690;
           if (i < 0) paint(cv, "chaotic-era", "loss", 0.75, 1);
-          else paint(cv, ORDER[i].id, toneOf(ORDER[i]), i / Math.max(1, ORDER.length - 1), 1);
+          else AISecArt.draw(cv, ORDER[i].id, toneOf(ORDER[i]));
           cache[key] = cv;
         }
         return cache[key];
@@ -261,7 +261,8 @@
         var cvs = $("strip").querySelectorAll("canvas"), n = 0;
         (function next() {
           if (n >= cvs.length) return;
-          paint(cvs[n], ORDER[n].id, toneOf(ORDER[n]), n / Math.max(1, ORDER.length - 1), 0.2);
+          var src = artFor(n), c = cvs[n].getContext("2d"), h = src.width * cvs[n].height / cvs[n].width;
+          c.drawImage(src, 0, Math.max(0, (src.height - h) / 2), src.width, h, 0, 0, cvs[n].width, cvs[n].height);
           n++;
           setTimeout(next, 16);
         })();
@@ -284,7 +285,7 @@
         var src = e.sources.map(function (s) {
           return '<a href="' + esc(encodeURI(s.url)) + '" target="_blank" rel="noopener noreferrer">' + esc(s.name) + " ↗</a>";
         }).join("");
-        return '<div class="art ' + toneOf(e) + '" id="art"><div class="piece"><div class="tag"><b class="' + (e.usd_m === null ? "long" : "") + '">' + esc(l.amount) + "</b><span>" + esc(sortDate(e).slice(0, 4)) + "</span></div></div></div>" +
+        return '<div class="art ' + toneOf(e) + '" id="art"><div class="piece"><div class="tag"><b class="' + (e.usd_m === null ? "long" : "") + '">' + esc(l.amount) + '</b></div></div><p class="cap">' + esc(AISecArt.note(e.id, lang)) + "</p></div>" +
           '<section class="text"><div class="meta"><span>' + esc(dateLine(e)) + '</span><em class="' + esc(e.ai_evidence) + '">' + esc(t.ev[e.ai_evidence]) + "</em></div>" +
           "<h2>" + esc(l.title) + "</h2>" +
           '<div class="note">' + esc(l.amount_note) + "</div>" +
