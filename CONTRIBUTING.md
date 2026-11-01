@@ -1,6 +1,12 @@
 # Contributing
 
-Corrections and new events are both welcome. Open an issue, or send a pull request that edits `data/events.json`.
+Corrections and new events are both welcome, and you do not need to write code.
+
+- **Missing event:** [open the event form](https://github.com/chokebit/AISec-Timeline/issues/new?template=new-event.yml).
+- **Something is wrong:** [open the correction form](https://github.com/chokebit/AISec-Timeline/issues/new?template=correction.yml).
+- **Comfortable with Git:** send a pull request that edits `data/events.json`.
+
+Every event gets artwork automatically from its `category`, so you never need to draw anything. Totals update by themselves. A maintainer may add custom artwork to `art.js` later.
 
 ## Adding an event
 
@@ -15,13 +21,14 @@ Corrections and new events are both welcome. Open an issue, or send a pull reque
 | `id` | Lowercase words with hyphens, ending in the year |
 | `occurred` | When it happened: `YYYY`, `YYYY-MM` or `YYYY-MM-DD`. Use `null` if unknown |
 | `disclosed` | When it first became public, in the same format |
-| `category` | `voice`, `video`, `breach`, `market` or `aggregate` |
+| `category` | `voice`, `video`, `breach`, `market`, `theft`, `supply`, `autonomous` or `aggregate` |
 | `outcome` | `loss`, `blocked`, `no_funds` or `aggregate` |
 | `ai_evidence` | `confirmed`, `assessed`, `self_reported` or `unknown` |
 | `usd_m` | Approximate USD in millions. `0` for `blocked`, `null` for `no_funds` |
 | `short` | In `en` and `zh`: a label of a few words for the time navigator |
 | `plate` | The name on the exhibit label, in capitals. Text only, no logos |
 | `steps` | In `en` and `zh`: the attack chain in order, in short phrases, with the same number of items |
+| `art_note` | Optional, in `en` and `zh`: one line explaining the artwork |
 | `sources` | At least one, each with `name`, `url` and `kind`: `official`, `news` or `secondary` |
 
 ## Evidence rules

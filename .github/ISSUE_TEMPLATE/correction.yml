@@ -1,0 +1,31 @@
+name: Report a correction
+description: Something on the site is wrong or out of date. No code needed.
+title: "[Correction] "
+labels: ["correction"]
+body:
+  - type: input
+    id: event
+    attributes:
+      label: Which event?
+      placeholder: Binance
+    validations:
+      required: true
+  - type: textarea
+    id: wrong
+    attributes:
+      label: What is wrong?
+    validations:
+      required: true
+  - type: textarea
+    id: right
+    attributes:
+      label: What should it say?
+    validations:
+      required: true
+  - type: textarea
+    id: sources
+    attributes:
+      label: Sources
+      description: One link per line.
+    validations:
+      required: true

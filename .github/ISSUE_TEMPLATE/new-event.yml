@@ -1,0 +1,53 @@
+name: Report a missing event
+description: Suggest an event for the timeline. No code needed.
+title: "[Event] "
+labels: ["new-event"]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: A few plain sentences. Chinese or English is fine.
+    validations:
+      required: true
+  - type: input
+    id: date
+    attributes:
+      label: When?
+      description: The date it happened or became public. A month or year is fine.
+      placeholder: 2026-07
+    validations:
+      required: true
+  - type: input
+    id: amount
+    attributes:
+      label: Amount or impact
+      description: Say who gave the figure. Write "unknown" if there is none.
+      placeholder: About $35M, per a court filing
+    validations:
+      required: true
+  - type: dropdown
+    id: evidence
+    attributes:
+      label: How do we know AI was involved?
+      options:
+        - An authority, court filing or the affected company says so
+        - Police, insurers, security firms or informed sources believe so
+        - Complainants or reporters mentioned AI
+        - Unknown or not shown yet
+    validations:
+      required: true
+  - type: textarea
+    id: humans
+    attributes:
+      label: What did humans do, and what did AI do?
+      description: Who picked the target? Who made the decisions? Write "unknown" if the sources do not say.
+    validations:
+      required: true
+  - type: textarea
+    id: sources
+    attributes:
+      label: Sources
+      description: One link per line. Official statements and original reporting are best.
+    validations:
+      required: true

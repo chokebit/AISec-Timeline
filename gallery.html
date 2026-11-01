@@ -38,6 +38,9 @@
       .app{position:fixed;inset:0;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr) auto}
       .bar{display:flex;align-items:center;justify-content:space-between;padding:13px 28px}
       .mark{appearance:none;border:0;background:none;padding:0;font-family:var(--serif);font-weight:700;font-size:17px;letter-spacing:.05em}
+      .tally{display:flex;align-items:baseline;gap:9px;white-space:nowrap}
+      .tally span{font-size:12.5px;color:var(--dim)}
+      .tally b{font-family:var(--serif);font-weight:900;font-size:clamp(20px,2.3vw,30px);line-height:1;color:var(--red);font-variant-numeric:tabular-nums}
       .top-r{display:flex;align-items:center;gap:14px;font-family:var(--mono);font-size:13px}
       .top-r button{appearance:none;border:0;background:none;padding:0;color:var(--dim)}
       .top-r button[aria-pressed="true"]{color:var(--ink);text-decoration:underline;text-underline-offset:4px}
@@ -77,14 +80,16 @@
 
       /* 封面 */
       .text.cover{background:none;border:0;-webkit-backdrop-filter:none;backdrop-filter:none;padding:0}
-      .text.cover h1{margin:0;font-family:var(--serif);font-weight:400;font-size:clamp(40px,5.4vw,76px);line-height:1.15;letter-spacing:.04em}
+      .text.cover h1{margin:0;font-family:var(--serif);font-weight:400;font-size:clamp(30px,3.4vw,46px);line-height:1.15;letter-spacing:.04em}
       .sub{margin-top:8px;font-size:clamp(16px,1.6vw,20px);color:var(--ink-2)}
       .typed{margin-top:12px;min-height:1.7em;font-size:15px;color:var(--dim)}
       .typed::after{content:"|";margin-left:2px;animation:blink 1s steps(1) infinite}
       @keyframes blink{50%{opacity:0}}
-      .kv{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--line);font-size:13.5px;color:var(--ink-2)}
-      .kv:first-of-type{margin-top:16px;border-top:1px solid var(--line)}
-      .kv b{font-family:var(--mono);font-weight:500;color:var(--ink);white-space:nowrap}
+      .stats{display:grid;grid-template-columns:repeat(2,1fr);gap:14px 20px;margin-top:14px}
+      .stat b{display:block;font-family:var(--serif);font-weight:900;font-size:clamp(24px,2.7vw,36px);line-height:1.1;white-space:nowrap}
+      .stat span{display:block;margin-top:3px;font-size:12.5px;line-height:1.45;color:var(--dim)}
+      .stat.big{grid-column:1 / -1}
+      .stat.hot b{color:var(--red);font-size:clamp(40px,5.2vw,68px);letter-spacing:-.01em}
       .go{appearance:none;margin-top:18px;padding:9px 20px;border:1px solid var(--light);border-radius:6px;background:var(--light);color:#17120a;font-weight:700;font-size:14.5px}
 
       .arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:3;appearance:none;width:42px;height:42px;border:1px solid var(--line);border-radius:50%;background:var(--glass);font-family:var(--mono);font-size:16px}
@@ -105,7 +110,9 @@
       .error{grid-column:1 / -1;text-align:center;color:var(--ink-2)}
       @media (max-width:820px){
         html,body{overflow:hidden}
-        .bar{padding:10px 14px}
+        .bar{padding:10px 14px;gap:10px}
+        .tally span{display:none}
+        .stat.hot b{font-size:46px}
         .stage{display:block;overflow-y:auto;padding:0 14px 54px}
         .piece{transform:none}
         .piece canvas{max-height:36vh}
@@ -126,6 +133,7 @@
     <div class="app">
       <header class="bar">
         <button type="button" class="mark" id="mark"></button>
+        <div class="tally"><span id="tallyLbl"></span><b id="tally"></b></div>
         <div class="top-r" id="lang">
           <button type="button" data-lang="zh">中文</button>
           <button type="button" data-lang="en">EN</button>
@@ -140,12 +148,12 @@
       var UI = {
         zh: { lang: "zh-CN", title: "AI 乱纪元", sub: "AI 时代安全大事件", typed: ["记录金钱、失控和突破想象的时刻。", "每一条都写清楚：人，还在不在。"], go: "从第一件开始",
           human: "人在哪里", more: "攻击链路和说明", cover: "开篇", prev: "上一条", next: "下一条",
-          kvLoss: function (n) { return n + " 起 AI 相关单案的报告损失"; }, kvEvents: "收录事件", kvStop: "被拦下，转出 $0",
+          kvLoss: function (n) { return n + " 起 AI 相关单案的报告损失合计"; }, kvEvents: "收录事件", kvStop: "起被拦下，转出 $0", kvTop: "AI 相关最大单案", kvConf: function (n) { return n + " 起 AI 已确认"; }, tally: "累计 AI 相关损失",
           ev: { confirmed: "AI 已确认", assessed: "AI 研判", self_reported: "AI 自报", unknown: "AI 参与未明" },
           occurred: "发生 ", disclosed: "披露 " },
         en: { lang: "en", title: "AI Chaotic Era", sub: "Major security events of the AI era", typed: ["Money, loss of control, and what nobody expected.", "Each entry says it plainly: were humans still there?"], go: "Start with the first",
           human: "Where the humans were", more: "Attack trace and notes", cover: "Intro", prev: "Previous", next: "Next",
-          kvLoss: function (n) { return "Reported loss, " + n + " AI-linked cases"; }, kvEvents: "Events recorded", kvStop: "Stopped at $0",
+          kvLoss: function (n) { return "Total reported loss across " + n + " AI-linked cases"; }, kvEvents: "Events recorded", kvStop: "Attacks stopped at $0", kvTop: "Largest AI-linked case", kvConf: function (n) { return n + " cases with AI confirmed"; }, tally: "AI-linked losses so far",
           ev: { confirmed: "AI confirmed", assessed: "AI assessed", self_reported: "AI self-reported", unknown: "AI role unknown" },
           occurred: "Occurred ", disclosed: "Disclosed " }
       };
@@ -169,9 +177,14 @@
       function toneOf(e) { return e.outcome === "loss" ? "loss" : e.outcome === "blocked" ? "blocked" : "other"; }
       function isCase(e) { return e.outcome === "loss" && e.ai_evidence !== "unknown"; }
       function usd(m) {
-        if (lang === "zh") return m >= 100 ? "$" + (m / 100).toFixed(2) + " 亿" : "$" + Math.round(m * 100).toLocaleString("en-US") + " 万";
-        return "$" + m.toLocaleString("en-US", { maximumFractionDigits: 0 }) + "M";
+        if (lang === "zh") {
+          if (m >= 100) return "$" + (m / 100).toFixed(2) + " 亿";
+          return "$" + (m >= 10 ? Math.round(m * 10) * 10 : Math.round(m * 100)).toLocaleString("en-US") + " 万";
+        }
+        if (m >= 1) return "$" + m.toLocaleString("en-US", { maximumFractionDigits: m >= 100 ? 0 : m >= 10 ? 1 : 2 }) + "M";
+        return "$" + Math.round(m * 1000) + "K";
       }
+      function sumOf(list) { return list.reduce(function (s, e) { return s + e.usd_m; }, 0); }
       function dateText(d) {
         var p = d.split("-");
         if (lang === "zh") return p[0] + " 年" + (p[1] ? " " + Number(p[1]) + " 月" : "") + (p[2] ? " " + Number(p[2]) + " 日" : "");
@@ -233,7 +246,7 @@
           var cv = document.createElement("canvas");
           cv.width = 960; cv.height = 690;
           if (i < 0) paint(cv, "chaotic-era", "loss", 0.75, 1);
-          else AISecArt.draw(cv, ORDER[i].id, toneOf(ORDER[i]));
+          else AISecArt.draw(cv, ORDER[i], toneOf(ORDER[i]));
           cache[key] = cv;
         }
         return cache[key];
@@ -275,13 +288,19 @@
 
       function coverHtml() {
         var t = UI[lang], cases = ORDER.filter(isCase);
-        var total = cases.reduce(function (s, e) { return s + e.usd_m; }, 0);
+        var confirmed = cases.filter(function (e) { return e.ai_evidence === "confirmed"; });
+        var top = cases.reduce(function (a, e) { return e.usd_m > a.usd_m ? e : a; });
         var stopped = ORDER.filter(function (e) { return e.outcome === "blocked"; }).length;
+        function stat(n, l, cls) { return '<div class="stat ' + (cls || "") + '"><b>' + esc(n) + "</b><span>" + esc(l) + "</span></div>"; }
         return '<div class="art" id="art"><div class="piece"></div></div>' +
           '<section class="text cover"><h1>' + esc(t.title) + '</h1><div class="sub">' + esc(t.sub) + '</div><div class="typed" id="typed"></div>' +
-          '<div class="kv"><span>' + esc(t.kvEvents) + "</span><b>" + ORDER.length + "</b></div>" +
-          '<div class="kv"><span>' + esc(t.kvLoss(cases.length)) + "</span><b>≈ " + esc(usd(total)) + "</b></div>" +
-          '<div class="kv"><span>' + esc(t.kvStop) + "</span><b>" + stopped + "</b></div>" +
+          '<div class="stats">' +
+            stat("≈ " + usd(sumOf(cases)), t.kvLoss(cases.length), "hot big") +
+            stat(usd(top.usd_m), t.kvTop) +
+            stat("≈ " + usd(sumOf(confirmed)), t.kvConf(confirmed.length)) +
+            stat(String(stopped), t.kvStop) +
+            stat(String(ORDER.length), t.kvEvents) +
+          "</div>" +
           '<button type="button" class="go" data-go="1">' + esc(t.go) + " →</button></section>";
       }
 
@@ -290,7 +309,7 @@
         var src = e.sources.map(function (s) {
           return '<a href="' + esc(encodeURI(s.url)) + '" target="_blank" rel="noopener noreferrer">' + esc(s.name) + " ↗</a>";
         }).join("");
-        return '<div class="art ' + toneOf(e) + '" id="art"><div class="piece"><div class="tag"><b class="' + (e.usd_m === null ? "long" : "") + '">' + esc(l.amount) + '</b></div><div class="plate"><b>' + esc(e.plate) + "</b><span>" + esc(sortDate(e).split("-").slice(0, 2).join(".")) + '</span></div></div><p class="cap">' + esc(AISecArt.note(e.id, lang)) + "</p></div>" +
+        return '<div class="art ' + toneOf(e) + '" id="art"><div class="piece"><div class="tag"><b class="' + (e.usd_m === null ? "long" : "") + '">' + esc(l.amount) + '</b></div><div class="plate"><b>' + esc(e.plate) + "</b><span>" + esc(sortDate(e).split("-").slice(0, 2).join(".")) + '</span></div></div>' + (l.art_note ? '<p class="cap">' + esc(l.art_note) + "</p>" : "") + "</div>" +
           '<section class="text"><div class="meta"><span>' + esc(dateLine(e)) + '</span><em class="' + esc(e.ai_evidence) + '">' + esc(t.ev[e.ai_evidence]) + "</em></div>" +
           "<h2>" + esc(l.title) + "</h2>" +
           '<div class="note">' + esc(l.amount_note) + "</div>" +
@@ -318,6 +337,7 @@
           strip.scrollTo({ left: c.offsetLeft - strip.clientWidth / 2 + c.offsetWidth / 2, behavior: "smooth" });
         } else strip.scrollTo({ left: 0, behavior: "smooth" });
         history.replaceState(null, "", location.pathname + location.search + (idx >= 0 ? "#" + ORDER[idx].id : ""));
+        tallyTo(sumOf((idx < 0 ? ORDER : ORDER.slice(0, idx + 1)).filter(isCase)));
         if (idx < 0) typeLine(); else clearTimeout(typeTimer);
         if (idx + 1 < ORDER.length) setTimeout(function () { artFor(idx + 1); }, 500);
       }
@@ -331,6 +351,20 @@
           el.textContent = text.slice(0, ch);
           if (ch < text.length) { ch++; typeTimer = setTimeout(tick, 70); }
           else typeTimer = setTimeout(function () { ch = 0; li = (li + 1) % lines.length; tick(); }, 1800);
+        })();
+      }
+
+      /* 累计数字随时间线往上涨 */
+      var shown = 0, tallyRaf = null;
+      function tallyTo(v) {
+        cancelAnimationFrame(tallyRaf);
+        $("tallyLbl").textContent = UI[lang].tally;
+        var from = shown, t0 = performance.now(), reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        (function step(now) {
+          var u = reduce ? 1 : Math.min(1, ((now || t0) - t0) / 650), e = 1 - Math.pow(1 - u, 3);
+          shown = from + (v - from) * e;
+          $("tally").textContent = "≈ " + usd(shown);
+          if (u < 1) tallyRaf = requestAnimationFrame(step);
         })();
       }
 

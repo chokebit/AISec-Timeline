@@ -305,25 +305,55 @@
     }
   };
 
-  var NOTES = {
-    "uk-energy-voice-2019": ["一通电话，一小时内付款", "One call, pay within the hour"],
-    "uae-bank-voice-2020": ["一个声音，配套邮件，至少 17 名被告", "One voice, matching emails, at least 17 defendants"],
-    "pentagon-fake-image-2023": ["图片传开，标普下探 0.29% 后恢复", "The image spreads; the S&P dips 0.29%, then recovers"],
-    "arup-deepfake-meeting-2024": ["会上只有一个真人，15 笔转账", "One real person on the call, 15 transfers"],
-    "lastpass-ceo-voice-2024": ["WhatsApp 不是公司渠道，上报", "WhatsApp was the wrong channel, so it was reported"],
-    "wpp-ceo-teams-2024": ["旧视频、空位和一个聊天窗", "Old footage, an empty seat, a chat window"],
-    "ferrari-ceo-voice-2024": ["声音能克隆，书名问不倒本人", "The voice was cloned; the book title was not"],
-    "fbi-ic3-ai-2025": ["这里一共 22,364 个点，一点一起投诉", "22,364 dots, one for each complaint"],
-    "gtg-1002-espionage-2025": ["约 30 个目标，人只在 4–6 处决策", "About 30 targets, people at 4–6 decisions"],
-    "fideuram-voice-clone-2026": ["95 格 = €9,500 万：绿色追回，红色下落不明，灰色无解释", "95 squares = €95M: green recovered, red missing, grey unexplained"],
-    "hk-whatsapp-father-2026": ["一条条语音，储蓄一层层抽空", "Message by message, the savings drain"],
-    "kr-artex-financial-breach-2026": ["亮的 7 家最先点名，总数后来到 16 家", "Seven lit firms named first, 16 in the end"],
-    "nl-ai-bank-calls-2026": ["卡贴手机被读取，右边 170 个点是受害者", "Card held to phone; 170 dots are the victims"],
-    "ledger-hardware-implant-2026": ["隐藏芯片读走 24 个词", "A hidden chip reads all 24 words"],
-    "openai-hugging-face-escape-2026": ["从测试环境走到别人的系统", "From a test box into someone else's systems"],
-    "taiwan-agent-attack-2026": ["最多 8 个智能体 → 21 → 85 → 2,500，左边的人是否在场有争议", "Up to 8 agents → 21 → 85 → 2,500; the figure on the left is disputed"],
-    "jadepuffer-agentic-ransomware-2026": ["1,342 格被加密，密钥从未发出", "1,342 cells encrypted; the key was never sent"],
-    "binance-hot-wallet-2026": ["63 点 = $63 亿：蓝色约 $30 亿被冻结", "63 dots = $6.3B: blue is the roughly $3B frozen"]
+  /* 没有专属图的事件按类型自动生成，贡献者不用写代码 */
+  var GENERIC = {
+    voice: function (c) { handset(c, 240, 78, 1.05, CRM); wave(c, 96, 384, 196, 56, AMB, 2.7, 2.4); },
+    video: function (c) {
+      for (var y = 0; y < 3; y++) for (var x = 0; x < 4; x++) {
+        box(c, 62 + x * 92, 26 + y * 74, 82, 64, RED, 1.6, 5, 7);
+        person(c, 103 + x * 92, 56 + y * 74, 1, RED, true);
+      }
+    },
+    breach: function (c) {
+      for (var i = 0; i < 9; i++) {
+        var h = 70 + ((i * 53) % 90);
+        box(c, 86 + i * 34, 230 - h, 26, h, ICE, 1.8, 2, 10);
+        line(c, [[99 + i * 34, 230 - h], [240, 30]], "rgba(169,180,255,.4)", 1.1, 4);
+      }
+      ring(c, 240, 30, 12, CRM, 2, 16);
+    },
+    market: function (c) {
+      line(c, [[60, 110], [170, 104], [226, 112], [262, 224], [296, 118], [360, 110], [424, 104]], ICE, 2.8, 14);
+      dot(c, 262, 224, 6, RED, 16);
+    },
+    theft: function (c) {
+      var p = [], i, cx = 240, cy = 140;
+      for (i = 0; i < 7; i++) p.push([cx + Math.cos(i * 1.0472) * 42, cy + Math.sin(i * 1.0472) * 42]);
+      line(c, p, AMB, 3, 22);
+      for (i = 0; i < 14; i++) {
+        var a = i / 14 * 6.2832;
+        line(c, [[cx + Math.cos(a) * 48, cy + Math.sin(a) * 48], [cx + Math.cos(a) * 190, cy + Math.sin(a) * 112]], "rgba(255,106,69,.5)", 1.3, 5);
+        dot(c, cx + Math.cos(a) * 190, cy + Math.sin(a) * 112, 4, RED, 10);
+      }
+    },
+    supply: function (c) {
+      box(c, 110, 88, 260, 112, CRM, 2.6, 16, 14);
+      fill(c, 262, 122, 54, 44, RED, 22);
+      box(c, 134, 110, 106, 66, "rgba(255,233,199,.38)", 1.4, 4, 0);
+    },
+    autonomous: function (c) {
+      var cx = 240, cy = 140, i;
+      for (i = 0; i < 20; i++) {
+        var a = i / 20 * 6.2832, x = cx + Math.cos(a) * 180, y = cy + Math.sin(a) * 104;
+        line(c, [[cx, cy], [x, y]], "rgba(169,180,255,.34)", 1, 0);
+        dot(c, x, y, 3.8, ICE, 8);
+      }
+      dot(c, cx, cy, 15, ICE, 26);
+      ring(c, cx, cy, 26, ICE, 1.5, 8);
+    },
+    aggregate: function (c) {
+      grid(c, 900, 30, 30, 450, 270, function (x, y) { c.fillStyle = ICE; c.fillRect(x, y, 3, 3); });
+    }
   };
 
   function background(c, tone, seedText) {
@@ -342,14 +372,12 @@
   }
 
   window.AISecArt = {
-    note: function (id, lang) { var n = NOTES[id]; return n ? n[lang === "zh" ? 0 : 1] : ""; },
-    draw: function (cv, id, tone) {
+    draw: function (cv, ev, tone) {
       var c = cv.getContext("2d"), s = cv.width / W;
       c.setTransform(s, 0, 0, s, 0, 0);
-      background(c, tone, id);
-      if (SCENES[id]) SCENES[id](c);
+      background(c, tone, ev.id);
+      (SCENES[ev.id] || GENERIC[ev.category] || GENERIC.aggregate)(c);
       plain(c);
-    },
-    has: function (id) { return !!SCENES[id]; }
+    }
   };
 })();

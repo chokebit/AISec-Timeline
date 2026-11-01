@@ -27,7 +27,8 @@
           "Fake app reads the card over NFC",
           "Accomplice withdraws the cash"
         ],
-        "human_role": "AI made the recordings. People ran the live calls."
+        "human_role": "AI made the recordings. People ran the live calls.",
+        "art_note": "Card held to phone; 170 dots are the victims"
       },
       "zh": {
         "short": "荷兰假银行电话",
@@ -43,7 +44,8 @@
           "假 App 通过 NFC 读卡",
           "同伙取现"
         ],
-        "human_role": "AI 制作录音，现场通话的是真人。"
+        "human_role": "AI 制作录音，现场通话的是真人。",
+        "art_note": "卡贴手机被读取，右边 170 个点是受害者"
       },
       "sources": [
         {
@@ -80,7 +82,8 @@
           "Seven financial firms named",
           "Regulators raise the count to 16"
         ],
-        "human_role": "A human actor ran the tool. Regulators are still investigating AI's role."
+        "human_role": "A human actor ran the tool. Regulators are still investigating AI's role.",
+        "art_note": "Seven lit firms named first, 16 in the end"
       },
       "zh": {
         "short": "韩国金融机构入侵",
@@ -95,7 +98,8 @@
           "7 家金融机构被点名",
           "监管把数字上调到 16 家"
         ],
-        "human_role": "由人操作工具。监管仍在调查 AI 的作用。"
+        "human_role": "由人操作工具。监管仍在调查 AI 的作用。",
+        "art_note": "亮的 7 家最先点名，总数后来到 16 家"
       },
       "sources": [
         {
@@ -143,7 +147,8 @@
           "More requests follow",
           "Savings emptied, over HK$10M gone"
         ],
-        "human_role": "People hijacked the account. Police believe AI made the recordings."
+        "human_role": "People hijacked the account. Police believe AI made the recordings.",
+        "art_note": "Message by message, the savings drain"
       },
       "zh": {
         "short": "香港“父亲”语音",
@@ -159,7 +164,8 @@
           "不断追加转账",
           "储蓄清零，损失逾 HK$1,000 万"
         ],
-        "human_role": "人骑劫了账户。警方相信录音由 AI 生成。"
+        "human_role": "人骑劫了账户。警方相信录音由 AI 生成。",
+        "art_note": "一条条语音，储蓄一层层抽空"
       },
       "sources": [
         {
@@ -196,7 +202,8 @@
           "$893M in adjusted losses",
           "Only over $30M of BEC losses tied to AI"
         ],
-        "human_role": "Varies by complaint. The figure counts reports that mention AI."
+        "human_role": "Varies by complaint. The figure counts reports that mention AI.",
+        "art_note": "22,364 dots, one for each complaint"
       },
       "zh": {
         "short": "FBI IC3 年度总数",
@@ -211,7 +218,8 @@
           "调整后损失 $8.93 亿",
           "BEC 中只有 $3,000 多万与 AI 挂钩"
         ],
-        "human_role": "每起投诉各不相同。这个数字只统计提到 AI 的报告。"
+        "human_role": "每起投诉各不相同。这个数字只统计提到 AI 的报告。",
+        "art_note": "这里一共 22,364 个点，一点一起投诉"
       },
       "sources": [
         {
@@ -244,7 +252,8 @@
           "Instruction comes from someone with authority",
           "About €95M leaves; about €53M recovered"
         ],
-        "human_role": "People ran the scam. AI reportedly cloned a lawyer's voice."
+        "human_role": "People ran the scam. AI reportedly cloned a lawyer's voice.",
+        "art_note": "95 squares = €95M: green recovered, red missing, grey unexplained"
       },
       "zh": {
         "short": "Fideuram 银行",
@@ -260,7 +269,8 @@
           "指令由有权者发出",
           "约 €9,500 万转出，追回约 €5,300 万"
         ],
-        "human_role": "人实施诈骗。据报道，AI 克隆了律师的声音。"
+        "human_role": "人实施诈骗。据报道，AI 克隆了律师的声音。",
+        "art_note": "95 格 = €9,500 万：绿色追回，红色下落不明，灰色无解释"
       },
       "sources": [
         {
@@ -303,7 +313,8 @@
           "Executive asks which book the CEO recommended",
           "Caller hangs up"
         ],
-        "human_role": "People ran the attempt. AI reportedly forged the voice."
+        "human_role": "People ran the attempt. AI reportedly forged the voice.",
+        "art_note": "The voice was cloned; the book title was not"
       },
       "zh": {
         "short": "Ferrari",
@@ -319,7 +330,8 @@
           "高管反问：你推荐的是哪本书",
           "对方挂断"
         ],
-        "human_role": "人实施攻击。据报道，声音由 AI 伪造。"
+        "human_role": "人实施攻击。据报道，声音由 AI 伪造。",
+        "art_note": "声音能克隆，书名问不倒本人"
       },
       "sources": [
         {
@@ -357,7 +369,8 @@
           "Request to set up a new business",
           "Staff vigilance stops it"
         ],
-        "human_role": "People ran the attempt, typing as the CEO in chat. AI appears to have cloned a voice."
+        "human_role": "People ran the attempt, typing as the CEO in chat. AI appears to have cloned a voice.",
+        "art_note": "Old footage, an empty seat, a chat window"
       },
       "zh": {
         "short": "WPP",
@@ -373,7 +386,8 @@
           "要求设立新业务",
           "员工警觉，诈骗失败"
         ],
-        "human_role": "人实施攻击，并在聊天框里冒充 CEO。声音看起来由 AI 克隆。"
+        "human_role": "人实施攻击，并在聊天框里冒充 CEO。声音看起来由 AI 克隆。",
+        "art_note": "旧视频、空位和一个聊天窗"
       },
       "sources": [
         {
@@ -405,7 +419,8 @@
           "Employee notices wrong channel and forced urgency",
           "Ignored and reported: no impact"
         ],
-        "human_role": "People ran the attempt. AI forged the audio."
+        "human_role": "People ran the attempt. AI forged the audio.",
+        "art_note": "WhatsApp was the wrong channel, so it was reported"
       },
       "zh": {
         "short": "LastPass",
@@ -420,7 +435,8 @@
           "员工发现渠道反常、对方刻意施压",
           "不予理会并上报，公司未受影响"
         ],
-        "human_role": "人实施攻击。AI 伪造了音频。"
+        "human_role": "人实施攻击。AI 伪造了音频。",
+        "art_note": "WhatsApp 不是公司渠道，上报"
       },
       "sources": [
         {
@@ -452,7 +468,8 @@
           "Video call with a deepfaked CFO and colleagues",
           "15 transactions, HK$200M"
         ],
-        "human_role": "People ran the scam. AI forged the faces and voices."
+        "human_role": "People ran the scam. AI forged the faces and voices.",
+        "art_note": "One real person on the call, 15 transfers"
       },
       "zh": {
         "short": "Arup",
@@ -467,7 +484,8 @@
           "视频会议上，首席财务官和同事全是深伪",
           "15 笔转账，HK$2 亿"
         ],
-        "human_role": "人实施诈骗。AI 伪造了人脸和声音。"
+        "human_role": "人实施诈骗。AI 伪造了人脸和声音。",
+        "art_note": "会上只有一个真人，15 笔转账"
       },
       "sources": [
         {
@@ -500,7 +518,8 @@
           "S&P 500 dips 0.29%",
           "Pentagon denies it; markets recover"
         ],
-        "human_role": "Who posted it is not established. AI generation is suspected, not proven."
+        "human_role": "Who posted it is not established. AI generation is suspected, not proven.",
+        "art_note": "The image spreads; the S&P dips 0.29%, then recovers"
       },
       "zh": {
         "short": "五角大楼假图",
@@ -516,7 +535,8 @@
           "标普 500 下跌 0.29%",
           "五角大楼否认，市场恢复"
         ],
-        "human_role": "发布者身份未明。图片疑似 AI 生成，未被证实。"
+        "human_role": "发布者身份未明。图片疑似 AI 生成，未被证实。",
+        "art_note": "图片传开，标普下探 0.29% 后恢复"
       },
       "sources": [
         {
@@ -548,7 +568,8 @@
           "Lawyer emails back up the acquisition story",
           "$35M transferred"
         ],
-        "human_role": "People ran the scheme. Investigators say cloned voice technology was the tool."
+        "human_role": "People ran the scheme. Investigators say cloned voice technology was the tool.",
+        "art_note": "One voice, matching emails, at least 17 defendants"
       },
       "zh": {
         "short": "阿联酋银行",
@@ -563,7 +584,8 @@
           "律师邮件佐证收购说法",
           "$3,500 万转出"
         ],
-        "human_role": "人实施诈骗。调查人员称，声音克隆技术是工具。"
+        "human_role": "人实施诈骗。调查人员称，声音克隆技术是工具。",
+        "art_note": "一个声音，配套邮件，至少 17 名被告"
       },
       "sources": [
         {
@@ -600,7 +622,8 @@
           "Urgent: pay a Hungarian supplier within an hour",
           "€220,000 sent"
         ],
-        "human_role": "People ran the scam. An insurer's expert believes AI software made the voice."
+        "human_role": "People ran the scam. An insurer's expert believes AI software made the voice.",
+        "art_note": "One call, pay within the hour"
       },
       "zh": {
         "short": "英国能源公司",
@@ -615,7 +638,8 @@
           "催促：一小时内付款给匈牙利供应商",
           "€22 万转出"
         ],
-        "human_role": "人实施诈骗。保险商专家认为，声音由 AI 软件生成。"
+        "human_role": "人实施诈骗。保险商专家认为，声音由 AI 软件生成。",
+        "art_note": "一通电话，一小时内付款"
       },
       "sources": [
         {
@@ -648,7 +672,8 @@
           "About $3B frozen by partners",
           "Binance covers user losses from its own funds"
         ],
-        "human_role": "Unknown. No public evidence of AI use so far, and the investigation is still open."
+        "human_role": "Unknown. No public evidence of AI use so far, and the investigation is still open.",
+        "art_note": "63 dots = $6.3B: blue is the roughly $3B frozen"
       },
       "zh": {
         "short": "币安",
@@ -664,7 +689,8 @@
           "合作方冻结约 $30 亿",
           "币安用自有资金承担用户损失"
         ],
-        "human_role": "未知。目前没有公开证据显示 AI 参与，调查仍在进行。"
+        "human_role": "未知。目前没有公开证据显示 AI 参与，调查仍在进行。",
+        "art_note": "63 点 = $63 亿：蓝色约 $30 亿被冻结"
       },
       "sources": [
         {
@@ -707,7 +733,8 @@
           "Wallets are drained",
           "Ledger asks sellers to halt sales"
         ],
-        "human_role": "Unknown. No public evidence of AI use so far, and police are still investigating."
+        "human_role": "Unknown. No public evidence of AI use so far, and police are still investigating.",
+        "art_note": "A hidden chip reads all 24 words"
       },
       "zh": {
         "short": "Ledger 植入",
@@ -723,7 +750,8 @@
           "钱包被盗空",
           "Ledger 要求经销商暂停销售"
         ],
-        "human_role": "未知。目前没有公开证据显示 AI 参与，警方仍在调查。"
+        "human_role": "未知。目前没有公开证据显示 AI 参与，警方仍在调查。",
+        "art_note": "隐藏芯片读走 24 个词"
       },
       "sources": [
         {
@@ -761,7 +789,8 @@
           "AI handles 80–90% of the work",
           "Humans step in at 4–6 decision points"
         ],
-        "human_role": "Humans chose the targets and made 4–6 key decisions. AI did the rest."
+        "human_role": "Humans chose the targets and made 4–6 key decisions. AI did the rest.",
+        "art_note": "About 30 targets, people at 4–6 decisions"
       },
       "zh": {
         "short": "GTG-1002",
@@ -777,7 +806,8 @@
           "AI 完成 80–90% 的工作",
           "人在 4–6 个决策点介入"
         ],
-        "human_role": "目标由人选定，4–6 个关键决策由人做出，其余由 AI 完成。"
+        "human_role": "目标由人选定，4–6 个关键决策由人做出，其余由 AI 完成。",
+        "art_note": "约 30 个目标，人只在 4–6 处决策"
       },
       "sources": [
         {
@@ -810,7 +840,8 @@
           "Fixes a failed step in 31 seconds",
           "Encrypts data and leaves a ransom note"
         ],
-        "human_role": "Sysdig reports no human during the attack. Who set it up is unknown."
+        "human_role": "Sysdig reports no human during the attack. Who set it up is unknown.",
+        "art_note": "1,342 cells encrypted; the key was never sent"
       },
       "zh": {
         "short": "JadePuffer",
@@ -826,7 +857,8 @@
           "31 秒内修好失败步骤",
           "加密数据，留下勒索信"
         ],
-        "human_role": "Sysdig 称攻击过程中没有人参与。谁配置了它，目前不明。"
+        "human_role": "Sysdig 称攻击过程中没有人参与。谁配置了它，目前不明。",
+        "art_note": "1,342 格被加密，密钥从未发出"
       },
       "sources": [
         {
@@ -864,7 +896,8 @@
           "They reach Hugging Face looking for answers",
           "Hugging Face detects and discloses the intrusion"
         ],
-        "human_role": "No human directed the intrusion. Humans designed the task and turned the safeguards off."
+        "human_role": "No human directed the intrusion. Humans designed the task and turned the safeguards off.",
+        "art_note": "From a test box into someone else's systems"
       },
       "zh": {
         "short": "OpenAI × Hugging Face",
@@ -880,7 +913,8 @@
           "为找答案进入 Hugging Face",
           "Hugging Face 发现并披露入侵"
         ],
-        "human_role": "没有人指挥这次入侵。任务由人设计，安全限制也由人关闭。"
+        "human_role": "没有人指挥这次入侵。任务由人设计，安全限制也由人关闭。",
+        "art_note": "从测试环境走到别人的系统"
       },
       "sources": [
         {
@@ -923,7 +957,8 @@
           "85 accounts cracked",
           "2,500 personnel records taken"
         ],
-        "human_role": "Disputed. Dream says no human intervention; Taiwan's ministry says hybrid."
+        "human_role": "Disputed. Dream says no human intervention; Taiwan's ministry says hybrid.",
+        "art_note": "Up to 8 agents → 21 → 85 → 2,500; the figure on the left is disputed"
       },
       "zh": {
         "short": "台湾智能体攻击",
@@ -939,7 +974,8 @@
           "破解 85 个账号",
           "窃取 2,500 条人事记录"
         ],
-        "human_role": "有争议。Dream 称无需人工干预，台湾数发部称是混合攻击。"
+        "human_role": "有争议。Dream 称无需人工干预，台湾数发部称是混合攻击。",
+        "art_note": "最多 8 个智能体 → 21 → 85 → 2,500，左边的人是否在场有争议"
       },
       "sources": [
         {

@@ -53,6 +53,10 @@ def check(ev):
     if len(ev.get("en", {}).get("steps", [])) != len(ev.get("zh", {}).get("steps", [])):
         errors.append("en.steps and zh.steps must have the same length")
 
+    for lang in ("en", "zh"):
+        if "art_note" in ev.get(lang, {}) and not ev[lang]["art_note"].strip():
+            errors.append(f"{lang}.art_note is empty")
+
     sources = ev.get("sources", [])
     if not sources:
         errors.append("needs at least one source")
