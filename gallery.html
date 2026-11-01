@@ -19,17 +19,18 @@
       :focus-visible{outline:2px solid var(--red);outline-offset:2px}
       [hidden]{display:none!important}
 
-      .world{position:fixed;inset:0;z-index:0;overflow:hidden;perspective:640px;perspective-origin:50% 46%;background:var(--bg)}
-      .scene{position:absolute;left:50%;top:46%;width:0;height:0;transform-style:preserve-3d;will-change:transform}
-      .plane{position:absolute;transform-style:preserve-3d;backface-visibility:visible;
-        background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:160px 160px;opacity:.2}
-      .frame{position:absolute;left:-150px;top:-190px;width:300px;height:380px;background:var(--bg);border:1.5px solid var(--ink);padding:14px;display:flex;flex-direction:column;gap:8px;backface-visibility:visible}
+      .world{position:fixed;inset:0;z-index:0;overflow:hidden;perspective:1000px;perspective-origin:50% 48%;background:var(--bg)}
+      .scene{position:absolute;left:50%;top:48%;width:0;height:0;transform-style:preserve-3d;will-change:transform}
+      .plane{position:absolute;background:var(--ink);opacity:.03}
+      .plane.side{opacity:.016}
+      .rib{position:absolute;border:1px solid var(--ink);opacity:.2}
+      .frame{position:absolute;left:-200px;top:-250px;width:400px;height:500px;background:var(--bg);border:1px solid var(--ink);padding:20px;box-shadow:0 18px 50px rgba(0,0,0,.14);display:flex;flex-direction:column;gap:8px;backface-visibility:visible}
       .frame svg{flex:1;min-height:0;width:100%;color:var(--ink)}
       .frame.loss svg{color:var(--red)}
-      .frame b{font-family:var(--serif);font-weight:900;font-size:29px;line-height:1.1;white-space:nowrap;overflow:hidden}
+      .frame b{font-family:var(--serif);font-weight:900;font-size:40px;line-height:1.1;white-space:nowrap;overflow:hidden}
       .frame.loss b{color:var(--red)}
-      .frame span{font-family:var(--mono);font-size:12px;color:var(--dim)}
-      .fog{position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 50% 46%,var(--bg) 0,var(--bg) 3%,transparent 16%)}
+      .frame span{font-family:var(--mono);font-size:14px;color:var(--dim)}
+      .fog{position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 50% 48%,var(--bg) 0,var(--bg) 5%,transparent 30%)}
 
       .bar{position:fixed;z-index:20;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:14px 22px;pointer-events:none}
       .bar>*{pointer-events:auto}
@@ -54,16 +55,17 @@
       .nav button{appearance:none;width:38px;height:34px;border:1px solid var(--ink);background:var(--panel);font-family:var(--mono)}
       .nav button:disabled{opacity:.3;cursor:default}
 
-      .panel{position:fixed;z-index:15;left:50%;top:50%;width:min(600px,calc(100vw - 32px));max-height:min(74vh,600px);overflow-y:auto;padding:22px 26px;background:var(--panel);border:1px solid var(--ink);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);transform:translate(-50%,-50%);opacity:0;pointer-events:none;overscroll-behavior:contain}
-      .panel.on{opacity:1;pointer-events:auto}
-      .p-meta{font-family:var(--mono);font-size:12px;color:var(--dim);display:flex;flex-wrap:wrap;gap:4px 12px}
+      .panel{position:fixed;z-index:15;top:50%;left:calc(50% + 36px);width:min(470px,calc(50vw - 64px));max-height:min(80vh,620px);overflow-y:auto;padding:24px 26px;background:var(--panel);box-shadow:0 18px 60px rgba(0,0,0,.16);transform:translateY(-50%);opacity:0;pointer-events:none;overscroll-behavior:contain;transition:background-color .35s,color .35s}
+      .panel.flip{left:auto;right:calc(50% + 36px)}
+      .panel.on{pointer-events:auto}
+      .p-meta{margin-top:14px;font-family:var(--mono);font-size:12px;color:var(--dim);display:flex;flex-wrap:wrap;gap:4px 12px;align-items:center}
       .p-meta em{font-style:normal;color:var(--ink);border:1px solid currentColor;padding:0 6px}
       .p-meta em.none{color:var(--red)}
-      .panel h2{margin:9px 0 0;font-family:var(--serif);font-weight:700;font-size:clamp(20px,2.4vw,25px);line-height:1.4;text-wrap:pretty}
-      .p-amt{margin-top:7px;font-family:var(--serif);font-weight:900;font-size:clamp(32px,4.4vw,46px);line-height:1.1}
+      .panel h2{margin:10px 0 0;font-family:var(--serif);font-weight:700;font-size:clamp(17px,1.6vw,20px);line-height:1.5;text-wrap:pretty}
+      .p-amt{font-family:var(--serif);font-weight:900;font-size:clamp(36px,4.6vw,56px);line-height:1.1}
       .p-amt.loss{color:var(--red)}
       .p-note{margin-top:5px;font-size:13.5px;color:var(--dim);line-height:1.6}
-      .p-human{margin-top:13px;padding-top:11px;border-top:1px solid var(--ink);font-size:15px;line-height:1.7}
+      .p-human{margin-top:14px;padding-top:12px;border-top:1px solid color-mix(in srgb,var(--ink) 22%,transparent);font-size:15px;line-height:1.7}
       .p-human b{display:block;font-family:var(--mono);font-size:11.5px;font-weight:500;color:var(--dim)}
       .panel details{margin-top:11px;font-size:14.5px;line-height:1.8}
       .panel summary{cursor:pointer;font-family:var(--mono);font-size:12.5px;color:var(--dim)}
@@ -75,8 +77,9 @@
       .track{position:relative;pointer-events:none}
       .error{position:fixed;z-index:30;inset:auto 0 40%;text-align:center}
       @media (max-width:640px){
-        .world{perspective:420px}
-        .panel{top:auto;bottom:66px;transform:translateX(-50%);max-height:62vh;padding:15px 16px}
+        .world{perspective:760px;perspective-origin:50% 26%}
+        .scene{top:26%}
+        .panel,.panel.flip{top:auto;left:16px;right:16px;width:auto;bottom:62px;transform:none;max-height:56vh;padding:15px 16px}
         .label{bottom:16px;left:16px}.label b{font-size:22px}
         .nav{right:16px;bottom:16px}
         .bar{padding:12px 16px}
@@ -124,7 +127,7 @@
           ev: { confirmed: "AI confirmed", assessed: "AI assessed", self_reported: "AI self-reported", unknown: "AI role unknown" },
           occurred: "Occurred ", disclosed: "Disclosed " }
       };
-      var STEP = 900, W = 1120, H = 640, PAD = 700;
+      var STEP = 1000, H = 720, W = 1120;
       var ORDER = [], lang = pickLang(), cur = -2, typeTimer = null;
 
       function pickLang() {
@@ -156,30 +159,35 @@
         var h = 7, k, s = "";
         for (k = 0; k < ev.id.length; k++) h = (h * 31 + ev.id.charCodeAt(k)) >>> 0;
         function r() { h = (h * 1664525 + 1013904223) >>> 0; return h / 4294967296; }
-        var chaos = i / Math.max(1, ORDER.length - 1), lines = 15;
+        var chaos = i / Math.max(1, ORDER.length - 1), lines = 11;
         for (k = 0; k < lines; k++) {
           var y = 12 + k * (176 / (lines - 1)), d = "M0 " + y.toFixed(1), x;
           for (x = 10; x <= 240; x += 10) {
-            var wob = (r() - 0.5) * (1 + chaos * 34) * Math.sin(x / 240 * Math.PI);
+            var wob = (r() - 0.5) * (1 + chaos * 24) * Math.sin(x / 240 * Math.PI);
             d += "L" + x + " " + (y + wob).toFixed(1);
           }
           s += '<path d="' + d + '"/>';
         }
-        return '<svg viewBox="0 0 240 200" preserveAspectRatio="none" fill="none" stroke="currentColor" stroke-width=".9" aria-hidden="true">' + s + "</svg>";
+        return '<svg viewBox="0 0 240 200" preserveAspectRatio="none" fill="none" stroke="currentColor" stroke-width=".8" aria-hidden="true">' + s + "</svg>";
       }
 
       function build() {
-        var L = (ORDER.length + 3) * STEP, html = "";
+        var small = window.innerWidth < 640, L = (ORDER.length + 4) * STEP, html = "";
+        W = small ? 620 : 1120;
         var flat = "width:" + W + "px;height:" + L + "px;transform-origin:0 0;";
+        var side = "width:" + L + "px;height:" + H + "px;transform-origin:0 0;";
         html += '<div class="plane" style="' + flat + "transform:translate3d(" + (-W / 2) + "px," + H / 2 + 'px,0) rotateX(-90deg)"></div>';
         html += '<div class="plane" style="' + flat + "transform:translate3d(" + (-W / 2) + "px," + (-H / 2) + 'px,0) rotateX(-90deg)"></div>';
-        var side = "width:" + L + "px;height:" + H + "px;";
-        html += '<div class="plane" style="' + side + "transform:translate3d(" + (-W / 2) + "px," + (-H / 2) + "px,0) rotateY(90deg);transform-origin:0 0\"></div>";
-        html += '<div class="plane" style="' + side + "transform:translate3d(" + W / 2 + "px," + (-H / 2) + "px,0) rotateY(90deg);transform-origin:0 0\"></div>";
+        html += '<div class="plane side" style="' + side + "transform:translate3d(" + (-W / 2) + "px," + (-H / 2) + 'px,0) rotateY(90deg)"></div>';
+        html += '<div class="plane side" style="' + side + "transform:translate3d(" + W / 2 + "px," + (-H / 2) + 'px,0) rotateY(90deg)"></div>';
+        /* 门框给出纵深，越往后越歪 */
+        for (var k = 0; k < (ORDER.length + 4) * 2; k++) {
+          var rot = (k % 2 ? 1 : -1) * Math.pow(k / ((ORDER.length + 4) * 2), 2) * 3;
+          html += '<div class="rib" style="left:' + (-W / 2) + "px;top:" + (-H / 2) + "px;width:" + W + "px;height:" + H + "px;transform:translateZ(" + (-k * STEP / 2) + "px) rotateZ(" + rot.toFixed(2) + 'deg)"></div>';
+        }
         ORDER.forEach(function (ev, i) {
-          var right = i % 2 === 1, x = (right ? W / 2 - 6 : -W / 2 + 6), z = -(i + 1) * STEP - PAD + 260;
-          var tilt = (i / ORDER.length) * (i % 3 - 1) * 5;
-          html += '<div class="frame ' + (ev.outcome === "loss" ? "loss" : "") + '" data-f="' + i + '" style="transform:translate3d(' + x + "px,0," + z + "px) rotateY(" + (right ? -90 : 90) + "deg) rotateZ(" + tilt.toFixed(2) + 'deg)">' +
+          var left = i % 2 === 0, x = (left ? -1 : 1) * (W / 2 - 34), z = -(i + 1) * STEP - 640;
+          html += '<div class="frame ' + (ev.outcome === "loss" ? "loss" : "") + '" data-f="' + i + '" style="transform:translate3d(' + x + "px,0," + z + "px) rotateY(" + (left ? 50 : -50) + 'deg)">' +
             art(ev, i) + "<b></b><span></span></div>";
         });
         $("scene").innerHTML = html;
@@ -222,10 +230,10 @@
         var src = e.sources.map(function (s) {
           return '<a href="' + esc(encodeURI(s.url)) + '" target="_blank" rel="noopener noreferrer">' + esc(s.name) + " ↗</a>";
         }).join("");
-        return '<div class="p-meta"><span>' + esc(dateLine(e)) + '</span><em class="' + (e.ai_evidence === "unknown" ? "none" : "") + '">' + esc(t.ev[e.ai_evidence]) + "</em></div>" +
+        return '<div class="p-amt ' + (e.outcome === "loss" ? "loss" : "") + '">' + esc(l.amount) + "</div>" +
           "<h2>" + esc(l.title) + "</h2>" +
-          '<div class="p-amt ' + (e.outcome === "loss" ? "loss" : "") + '">' + esc(l.amount) + "</div>" +
           '<div class="p-note">' + esc(l.amount_note) + "</div>" +
+          '<div class="p-meta"><span>' + esc(dateLine(e)) + '</span><em class="' + (e.ai_evidence === "unknown" ? "none" : "") + '">' + esc(t.ev[e.ai_evidence]) + "</em></div>" +
           '<div class="p-human"><b>' + esc(t.human) + "</b>" + esc(l.human_role) + "</div>" +
           "<details><summary>" + esc(t.more) + "</summary><p>" + esc(l.summary) + "</p><ol>" +
             l.steps.map(function (s) { return "<li>" + esc(s) + "</li>"; }).join("") + "</ol><p><b>" + esc(l.takeaway_label) + "</b> " + esc(l.takeaway) + "</p></details>" +
@@ -233,42 +241,57 @@
       }
 
       var PAPER = [247, 246, 241], VOID = [9, 9, 11], INK = [23, 23, 26], BONE = [232, 231, 224];
-      function onScroll() {
-        var vh = window.innerHeight, pos = window.scrollY / vh - 1;     /* pos<0 在门口；pos=i 站在第 i 件展品前 */
-        var n = ORDER.length, p = Math.max(0, Math.min(1, pos / (n - 1)));
-        var z = (Math.max(-1, pos) + 1) * STEP;
-        var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-        var sway = reduce ? 0 : Math.pow(p, 2.2) * 5 * Math.sin(pos * 1.7);
-        $("scene").style.transform = "translateZ(" + (z + 120) + "px) rotateZ(" + sway.toFixed(2) + "deg)";
+      function dwell(raw) {
+        var i = Math.floor(raw), t = raw - i;
+        if (t <= 0.24) return i;
+        if (t >= 0.76) return i + 1;
+        var u = (t - 0.24) / 0.52;
+        return i + u * u * (3 - 2 * u);
+      }
 
-        /* 恒纪元到乱纪元：从白纸走进黑暗 */
-        var e = Math.max(0, Math.min(1, (p - 0.5) / 0.3)), dark = e * e * (3 - 2 * e);
+      function onScroll() {
+        var vh = window.innerHeight, raw = window.scrollY / vh - 1, n = ORDER.length;
+        var pos = dwell(Math.max(-1, raw)), p = Math.max(0, Math.min(1, pos / (n - 1)));
+        $("scene").style.transform = "translateZ(" + (pos + 1) * STEP + "px)";
+
+        /* 恒纪元到乱纪元：灰色的中段走得很快，避免长时间发闷 */
+        var e = Math.max(0, Math.min(1, (p - 0.6) / 0.14)), dark = e * e * (3 - 2 * e);
         var root = document.documentElement.style, night = dark > 0.5;
-        var bg = mix(PAPER, VOID, dark), ink = night ? BONE : INK;
+        var bg = mix(PAPER, VOID, dark);
         root.setProperty("--bg", rgb(bg));
-        root.setProperty("--ink", rgb(ink));
-        root.setProperty("--line", rgb(ink));
+        root.setProperty("--ink", rgb(night ? BONE : INK));
         root.setProperty("--dim", night ? "rgb(160,160,160)" : "rgb(96,96,100)");
-        root.setProperty("--panel", "rgba(" + (night ? VOID : PAPER).join(",") + ",.93)");
+        root.setProperty("--panel", "rgba(" + (night ? [20, 20, 23] : [255, 254, 250]).join(",") + ",.94)");
         root.setProperty("--red", night ? "rgb(255,88,70)" : "rgb(200,40,28)");
 
-        var fade = Math.max(0, Math.min(1, (-0.62 - pos) / 0.3));
+        var fade = Math.max(0, Math.min(1, (-0.7 - raw) / 0.3));
         $("intro").style.opacity = fade;
         $("intro").hidden = fade === 0;
 
-        var i = Math.round(pos);
-        var near = i >= 0 && i < n && Math.abs(pos - i) < 0.34;
-        var want = near ? i : -1;
+        /* 走过的展品淡出，不和信息卡叠在一起 */
+        [].forEach.call(document.querySelectorAll(".frame"), function (f) {
+          var past = pos - Number(f.dataset.f);
+          f.style.opacity = Math.max(0, Math.min(1, 1 - (past - 0.12) / 0.4));
+        });
+
+        var i = Math.round(pos), inside = i >= 0 && i < n, dist = Math.abs(pos - i);
+        var panel = $("panel"), show = inside ? Math.max(0, 1 - dist / 0.16) : 0;
+        panel.style.opacity = show;
+        panel.classList.toggle("on", show > 0.5);
+        var want = inside ? i : -1;
         if (want !== cur) {
           cur = want;
-          $("panel").classList.toggle("on", near);
-          if (near) { $("panel").innerHTML = panelHtml(ORDER[i]); $("panel").scrollTop = 0; }
-          history.replaceState(null, "", location.pathname + location.search + (near ? "#" + ORDER[i].id : ""));
+          if (inside) {
+            panel.innerHTML = panelHtml(ORDER[i]);
+            panel.scrollTop = 0;
+            panel.classList.toggle("flip", i % 2 === 1);
+          }
+          history.replaceState(null, "", location.pathname + location.search + (inside ? "#" + ORDER[i].id : ""));
         }
         var idx = Math.max(0, Math.min(n - 1, i));
-        $("label").innerHTML = pos < -0.5 ? "" : "<b>" + esc(sortDate(ORDER[idx]).slice(0, 4)) + "</b>" + String(idx + 1).padStart(2, "0") + " / " + n;
-        $("prev").disabled = pos <= -0.9;
-        $("next").disabled = pos >= n - 1.05;
+        $("label").innerHTML = raw < -0.6 ? "" : "<b>" + esc(sortDate(ORDER[idx]).slice(0, 4)) + "</b>" + String(idx + 1).padStart(2, "0") + " / " + n;
+        $("prev").disabled = raw <= -0.9;
+        $("next").disabled = raw >= n - 1.05;
       }
 
       function jump(i) {
@@ -278,7 +301,7 @@
       function nowIndex() { return Math.round(window.scrollY / window.innerHeight - 1); }
 
       window.addEventListener("scroll", onScroll, { passive: true });
-      window.addEventListener("resize", onScroll);
+      window.addEventListener("resize", function () { build(); fillText(); });
       $("prev").addEventListener("click", function () { jump(Math.max(-1, nowIndex() - 1)); });
       $("next").addEventListener("click", function () { jump(Math.min(ORDER.length - 1, nowIndex() + 1)); });
       $("mark").addEventListener("click", function () { jump(-1); });
