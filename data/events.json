@@ -253,12 +253,7 @@
           "About €95M leaves; about €53M recovered"
         ],
         "human_role": "People ran the scam. AI reportedly cloned a lawyer's voice.",
-        "art_note": "95 squares = €95M: green recovered, red missing, grey unexplained",
-        "recovered": {
-          "amount": "€53M",
-          "note": "Recovered in the Fideuram case; at least €36M is still missing",
-          "short": "recovered"
-        }
+        "art_note": "95 squares = €95M: green recovered, red missing, grey unexplained"
       },
       "zh": {
         "short": "Fideuram 银行",
@@ -275,12 +270,7 @@
           "约 €9,500 万转出，追回约 €5,300 万"
         ],
         "human_role": "人实施诈骗。据报道，AI 克隆了律师的声音。",
-        "art_note": "95 格 = €9,500 万：绿色追回，红色下落不明，灰色无解释",
-        "recovered": {
-          "amount": "€5,300万",
-          "note": "Fideuram 案已追回部分；至少 €3,600 万仍下落不明",
-          "short": "已追回"
-        }
+        "art_note": "95 格 = €9,500 万：绿色追回，红色下落不明，灰色无解释"
       },
       "sources": [
         {

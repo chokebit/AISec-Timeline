@@ -157,12 +157,12 @@
       var UI = {
         zh: { lang: "zh-CN", title: "AI 乱纪元", sub: "AI 时代安全大事件", typed: ["记录金钱、失控和突破想象的时刻。", "每一条都写清楚：人，还在不在。"], go: "从第一件开始",
           human: "人在哪里", more: "攻击链路和说明", cover: "开篇", prev: "上一条", next: "下一条",
-          bandTotal: function (n) { return n + " 起 AI 相关单案报告损失合计，不含年度总数和 AI 参与未明的事件"; }, bandRun: function (s) { return "累计至此 / 全部 ≈ " + s; }, bandTop: function (n, a) { return "最大单案：" + n + "，转出约 " + a; }, bandTopS: "最大单案", bandOut: function (n) { return n + "被盗（自估），AI 参与未明，不计入合计"; }, bandOutS: function (n) { return n + "，不计入合计"; },
+          bandTotal: function (n, c) { return "本站收录 " + n + " 起 AI 相关单案的转出合计，其中 AI 已确认约 " + c + "；不代表全球总损失"; }, bandRun: function (s) { return "本站收录累计 / 全部 ≈ " + s; }, bandYear: function (y) { return "FBI IC3：" + y + " 年美国提到 AI 的投诉损失（自报）"; }, bandYearS: function (y) { return "FBI IC3 " + y + "（自报）"; }, bandTop: function (n, a) { return "最大单案：" + n + "，转出约 " + a; }, bandTopS: "最大单案", bandOut: function (n) { return n + "被盗（自估），AI 参与未明，不计入合计"; }, bandOutS: function (n) { return n + "，不计入合计"; },
           ev: { confirmed: "AI 已确认", assessed: "AI 研判", self_reported: "AI 自报", unknown: "AI 参与未明" },
           occurred: "发生 ", disclosed: "披露 " },
         en: { lang: "en", title: "AI Chaotic Era", sub: "Major security events of the AI era", typed: ["Money, loss of control, and what nobody expected.", "Each entry says it plainly: were humans still there?"], go: "Start with the first",
           human: "Where the humans were", more: "Attack trace and notes", cover: "Intro", prev: "Previous", next: "Next",
-          bandTotal: function (n) { return "Reported loss across " + n + " AI-linked cases, excluding annual totals and events with an unknown AI role"; }, bandRun: function (s) { return "so far / all ≈ " + s; }, bandTop: function (n, a) { return "Largest case: " + n + ", about " + a + " moved"; }, bandTopS: "largest case", bandOut: function (n) { return n + " theft (own estimate), AI role unknown, not in the total"; }, bandOutS: function (n) { return n + ", not in the total"; },
+          bandTotal: function (n, c) { return "Moved in the " + n + " AI-linked cases recorded here, about " + c + " with AI confirmed. Not a global total"; }, bandRun: function (s) { return "recorded so far / all ≈ " + s; }, bandYear: function (y) { return "FBI IC3: US complaints mentioning AI in " + y + " (self-reported)"; }, bandYearS: function (y) { return "FBI IC3 " + y + " (self-reported)"; }, bandTop: function (n, a) { return "Largest case: " + n + ", about " + a + " moved"; }, bandTopS: "largest case", bandOut: function (n) { return n + " theft (own estimate), AI role unknown, not in the total"; }, bandOutS: function (n) { return n + ", not in the total"; },
           ev: { confirmed: "AI confirmed", assessed: "AI assessed", self_reported: "AI self-reported", unknown: "AI role unknown" },
           occurred: "Occurred ", disclosed: "Disclosed " }
       };
@@ -307,12 +307,13 @@
         var t = UI[lang], cases = ORDER.filter(isCase), slim = idx >= 0;
         var top = cases.reduce(function (a, e) { return e.usd_m > a.usd_m ? e : a; });
         var outside = ORDER.filter(function (e) { return e.ai_evidence === "unknown"; }).reduce(function (a, e) { return e.usd_m > a.usd_m ? e : a; });
-        var rec = top[lang].recovered;
+        var confirmed = sumOf(cases.filter(function (e) { return e.ai_evidence === "confirmed"; }));
         var cells = [
-          { bar: "#ff6a45", num: "#ff8a66", id: "bandTotal", val: "≈ " + usd(slim ? running : sumOf(cases)), label: slim ? t.bandRun(usd(sumOf(cases))) : t.bandTotal(cases.length) },
+          { bar: "#ff6a45", num: "#ff8a66", id: "bandTotal", val: "≈ " + usd(slim ? running : sumOf(cases)), label: slim ? t.bandRun(usd(sumOf(cases))) : t.bandTotal(cases.length, usd(confirmed)) },
           { bar: "#ff6a45", num: "#ff8a66", val: usd(top.usd_m), label: slim ? t.bandTopS : t.bandTop(top[lang].short, top[lang].amount) }
         ];
-        if (rec) cells.push({ bar: "#8f979e", num: "var(--ink)", val: rec.amount, label: slim ? rec.short : rec.note });
+        var yearly = ORDER.filter(function (e) { return e.outcome === "aggregate"; }).pop();
+        if (yearly) cells.push({ bar: "#a9b4ff", num: "var(--ink)", val: yearly[lang].amount, label: slim ? t.bandYearS(sortDate(yearly).slice(0, 4)) : t.bandYear(sortDate(yearly).slice(0, 4)) });
         cells.push({ bar: "#9a8fe0", num: "var(--ink)", val: outside[lang].amount, label: slim ? t.bandOutS(outside[lang].short) : t.bandOut(outside[lang].short) });
         return cells;
       }
