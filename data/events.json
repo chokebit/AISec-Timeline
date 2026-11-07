@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-01",
+  "updated": "2026-11-07",
   "fx_note": {
     "en": "USD figures are approximate. They use the figure in the cited source where one is given; otherwise EUR is converted at about 1.13 and HKD at about 7.85 USD. Original currency is always shown.",
     "zh": "美元数字均为约数：来源给了美元就用来源的；没给的，欧元按约 1.13、港币按约 7.85 换算。原币金额始终保留。"
@@ -985,6 +985,296 @@
         }
       ],
       "plate": "TAIWAN"
+    },
+    {
+      "id": "promptlock-ransomware-poc-2025",
+      "occurred": "2025-08",
+      "disclosed": "2025-08-26",
+      "category": "malware",
+      "outcome": "no_funds",
+      "ai_evidence": "confirmed",
+      "usd_m": null,
+      "en": {
+        "short": "PromptLock",
+        "title": "PromptLock: announced as the first AI-powered ransomware, it turned out to be a university prototype",
+        "amount": "Never deployed",
+        "amount_note": "Samples found on VirusTotal · no known victims",
+        "summary": "ESET found Windows and Linux samples on VirusTotal and announced the first known AI-powered ransomware on 26 August 2025. Written in Go, it ran OpenAI's gpt-oss-20b model locally through the Ollama API and used hard-coded prompts to have the model write Lua scripts on the fly. The scripts listed local files, inspected them, sent selected data out and encrypted it. On 3 September, ESET added that the authors of an academic study, Ransomware 3.0, had contacted it and that their prototype closely resembled the samples. Researchers at NYU Tandon School of Engineering later said the prototype was their work.",
+        "takeaway_label": "Why it is here",
+        "takeaway": "The model sits inside the malware and writes the attack code at run time, so the code can differ on every run. ESET kept its finding that this was the first known AI-powered ransomware, but now considers it a proof of concept rather than malware deployed in the wild.",
+        "steps": [
+          "A prototype is uploaded to VirusTotal",
+          "ESET announces the first AI-powered ransomware",
+          "A local model writes Lua scripts at run time",
+          "The authors of a university study come forward"
+        ],
+        "human_role": "Researchers built and tested it. No attacker is known to have used it.",
+        "art_note": "The same prompt, a different script on each run"
+      },
+      "zh": {
+        "short": "PromptLock",
+        "title": "PromptLock：被宣布为首个 AI 驱动的勒索软件，结果是大学的研究原型",
+        "amount": "未投入实战",
+        "amount_note": "样本发现于 VirusTotal · 没有已知受害者",
+        "summary": "ESET 在 VirusTotal 上发现了 Windows 和 Linux 样本，2025 年 8 月 26 日宣布发现首个已知的 AI 驱动勒索软件。它用 Go 编写，通过 Ollama API 在本地运行 OpenAI 的 gpt-oss-20b 模型，用写死的提示词让模型现场生成 Lua 脚本。这些脚本会列出本地文件、检查内容、把选中的数据发出去并加密。9 月 3 日 ESET 补充说明，一篇名为 Ransomware 3.0 的学术研究的作者联系了它，其原型与这些样本高度相似。纽约大学坦登工程学院的研究人员随后表示，这是他们的作品。",
+        "takeaway_label": "为什么收录",
+        "takeaway": "模型就装在恶意软件里，攻击代码在运行时才写出来，每次运行都可能不同。ESET 仍认为这是首个已知的 AI 驱动勒索软件，但改口称它是概念验证，不是在外面实际投放的恶意软件。",
+        "steps": [
+          "原型被上传到 VirusTotal",
+          "ESET 宣布发现首个 AI 驱动勒索软件",
+          "本地模型在运行时生成 Lua 脚本",
+          "一篇大学研究的作者出面说明"
+        ],
+        "human_role": "研究人员制作并测试了它。目前没有已知的攻击者用过它。",
+        "art_note": "同一段提示词，每次运行写出不同的脚本"
+      },
+      "sources": [
+        {
+          "name": "ESET WeLiveSecurity",
+          "url": "https://www.welivesecurity.com/en/ransomware/first-known-ai-powered-ransomware-uncovered-eset-research/",
+          "kind": "official"
+        },
+        {
+          "name": "NYU Tandon",
+          "url": "https://engineering.nyu.edu/news/ai-powered-ransomware-sparked-concern-was-nyus-work",
+          "kind": "official"
+        },
+        {
+          "name": "The Register",
+          "url": "https://www.theregister.com/2025/08/26/first_aipowered_ransomware_spotted_by/",
+          "kind": "news"
+        }
+      ],
+      "plate": "PROMPTLOCK"
+    },
+    {
+      "id": "xbow-hackerone-top-2025",
+      "occurred": "2025-06",
+      "disclosed": "2025-06-24",
+      "category": "vuln",
+      "outcome": "no_funds",
+      "ai_evidence": "confirmed",
+      "usd_m": null,
+      "en": {
+        "short": "XBOW",
+        "title": "XBOW: an AI penetration tester reached No. 1 on HackerOne's US leaderboard",
+        "amount": "No. 1 in the US",
+        "amount_note": "Nearly 1,060 vulnerability reports · 130 resolved at the time",
+        "summary": "XBOW says its system submitted nearly 1,060 vulnerabilities to programs on the bug bounty platform HackerOne and reached the top of the US leaderboard in June 2025. When it posted, 130 had been resolved and 303 triaged, 208 were duplicates and 209 were marked informative, and about 45% were still awaiting a decision. Program owners rated 54 of the findings from the previous 90 days critical and 242 high. XBOW says all findings were fully automated, and that its security team reviewed them before submission to comply with HackerOne's policy on automated tools.",
+        "takeaway_label": "The claim",
+        "takeaway": "XBOW calls this the first time in bug bounty history that an autonomous penetration tester reached the top spot on the US leaderboard. That is the company's own claim. A leaderboard rank is not the same as payouts or impact, and people still checked every report.",
+        "steps": [
+          "The system tests programs on HackerOne",
+          "Its staff review each report before submission",
+          "Nearly 1,060 reports are submitted",
+          "It tops the US leaderboard"
+        ],
+        "human_role": "XBOW says the testing was fully automated. Its staff reviewed every report before submission.",
+        "art_note": "One square per report: green resolved, blue triaged, grey duplicate or informative, hollow still pending"
+      },
+      "zh": {
+        "short": "XBOW",
+        "title": "XBOW：一个 AI 渗透测试系统登上 HackerOne 美国榜第一",
+        "amount": "美国榜第 1",
+        "amount_note": "提交近 1,060 个漏洞 · 当时已修复 130 个",
+        "summary": "XBOW 称，它的系统在漏洞赏金平台 HackerOne 上向各项目提交了近 1,060 个漏洞，2025 年 6 月登上美国排行榜第一。发文时，130 个已修复，303 个已确认，208 个是重复报告，209 个被标为仅供参考，约 45% 仍在等待处理。项目方把此前 90 天的发现中 54 个评为严重、242 个评为高危。XBOW 称所有发现都是全自动的；为遵守 HackerOne 对自动化工具的规定，它的安全团队在提交前审核了这些报告。",
+        "takeaway_label": "这个说法",
+        "takeaway": "XBOW 称，这是漏洞赏金史上第一次由自主渗透测试系统登上美国榜首。这是该公司自己的说法。排名不等于奖金或影响，而且每份报告都经过了人工审核。",
+        "steps": [
+          "系统在 HackerOne 上测试各项目",
+          "员工在提交前审核每份报告",
+          "提交近 1,060 个漏洞",
+          "登上美国榜首"
+        ],
+        "human_role": "XBOW 称测试全自动完成，员工在提交前审核了每份报告。",
+        "art_note": "一格一份报告：绿色已修复，蓝色已确认，灰色重复或仅供参考，空心仍待处理"
+      },
+      "sources": [
+        {
+          "name": "XBOW",
+          "url": "https://xbow.com/blog/top-1-how-xbow-did-it/",
+          "kind": "official"
+        },
+        {
+          "name": "TechRepublic",
+          "url": "https://www.techrepublic.com/article/news-ai-xbow-tops-hackerone-us-leaderboad/",
+          "kind": "news"
+        }
+      ],
+      "plate": "XBOW"
+    },
+    {
+      "id": "claude-mythos-glasswing-2026",
+      "occurred": null,
+      "disclosed": "2026-04-07",
+      "category": "vuln",
+      "outcome": "no_funds",
+      "ai_evidence": "confirmed",
+      "usd_m": null,
+      "en": {
+        "short": "Claude Mythos",
+        "title": "Claude Mythos Preview: Anthropic says its model found thousands of zero-days, and is keeping it from general release",
+        "amount": "Thousands of zero-days",
+        "amount_note": "Anthropic's own count · in every major operating system and browser",
+        "summary": "Anthropic announced Project Glasswing on 7 April 2026 around Claude Mythos Preview, a model it does not plan to make generally available. It says the model found thousands of high-severity vulnerabilities, including zero-days in every major operating system and every major web browser. Examples include a 27-year-old OpenBSD flaw that let an attacker remotely crash any machine running it, and a 16-year-old FFmpeg flaw in a line of code that automated testing tools had hit five million times. In the Linux kernel, it says the model found and chained several vulnerabilities to go from ordinary user access to complete control of the machine.",
+        "takeaway_label": "Why it matters",
+        "takeaway": "A lab held back a model because of what it can do to software, and gave defenders access first: 12 launch partners including AWS, Apple, Google, Microsoft and the Linux Foundation, more than 40 other organizations that maintain critical software, and up to $100M in usage credits. The counts are Anthropic's own.",
+        "steps": [
+          "The model searches major operating systems and browsers",
+          "It finds thousands of high-severity flaws",
+          "It chains Linux kernel flaws to full control",
+          "Access goes to defenders first"
+        ],
+        "human_role": "Anthropic says the model found nearly all of these flaws, and wrote many exploits, without any human steering.",
+        "art_note": "27 years of OpenBSD and 16 years of FFmpeg, then a break"
+      },
+      "zh": {
+        "short": "Claude Mythos",
+        "title": "Claude Mythos Preview：Anthropic 称其模型找到数千个零日漏洞，并决定不公开发布",
+        "amount": "数千个零日漏洞",
+        "amount_note": "Anthropic 自己的统计 · 遍及所有主流操作系统和浏览器",
+        "summary": "Anthropic 2026 年 4 月 7 日围绕 Claude Mythos Preview 宣布了 Project Glasswing，并表示不打算公开发布这个模型。它称模型已找到数千个高危漏洞，其中包括所有主流操作系统和所有主流浏览器里的零日漏洞。例子有：OpenBSD 一个存在 27 年的漏洞，可以远程让任何运行它的机器崩溃；FFmpeg 一个存在 16 年的漏洞，所在的那行代码被自动化测试工具跑过五百万次都没发现。在 Linux 内核里，它称模型找到并串联了多个漏洞，从普通用户权限一路拿到整台机器的完全控制权。",
+        "takeaway_label": "为什么重要",
+        "takeaway": "一家 AI 公司因为模型对软件的破坏力而不公开发布它，先交给防守方用：12 家首批合作方（包括 AWS、Apple、Google、Microsoft 和 Linux 基金会）、40 多家维护关键软件的机构，以及最多 1 亿美元的使用额度。这些数字都来自 Anthropic 自己。",
+        "steps": [
+          "模型排查主流操作系统和浏览器",
+          "找到数千个高危漏洞",
+          "串联 Linux 内核漏洞拿到完全控制",
+          "先开放给防守方"
+        ],
+        "human_role": "Anthropic 称，这些漏洞几乎都由模型在没有任何人工引导的情况下找到，很多利用代码也是它写的。",
+        "art_note": "OpenBSD 的 27 年和 FFmpeg 的 16 年，在这里断开"
+      },
+      "sources": [
+        {
+          "name": "Anthropic: Project Glasswing",
+          "url": "https://www.anthropic.com/glasswing",
+          "kind": "official"
+        },
+        {
+          "name": "Infosecurity Magazine",
+          "url": "https://infosecurity-magazine.com/news/anthropic-launch-project-glasswing",
+          "kind": "news"
+        }
+      ],
+      "plate": "CLAUDE MYTHOS"
+    },
+    {
+      "id": "kr-seoul-artex-ring-2026",
+      "occurred": "2025-09",
+      "disclosed": "2026-10-26",
+      "category": "breach",
+      "outcome": "no_funds",
+      "ai_evidence": "confirmed",
+      "usd_m": null,
+      "en": {
+        "short": "Seoul AI hacking ring",
+        "title": "Seoul: police say a seven-person ring used an AI pentest tool and took 8.2 million records",
+        "amount": "8.2M records",
+        "amount_note": "More than 90 organizations · 360M won demanded from 38",
+        "summary": "Seoul Metropolitan Police say the group breached more than 90 South Korean organizations from September 2025, including hospitals, private academies, companies and golf courses, and took about 8.2 million records. It demanded a combined 360 million won, about $270,000, from 38 victims for not leaking their data; how much was paid has not been reported. Police say the 32-year-old leader, a self-taught former penetration tester, moved from conventional tools to AI tools in late August 2026, and that the group used the ARTEX AI penetration-testing suite against 60 targets. All seven were arrested; the leader was referred to prosecutors in detention on 23 October, and the other six are being investigated without detention.",
+        "takeaway_label": "Why it matters",
+        "takeaway": "Police called it Korea's first arrest in a large-scale hacking case involving generative AI, and said that even people outside professional hacking groups can now hack on a large scale with AI. ARTEX is the same tool linked to the South Korean bank breaches, but police treat this as a separate case. The suspects have not been convicted.",
+        "steps": [
+          "Breaches start with conventional tools",
+          "The leader switches to AI tools in late August 2026",
+          "ARTEX is used against 60 targets",
+          "Ransom demands go to 38 victims"
+        ],
+        "human_role": "People chose the targets and ran the extortion. Police say AI tools were used to hack 60 of the targets.",
+        "art_note": "About 90 targets; the 60 lit ones were hit with AI tools. The 38 red dots are the ransom demands"
+      },
+      "zh": {
+        "short": "首尔 AI 黑客团伙",
+        "title": "首尔：警方称 7 人团伙用 AI 渗透工具窃取 820 万条数据",
+        "amount": "820万条数据",
+        "amount_note": "90 多个机构 · 向 38 家勒索 3.6 亿韩元",
+        "summary": "首尔警察厅称，这个团伙从 2025 年 9 月起入侵了韩国 90 多个机构，包括医院、补习班、企业和高尔夫球场，窃取约 820 万条数据，并以不公开数据为条件，向 38 家受害机构合计勒索 3.6 亿韩元（约 $27 万），实际收到多少没有报道。警方称，32 岁的头目是自学出身的前渗透测试人员，2026 年 8 月下旬从传统工具改用 AI 工具，团伙用 ARTEX AI 渗透测试套件攻击了 60 个目标。7 人全部被捕；头目 10 月 23 日被羁押移送检方，其余 6 人不羁押接受调查。",
+        "takeaway_label": "为什么重要",
+        "takeaway": "警方称这是韩国首次在涉及生成式 AI 的大规模黑客案中逮捕嫌疑人，并表示即使不是专业黑客组织，现在也能借助 AI 大规模入侵。ARTEX 正是韩国银行入侵案里出现的那款工具，但警方把这起案件单独处理。嫌疑人尚未被定罪。",
+        "steps": [
+          "先用传统工具入侵",
+          "头目 2026 年 8 月下旬改用 AI 工具",
+          "用 ARTEX 攻击 60 个目标",
+          "向 38 家受害机构勒索"
+        ],
+        "human_role": "目标由人选定，勒索也由人实施。警方称其中 60 个目标是用 AI 工具攻破的。",
+        "art_note": "约 90 个目标，亮起的 60 个用了 AI 工具；下方 38 个红点是收到勒索的机构"
+      },
+      "sources": [
+        {
+          "name": "BleepingComputer",
+          "url": "https://bleepingcomputer.com/news/security/former-pentester-used-artex-ai-to-steal-82-million-data-records",
+          "kind": "news"
+        },
+        {
+          "name": "The Korea Times",
+          "url": "https://www.koreatimes.co.kr/southkorea/law-crime/20261026/cybercrime-ring-busted-over-ai-powered-data-theft-targeting-hospitals-businesses",
+          "kind": "news"
+        }
+      ],
+      "plate": "SEOUL"
+    },
+    {
+      "id": "openssh-sshole-2026",
+      "occurred": "2026-11",
+      "disclosed": "2026-11-05",
+      "category": "vuln",
+      "outcome": "no_funds",
+      "ai_evidence": "self_reported",
+      "usd_m": null,
+      "en": {
+        "short": "*sshole (OpenSSH)",
+        "title": "*sshole: an OpenSSH password bypass found with agent swarms, exploited within hours",
+        "amount": "CVSS 8.1",
+        "amount_note": "CVE-2026-123158 · first exploitation attempt less than nine hours after the CVE was published",
+        "summary": "On Linux systems that run OpenSSH on the musl C library with PAM disabled, including Alpine Linux's default OpenSSH server, accounts whose password field is \"*\" accepted any password longer than 256 characters, up to 1,024. musl's crypt() rejects an overlong password by returning \"*\", and sshd then matched that against the stored \"*\". Exposed accounts include root, key-only users and the default user in Alpine's official cloud images. The OpenSSH team learned of the problem on 5 November 2026 and shipped the fix in OpenSSH 10.6p2. Previdian reported the first exploitation attempt less than nine hours after the CVE was published, and confirmed root access on an Alpine honeypot.",
+        "takeaway_label": "AI's role",
+        "takeaway": "The researcher's write-up says only \"i had agent swarms. a lot of them\", and that about 17,600 unusual logins were run against sshd builds with different C libraries and settings. It gives no further detail. OpenSSH developer Damien Miller explained the fast release by saying the team had recently observed multiple cases of rapid bug rediscovery by AI agents. Neither statement shows how much of the discovery AI did.",
+        "steps": [
+          "Agent swarms help test many sshd builds",
+          "musl without PAM accepts an overlong password",
+          "OpenSSH ships 10.6p2",
+          "Exploitation starts within nine hours"
+        ],
+        "human_role": "A researcher found it and says agent swarms helped. How much the AI did is not stated.",
+        "art_note": "A password over 256 characters becomes \"*\", the same as the locked account"
+      },
+      "zh": {
+        "short": "*sshole（OpenSSH）",
+        "title": "*sshole：用智能体群找到的 OpenSSH 密码绕过，几小时内就被利用",
+        "amount": "CVSS 8.1",
+        "amount_note": "CVE-2026-123158 · CVE 公布后不到 9 小时出现首次利用",
+        "summary": "在使用 musl C 库、关闭 PAM 运行 OpenSSH 的 Linux 系统上（包括 Alpine Linux 默认的 OpenSSH 服务端），密码字段为“*”的账户，输入任何长于 256 个字符（最多 1,024 个）的密码都能登录。musl 的 crypt() 拒绝过长密码时会返回“*”，sshd 再拿它和账户里存的“*”比较，结果一致。受影响的账户包括 root、只用密钥登录的用户，以及 Alpine 官方云镜像里的默认用户。OpenSSH 团队 2026 年 11 月 5 日得知问题，在 OpenSSH 10.6p2 中修复。Previdian 报告，CVE 公布后不到 9 小时就出现首次利用尝试，并确认攻击者在一台 Alpine 蜜罐上拿到了 root 权限。",
+        "takeaway_label": "AI 的作用",
+        "takeaway": "研究人员的报告里只写了“i had agent swarms. a lot of them”（我用了智能体群，很多），以及对不同 C 库和配置的 sshd 跑了约 17,600 次异常登录，没有更多细节。OpenSSH 开发者 Damien Miller 解释紧急发版时说，团队最近看到多起 AI 智能体很快重新发现漏洞的情况。两种说法都不能说明 AI 在这次发现里做了多少。",
+        "steps": [
+          "智能体群协助测试大量 sshd 构建",
+          "无 PAM 的 musl 接受了超长密码",
+          "OpenSSH 发布 10.6p2",
+          "9 小时内开始被利用"
+        ],
+        "human_role": "研究人员发现了它，称用了智能体群。AI 具体做了多少没有说明。",
+        "art_note": "超过 256 个字符的密码变成“*”，正好和锁定账户的“*”一样"
+      },
+      "sources": [
+        {
+          "name": "Researcher write-up (sshhole.com)",
+          "url": "https://sshhole.com/",
+          "kind": "official"
+        },
+        {
+          "name": "SecurityWeek",
+          "url": "https://www.securityweek.com/openssh-rushes-patches-for-sshole-authentication-bypass/",
+          "kind": "news"
+        },
+        {
+          "name": "The Hacker News",
+          "url": "https://thehackernews.com/2026/11/hackers-exploited-openssh-sshole-flaw.html",
+          "kind": "news"
+        }
+      ],
+      "plate": "OPENSSH"
     }
   ]
 }
