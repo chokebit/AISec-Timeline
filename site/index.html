@@ -1,13 +1,12 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="<!--LANG-->">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="color-scheme" content="dark" />
     <meta name="theme-color" content="#08080b" />
     <link rel="icon" href="data:," />
-    <title>AI 乱纪元</title>
-    <meta name="description" content="Major security events of the AI era: the biggest losses, the turning points and the moments nobody expected, with the human role in each one spelled out." />
+    <!--HEAD-->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700;900&family=Noto+Sans+SC:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -36,6 +35,8 @@
       .veil{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% 42%,rgba(8,8,11,.5) 0,rgba(8,8,11,.72) 60%,rgba(8,8,11,.92) 100%)}
 
       .app{position:fixed;inset:0;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto minmax(0,1fr) auto}
+      /* 行号写死：手机上总览栏隐藏时，胶片不会挤进中间那行 */
+      .bar{grid-row:1}.band{grid-row:2}.stage{grid-row:3}.film{grid-row:4}
       .bar{display:flex;align-items:center;justify-content:space-between;padding:13px 28px}
       .mark{appearance:none;border:0;background:none;padding:0;font-family:var(--serif);font-weight:700;font-size:17px;letter-spacing:.05em}
       /* 总览四格：封面完整显示，进入事件后收成细栏 */
@@ -51,8 +52,10 @@
       .band.slim .cell4 b{font-size:15px}
       .band.slim .cell4 span{margin:0;font-size:12px;color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
       .top-r{display:flex;align-items:center;gap:14px;font-family:var(--mono);font-size:13px}
-      .top-r button{appearance:none;border:0;background:none;padding:0;color:var(--dim)}
-      .top-r button[aria-pressed="true"]{color:var(--ink);text-decoration:underline;text-underline-offset:4px}
+      .top-r a{color:var(--dim);text-decoration:none}
+      .top-r a:hover{color:var(--ink)}
+      .top-r a[aria-current="true"]{color:var(--ink);text-decoration:underline;text-underline-offset:4px}
+      .top-r .sep{width:1px;height:14px;background:var(--line)}
 
       /* 主舞台：大画幅作品 + 文字 */
       .stage{position:relative;min-height:0;display:grid;grid-template-columns:minmax(0,1.32fr) minmax(0,1fr);gap:clamp(24px,3.4vw,52px);align-items:center;padding:0 clamp(64px,6vw,92px) 14px}
@@ -60,7 +63,7 @@
       @keyframes artIn{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:none}}
       .piece{position:relative;transform:rotateY(4deg);transform-origin:left center;box-shadow:0 0 120px 10px rgba(255,220,168,.13),0 34px 80px rgba(0,0,0,.6);border:1px solid rgba(255,226,180,.3);background:#0d0c10}
       .piece::before{content:"";position:absolute;left:12%;right:12%;top:-22px;height:6px;border-radius:3px;background:var(--light);box-shadow:0 20px 70px 22px rgba(255,220,168,.24),0 0 18px 3px rgba(255,220,168,.55)}
-      .piece canvas{display:block;width:100%;height:auto;max-height:calc(100dvh - 330px);object-fit:contain;background:#0b0a0e}
+      .piece .pic{display:block;width:100%;height:auto;aspect-ratio:960 / 690;max-height:calc(100dvh - 330px);object-fit:contain;background:#0b0a0e}
       .tag{position:absolute;left:20px;bottom:15px;right:20px;display:flex;justify-content:space-between;align-items:flex-end;gap:14px;text-shadow:0 2px 16px rgba(0,0,0,.8)}
       .tag b{font-family:var(--serif);font-weight:900;font-size:clamp(30px,3.8vw,52px);line-height:1;color:var(--tone,var(--ink))}
       .tag b.long{font-size:clamp(22px,2.4vw,32px)}
@@ -86,6 +89,8 @@
       details p{margin:7px 0 0}
       .src{margin-top:10px;display:flex;flex-wrap:wrap;gap:3px 13px;font-size:12.5px;color:var(--dim)}
       .src a{text-underline-offset:3px}
+      .acts{margin-top:12px;display:flex;flex-wrap:wrap;gap:6px 16px;font-family:var(--mono);font-size:12.5px}
+      .acts a{color:var(--light);text-underline-offset:3px}
 
       /* 封面 */
       .text.cover{background:none;border:0;-webkit-backdrop-filter:none;backdrop-filter:none;padding:0}
@@ -103,11 +108,11 @@
       /* 胶片时间轴：缩略图就是作品本身 */
       .film{position:relative;border-top:1px solid var(--line);background:rgba(8,8,11,.72)}
       .strip{display:flex;gap:6px;overflow-x:auto;padding:22px 28px 9px;scrollbar-width:thin;scrollbar-color:var(--line) transparent}
-      .cell{position:relative;flex:none;width:128px;appearance:none;border:0;background:none;padding:0;text-align:left;opacity:.55;transition:opacity .2s}
+      .cell{position:relative;flex:none;width:128px;text-decoration:none;opacity:.55;transition:opacity .2s}
       .cell:hover{opacity:.85}
       .cell[aria-current="true"]{opacity:1}
-      .cell canvas{display:block;width:128px;height:64px;border:1px solid rgba(255,255,255,.1)}
-      .cell[aria-current="true"] canvas{border-color:var(--tone);box-shadow:0 0 16px color-mix(in srgb,var(--tone) 50%,transparent)}
+      .cell .pic{display:block;width:128px;height:64px;object-fit:cover;border:1px solid rgba(255,255,255,.1);background:#0b0a0e}
+      .cell[aria-current="true"] .pic{border-color:var(--tone);box-shadow:0 0 16px color-mix(in srgb,var(--tone) 50%,transparent)}
       .cell span{display:block;margin-top:4px;font-size:11.5px;line-height:1.3;color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
       .cell i{position:absolute;top:-17px;left:0;font-style:normal;font-family:var(--mono);font-size:11px;color:var(--dim)}
 
@@ -124,16 +129,18 @@
         .band.slim{display:none}
         .stage{display:block;overflow-y:auto;padding:0 14px 54px}
         .piece{transform:none}
-        .piece canvas{max-height:36vh}
+        .piece .pic{max-height:36vh}
+        .top-r .wide{display:none}
         .tag{left:13px;right:13px;bottom:10px}
         .plate{right:9px;bottom:9px;padding:5px 8px 4px}
         .plate b{font-size:11px}
         .text{margin-top:12px;max-height:none;overflow:visible;padding:14px 15px}
         .text.cover{padding:0}
-        .arrow{position:fixed;top:auto;bottom:100px;width:38px;height:38px}
-        .arrow.p{left:14px}.arrow.n{right:14px}
-        .strip{padding:19px 14px 7px}
-        .cell{width:96px}.cell canvas{width:96px;height:44px}
+        /* 手机上左右键放在胶片两端，不压正文 */
+        .arrow{position:fixed;top:auto;bottom:26px;transform:none;width:34px;height:34px;background:rgba(8,8,11,.92)}
+        .arrow.p{left:8px}.arrow.n{right:8px}
+        .strip{padding:19px 50px 7px}
+        .cell{width:96px}.cell .pic{width:96px;height:44px}
       }
     </style>
   </head>
@@ -142,48 +149,47 @@
     <div class="app">
       <header class="bar">
         <button type="button" class="mark" id="mark"></button>
-        <div class="top-r" id="lang">
-          <button type="button" data-lang="zh">中文</button>
-          <button type="button" data-lang="en">EN</button>
-        </div>
+        <nav class="top-r" id="top"></nav>
       </header>
       <section class="band" id="band" aria-label="Summary"></section>
       <main class="stage" id="stage"></main>
       <nav class="film" id="film"><div class="strip" id="strip"></div></nav>
     </div>
 
-    <script src="art.js"></script>
+    <script src="<!--ROOT-->art.js"></script>
     <script>
+      /* 构建时写入：语言、到站点根目录的相对路径、全部数据 */
+      var BOOT = /*BOOT*/null;
       var UI = {
         zh: { lang: "zh-CN", title: "AI 乱纪元", sub: "AI 时代安全大事件", typed: ["记录金钱、失控和突破想象的时刻。", "每一条都写清楚：人，还在不在。"], go: "从第一件开始",
           human: "人在哪里", more: "攻击链路和说明", cover: "开篇", prev: "上一条", next: "下一条",
+          all: "全部事件", submit: "提交事件", page: "单独页面", fix: "纠错",
           bandTotal: function (n, c) { return "本站收录 " + n + " 起 AI 相关单案的转出合计，其中 AI 已确认约 " + c + "；不代表全球总损失"; }, bandRun: function (s) { return "本站收录累计 / 全部 ≈ " + s; }, bandYear: function (y) { return "FBI IC3：" + y + " 年美国提到 AI 的投诉损失（自报）"; }, bandYearS: function (y) { return "FBI IC3 " + y + "（自报）"; }, bandTop: function (n, a) { return "最大单案：" + n + "，转出约 " + a; }, bandTopS: "最大单案", bandOut: function (n) { return n + "被盗（自估），AI 参与未明，不计入合计"; }, bandOutS: function (n) { return n + "，不计入合计"; },
           ev: { confirmed: "AI 已确认", assessed: "AI 研判", self_reported: "AI 自报", unknown: "AI 参与未明" },
           occurred: "发生 ", disclosed: "披露 " },
         en: { lang: "en", title: "AI Chaotic Era", sub: "Major security events of the AI era", typed: ["Money, loss of control, and what nobody expected.", "Each entry says it plainly: were humans still there?"], go: "Start with the first",
           human: "Where the humans were", more: "Attack trace and notes", cover: "Intro", prev: "Previous", next: "Next",
+          all: "All events", submit: "Submit an event", page: "Permalink", fix: "Report a correction",
           bandTotal: function (n, c) { return "Moved in the " + n + " AI-linked cases recorded here, about " + c + " with AI confirmed. Not a global total"; }, bandRun: function (s) { return "recorded so far / all ≈ " + s; }, bandYear: function (y) { return "FBI IC3: US complaints mentioning AI in " + y + " (self-reported)"; }, bandYearS: function (y) { return "FBI IC3 " + y + " (self-reported)"; }, bandTop: function (n, a) { return "Largest case: " + n + ", about " + a + " moved"; }, bandTopS: "largest case", bandOut: function (n) { return n + " theft (own estimate), AI role unknown, not in the total"; }, bandOutS: function (n) { return n + ", not in the total"; },
           ev: { confirmed: "AI confirmed", assessed: "AI assessed", self_reported: "AI self-reported", unknown: "AI role unknown" },
           occurred: "Occurred ", disclosed: "Disclosed " }
       };
-      var PALETTE = {
-        loss: ["#ff5a2c", "#ffb04a", "#ffe2a8"],
-        blocked: ["#39e6b4", "#a4ffe0", "#e8fff6"],
-        other: ["#6f8cff", "#c5a8ff", "#eadcff"]
-      };
-      var STEP = 1000, H = 720, W = 1280;
-      var ORDER = [], lang = pickLang(), idx = -1, typeTimer = null, cache = {};
+      var STEP = 1000, H = 720, W = 1280, REPO = "https://github.com/chokebit/AISec-Timeline";
+      var ORDER = [], lang = BOOT ? BOOT.lang : "en", ROOT = BOOT ? BOOT.root : "", idx = -1, typeTimer = null;
 
-      function pickLang() {
-        var q = new URLSearchParams(location.search).get("lang");
-        if (q === "en" || q === "zh") return q;
-        try { var s = localStorage.getItem("aisec-lang"); if (s === "en" || s === "zh") return s; } catch (e) {}
-        return /^zh/i.test(navigator.language || "") ? "zh" : "en";
-      }
+      /* 英文首页：选过中文，或第一次来且浏览器是中文，就转到中文版 */
+      (function () {
+        if (!BOOT || lang !== "en") return;
+        var saved = null;
+        try { saved = localStorage.getItem("aisec-lang"); } catch (e) {}
+        if (saved === "zh" || (!saved && /^zh/i.test(navigator.language || ""))) location.replace(ROOT + "zh/" + location.hash);
+      })();
       function $(id) { return document.getElementById(id); }
       function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
       function sortDate(e) { return e.occurred || e.disclosed; }
-      function toneOf(e) { return e.outcome === "loss" ? "loss" : e.outcome === "blocked" ? "blocked" : "other"; }
+      function toneOf(e) { return AISecArt.tone(e); }
+      function home(l) { return ROOT + (l === "zh" ? "zh/" : "") || "./"; }
+      function pageOf(e) { return home(lang) + "events/" + e.id + "/"; }
       function isCase(e) { return e.outcome === "loss" && e.ai_evidence !== "unknown"; }
       function usd(m) {
         if (lang === "zh") {
@@ -207,58 +213,27 @@
         return o.join(" · ");
       }
 
-      /* 作品由代码生成：先铺色块，再叠流场线条，越靠后的事件越扭曲 */
-      function paint(cv, seedText, tone, chaos, quality) {
-        var c = cv.getContext("2d"), LW = 480, LH = cv.height / cv.width * 480, seed = 7, k;
-        c.setTransform(cv.width / LW, 0, 0, cv.width / LW, 0, 0);
-        for (k = 0; k < seedText.length; k++) seed = (seed * 31 + seedText.charCodeAt(k)) >>> 0;
-        function r() { seed = (seed * 1664525 + 1013904223) >>> 0; return seed / 4294967296; }
-        var pal = PALETTE[tone], g = c.createLinearGradient(0, 0, LW, LH);
-        g.addColorStop(0, "#15131a"); g.addColorStop(1, "#08070a");
-        c.globalCompositeOperation = "source-over"; c.globalAlpha = 1;
-        c.fillStyle = g; c.fillRect(0, 0, LW, LH);
-        c.globalCompositeOperation = "screen";
-        for (k = 0; k < 5; k++) {
-          var bx = r() * LW, by = r() * LH, br = 130 + r() * 220, wash = c.createRadialGradient(bx, by, 0, bx, by, br);
-          wash.addColorStop(0, pal[k % pal.length]); wash.addColorStop(1, "rgba(0,0,0,0)");
-          c.globalAlpha = 0.46; c.fillStyle = wash; c.fillRect(0, 0, LW, LH);
-        }
-        var f = [], fi;
-        for (fi = 0; fi < 4; fi++) f.push({ x: (0.5 + r() * 3) / LW, y: (0.5 + r() * 3) / LH, p: r() * 6.28 });
-        var bend = 1.1 + chaos * 2.6, cx = LW * (0.2 + r() * 0.6), cy = LH * (0.2 + r() * 0.6);
-        c.globalCompositeOperation = "lighter";
-        function run(n, len, width, alpha) {
-          c.lineWidth = width;
-          for (var q = 0; q < n; q++) {
-            var a0 = r() * 6.28, rad = Math.pow(r(), 0.6) * LW * 0.62, x = cx + Math.cos(a0) * rad, y = cy + Math.sin(a0) * rad;
-            c.strokeStyle = pal[Math.floor(r() * pal.length)];
-            c.globalAlpha = alpha * (0.5 + r());
-            c.beginPath(); c.moveTo(x, y);
-            for (var t = 0; t < len; t++) {
-              var a = 0;
-              for (fi = 0; fi < 4; fi++) a += Math.sin(x * f[fi].x * 6.28 + y * f[fi].y * 6.28 + f[fi].p);
-              a *= bend;
-              x += Math.cos(a) * 3; y += Math.sin(a) * 3;
-              c.lineTo(x, y);
-            }
-            c.stroke();
-          }
-        }
-        run(Math.round(190 * quality), 80, 5.5, 0.035);
-        run(Math.round(420 * quality), 70, 1, 0.16);
-        run(Math.round(64 * quality), 130, 1.5, 0.6);
-        c.globalCompositeOperation = "source-over"; c.globalAlpha = 1;
-      }
-      function artFor(i) {
-        var key = String(i);
-        if (!cache[key]) {
+      /* 配图是构建时预先生成的图片；图片缺失时（比如刚加的事件）现场用 art.js 画 */
+      function pic(i, thumb) {
+        var img = new Image(), id = i < 0 ? "cover" : ORDER[i].id;
+        img.className = "pic";
+        img.alt = "";
+        img.decoding = "async";
+        if (thumb) { img.loading = "lazy"; img.width = 256; img.height = 128; }
+        else { img.width = 960; img.height = 690; }
+        img.onerror = function () {
           var cv = document.createElement("canvas");
-          cv.width = 960; cv.height = 690;
-          if (i < 0) paint(cv, "chaotic-era", "loss", 0.75, 1);
-          else AISecArt.draw(cv, ORDER[i], toneOf(ORDER[i]));
-          cache[key] = cv;
-        }
-        return cache[key];
+          cv.className = "pic";
+          cv.width = thumb ? 256 : 960; cv.height = thumb ? 128 : 690;
+          var full = document.createElement("canvas");
+          full.width = 960; full.height = 690;
+          if (i < 0) AISecArt.cover(full); else AISecArt.draw(full, ORDER[i]);
+          var h = full.width * cv.height / cv.width;
+          cv.getContext("2d").drawImage(full, 0, (full.height - h) / 2, full.width, h, 0, 0, cv.width, cv.height);
+          if (img.parentNode) img.parentNode.replaceChild(cv, img);
+        };
+        img.src = ROOT + "art/" + id + (thumb ? "-t" : "") + ".webp";
+        return img;
       }
 
       function buildScene() {
@@ -276,23 +251,16 @@
         $("scene").innerHTML = html;
       }
 
+      /* 胶片格是真链接：搜索引擎能顺着找到每个事件页，点击时留在展馆里 */
       function buildStrip() {
         var seen = {};
         $("strip").innerHTML = ORDER.map(function (e, i) {
           var y = sortDate(e).slice(0, 4), first = !seen[y];
           seen[y] = 1;
-          return '<button type="button" class="cell ' + toneOf(e) + '" data-i="' + i + '" title="' + esc(e[lang].title) + '">' + (first ? "<i>" + y + "</i>" : "") +
-            '<canvas width="256" height="120"></canvas><span>' + esc(e[lang].short) + "</span></button>";
+          return '<a class="cell ' + toneOf(e) + '" data-i="' + i + '" href="' + esc(pageOf(e)) + '" title="' + esc(e[lang].title) + '">' + (first ? "<i>" + y + "</i>" : "") +
+            "<span>" + esc(e[lang].short) + "</span></a>";
         }).join("");
-        /* 缩略图分批画，不卡首屏 */
-        var cvs = $("strip").querySelectorAll("canvas"), n = 0;
-        (function next() {
-          if (n >= cvs.length) return;
-          var src = artFor(n), c = cvs[n].getContext("2d"), h = src.width * cvs[n].height / cvs[n].width;
-          c.drawImage(src, 0, Math.max(0, (src.height - h) / 2), src.width, h, 0, 0, cvs[n].width, cvs[n].height);
-          n++;
-          setTimeout(next, 16);
-        })();
+        [].forEach.call($("strip").children, function (a, i) { a.insertBefore(pic(i, true), a.lastChild); });
       }
 
       function coverHtml() {
@@ -337,7 +305,8 @@
           '<div class="human"><b>' + esc(t.human) + "</b>" + esc(l.human_role) + "</div>" +
           '<p class="sum">' + esc(l.summary) + "</p>" +
           "<details><summary>" + esc(t.more) + "</summary><ol>" + l.steps.map(function (s) { return "<li>" + esc(s) + "</li>"; }).join("") + "</ol><p><b>" + esc(l.takeaway_label) + "</b> " + esc(l.takeaway) + "</p></details>" +
-          '<div class="src">' + src + "</div></section>";
+          '<div class="src">' + src + "</div>" +
+          '<div class="acts"><a href="' + esc(pageOf(e)) + '">' + esc(t.page) + ' →</a><a href="' + REPO + "/issues/new?template=correction.yml&event=" + encodeURIComponent(e.id) + '" target="_blank" rel="noopener noreferrer">' + esc(t.fix) + " ↗</a></div></section>";
       }
 
       function render() {
@@ -345,11 +314,8 @@
         st.innerHTML = (idx < 0 ? coverHtml() : caseHtml(ORDER[idx])) +
           '<button type="button" class="arrow p" data-go="-1" aria-label="' + esc(t.prev) + '"' + (idx < 0 ? " disabled" : "") + ">←</button>" +
           '<button type="button" class="arrow n" data-go="1" aria-label="' + esc(t.next) + '"' + (idx >= ORDER.length - 1 ? " disabled" : "") + ">→</button>";
-        var src = artFor(idx), cv = document.createElement("canvas");
-        cv.width = src.width; cv.height = src.height;
-        cv.getContext("2d").drawImage(src, 0, 0);
         var piece = st.querySelector(".piece");
-        piece.insertBefore(cv, piece.firstChild);
+        piece.insertBefore(pic(idx), piece.firstChild);
         $("scene").style.transform = "translateZ(" + (idx + 1) * STEP + "px)";
         var cells = $("strip").children, strip = $("strip");
         for (var k = 0; k < cells.length; k++) cells[k].setAttribute("aria-current", k === idx ? "true" : "false");
@@ -360,7 +326,7 @@
         history.replaceState(null, "", location.pathname + location.search + (idx >= 0 ? "#" + ORDER[idx].id : ""));
         tallyTo(sumOf((idx < 0 ? ORDER : ORDER.slice(0, idx + 1)).filter(isCase)));
         if (idx < 0) typeLine(); else clearTimeout(typeTimer);
-        if (idx + 1 < ORDER.length) setTimeout(function () { artFor(idx + 1); }, 500);
+        if (idx + 1 < ORDER.length) new Image().src = ROOT + "art/" + ORDER[idx + 1].id + ".webp";
       }
 
       function typeLine() {
@@ -396,25 +362,32 @@
         render();
       }
       function fillChrome() {
-        document.documentElement.lang = UI[lang].lang;
-        document.title = UI[lang].title;
-        $("mark").textContent = UI[lang].title;
-        [].forEach.call($("lang").children, function (b) { b.setAttribute("aria-pressed", b.dataset.lang === lang ? "true" : "false"); });
+        var t = UI[lang];
+        $("mark").textContent = t.title;
+        $("top").innerHTML = '<a href="' + home(lang) + 'events/">' + esc(t.all) + "</a>" +
+          '<a class="wide" href="' + REPO + '/issues/new?template=new-event.yml" target="_blank" rel="noopener noreferrer">' + esc(t.submit) + " ↗</a>" +
+          '<span class="sep"></span><a href="' + home("zh") + '" data-lang="zh" aria-current="' + (lang === "zh") + '">中文</a>' +
+          '<a href="' + home("en") + '" data-lang="en" aria-current="' + (lang === "en") + '">EN</a>';
       }
 
       document.addEventListener("click", function (e) {
         var el = e.target.closest("[data-go],[data-i],[data-lang]");
         if (!el) return;
         var d = el.dataset;
-        if (d.go) go(idx + Number(d.go));
-        else if (d.i) go(Number(d.i));
-        else if (d.lang) {
-          lang = d.lang;
-          try { localStorage.setItem("aisec-lang", lang); } catch (err) {}
-          fillChrome(); buildStrip(); render();
+        if (d.lang) {
+          try { localStorage.setItem("aisec-lang", d.lang); } catch (err) {}
+          if (idx >= 0) { e.preventDefault(); location.href = home(d.lang) + "#" + ORDER[idx].id; }
+          return;
         }
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.button) return;
+        e.preventDefault();
+        if (d.go) go(idx + Number(d.go));
+        else go(Number(d.i));
       });
       $("mark").addEventListener("click", function () { go(-1); });
+      window.addEventListener("hashchange", function () {
+        go(ORDER.map(function (e) { return e.id; }).indexOf(decodeURIComponent(location.hash.slice(1))));
+      });
       document.addEventListener("keydown", function (e) {
         if (e.altKey || e.ctrlKey || e.metaKey) return;
         if (e.key === "ArrowRight" || e.key === "ArrowDown") { e.preventDefault(); go(idx + 1); }
@@ -442,22 +415,18 @@
         if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) go(idx + (dx < 0 ? 1 : -1));
       });
 
-      fetch("data/events.json")
-        .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
-        .then(function (d) {
-          ORDER = d.events.slice().sort(function (a, b) {
-            var x = sortDate(a), y = sortDate(b);
-            return x === y ? (a.disclosed < b.disclosed ? -1 : 1) : x < y ? -1 : 1;
-          });
-          idx = ORDER.map(function (e) { return e.id; }).indexOf(decodeURIComponent(location.hash.slice(1)));
-          fillChrome();
-          buildScene();
-          buildStrip();
-          render();
-        })
-        .catch(function () {
-          $("stage").innerHTML = '<p class="error">Could not load data/events.json. Open this page through a web server.</p>';
+      if (!BOOT) $("stage").innerHTML = '<p class="error">Run <code>python3 scripts/build.py</code>, then open the page in <code>_site/</code>.</p>';
+      else {
+        ORDER = BOOT.data.events.slice().sort(function (a, b) {
+          var x = sortDate(a), y = sortDate(b);
+          return x === y ? (a.disclosed < b.disclosed ? -1 : 1) : x < y ? -1 : 1;
         });
+        idx = ORDER.map(function (e) { return e.id; }).indexOf(decodeURIComponent(location.hash.slice(1)));
+        fillChrome();
+        buildScene();
+        buildStrip();
+        render();
+      }
     </script>
   </body>
 </html>

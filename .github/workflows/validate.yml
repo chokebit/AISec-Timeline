@@ -1,10 +1,8 @@
 name: Validate data
 
 on:
-  push:
-    paths: ["data/**", "scripts/**"]
   pull_request:
-    paths: ["data/**", "scripts/**"]
+    paths: ["data/**", "scripts/**", "site/**"]
 
 jobs:
   validate:
@@ -12,3 +10,4 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: python3 scripts/validate.py
+      - run: python3 scripts/build.py --no-art

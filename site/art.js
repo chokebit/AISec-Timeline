@@ -302,6 +302,100 @@
         var t = i / 63 * 6.2832, r = 124 + (i % 3) * 10;
         dot(c, cx + Math.cos(t) * r * 1.62, cy + Math.sin(t) * r * 0.98, 3.4, i < 30 ? ICE : RED, 9);
       }
+    },
+    /* 同一段提示词进模型，每次运行写出不同的脚本，最后落到锁上 */
+    "promptlock-ransomware-poc-2025": function (c) {
+      var i, k;
+      box(c, 26, 108, 100, 70, CRM, 2, 6, 10);
+      for (i = 0; i < 4; i++) line(c, [[38, 124 + i * 13], [38 + [74, 58, 70, 40][i], 124 + i * 13]], "rgba(255,233,199,.6)", 1.6, 0);
+      arrow(c, 134, 143, 168, 143, CRM);
+      box(c, 176, 113, 60, 60, ICE, 2.4, 4, 16);
+      for (i = 0; i < 4; i++) {
+        line(c, [[186 + i * 13, 113], [186 + i * 13, 104]], ICE, 1.6, 0);
+        line(c, [[186 + i * 13, 173], [186 + i * 13, 182]], ICE, 1.6, 0);
+      }
+      ring(c, 206, 143, 11, ICE, 2, 8);
+      for (k = 0; k < 4; k++) {
+        var y = 26 + k * 66, seed = k * 7 + 3;
+        line(c, [[240, 143], [272, y + 26]], "rgba(169,180,255,.4)", 1.2, 0);
+        box(c, 276, y, 104, 52, k === 3 ? ICE : "rgba(169,180,255,.55)", 1.6, 5, k === 3 ? 10 : 0);
+        for (i = 0; i < 4; i++) {
+          seed = (seed * 13 + 5) % 23;
+          line(c, [[286 + (i % 2) * 8, y + 11 + i * 10], [296 + seed * 3, y + 11 + i * 10]], "rgba(169,180,255,.75)", 1.4, 0);
+        }
+      }
+      arrow(c, 388, 236, 410, 236, ICE);
+      box(c, 418, 222, 38, 30, CRM, 2.4, 4, 14);
+      glow(c, CRM, 10); c.strokeStyle = CRM; c.lineWidth = 2.4;
+      c.beginPath(); c.arc(437, 222, 11, Math.PI, 0); c.stroke(); c.shadowBlur = 0;
+    },
+    /* 1,044 份有结果的报告：绿色已修复，蓝色已确认，灰色重复或仅供参考，空心仍待处理 */
+    "xbow-hackerone-top-2025": function (c) {
+      var parts = [[130, "fix"], [303, "tri"], [208, "dup"], [209, "dup"], [36, "dup"], [33, "open"], [125, "open"]], kinds = [];
+      parts.forEach(function (p) { for (var j = 0; j < p[0]; j++) kinds.push(p[1]); });
+      grid(c, kinds.length, 24, 22, 456, 262, function (x, y, i, sx, sy) {
+        var k = kinds[i], w = sx - 2, h = sy - 2;
+        if (k === "fix") fill(c, x, y, w, h, TEAL, 6);
+        else if (k === "tri") fill(c, x, y, w, h, ICE);
+        else if (k === "dup") fill(c, x, y, w, h, "rgba(255,255,255,.16)");
+        else { c.strokeStyle = "rgba(255,233,199,.55)"; c.lineWidth = 0.8; c.strokeRect(x + 0.5, y + 0.5, w - 1, h - 1); }
+      });
+    },
+    /* OpenBSD 的 27 年、FFmpeg 的 16 年，在同一处断开；下方是 Linux 内核里一路串联到完全控制 */
+    "claude-mythos-glasswing-2026": function (c) {
+      var i, end = 420, step = 13;
+      function years(n, y) {
+        line(c, [[end - n * step, y], [end, y]], "rgba(169,180,255,.55)", 1.6, 0);
+        for (i = 0; i <= n; i++) line(c, [[end - i * step, y - (i % 5 ? 5 : 10)], [end - i * step, y + (i % 5 ? 5 : 10)]], ICE, 1.4, 4);
+        line(c, [[end + 6, y - 16], [end + 16, y - 4], [end + 8, y + 4], [end + 20, y + 16]], RED, 2.6, 14);
+        dot(c, end + 30, y, 5, RED, 16);
+      }
+      years(27, 70);
+      years(16, 140);
+      var steps = [[64, 286], [168, 262], [272, 238], [376, 206]];
+      for (i = 0; i < steps.length; i++) {
+        if (i) line(c, [steps[i - 1], steps[i]], "rgba(255,233,199,.5)", 2, 6);
+        ring(c, steps[i][0], steps[i][1], i === 3 ? 15 : 10, i === 3 ? CRM : ICE, 2.2, i === 3 ? 20 : 10);
+      }
+      dot(c, 376, 206, 5, CRM, 14);
+    },
+    /* 约 90 个目标，亮起的 60 个用了 AI 工具；下方 38 个红点是收到勒索的机构 */
+    "kr-seoul-artex-ring-2026": function (c) {
+      var i, lit = [];
+      for (i = 0; i < 90; i++) lit.push((i * 37) % 90 < 60);
+      grid(c, 90, 30, 22, 450, 222, function (x, y, j, sx, sy) {
+        var w = sx - 10, h = sy - 9;
+        if (lit[j]) { box(c, x + 3, y + 3, w, h, ICE, 1.6, 2, 10); fill(c, x + 3 + w * 0.3, y + 3 + h * 0.3, w * 0.4, h * 0.4, ICE, 6); }
+        else box(c, x + 3, y + 3, w, h, "rgba(169,180,255,.22)", 1, 2, 0);
+      });
+      for (i = 0; i < 38; i++) dot(c, 42 + i * 10.9, 262, 3.4, RED, 9);
+      line(c, [[36, 286], [446, 286]], "rgba(255,106,69,.35)", 1, 0);
+    },
+    /* 超过 256 个字符的密码被变成“*”，正好等于锁定账户里的“*” */
+    "openssh-sshole-2026": function (c) {
+      var i;
+      function star(x, y, r, col) {
+        for (var a = 0; a < 3; a++) {
+          var t = a * 1.0472 + 1.5708;
+          line(c, [[x - Math.cos(t) * r, y - Math.sin(t) * r], [x + Math.cos(t) * r, y + Math.sin(t) * r]], col, 3.4, 18);
+        }
+      }
+      for (i = 0; i < 257; i++) {
+        var x = 26 + (i % 32) * 6.2, y = 46 + Math.floor(i / 32) * 20;
+        fill(c, x, y, 3.6, 10, i < 256 ? "rgba(255,233,199,.5)" : RED, i < 256 ? 0 : 10);
+      }
+      line(c, [[230, 40], [262, 112], [262, 150], [230, 222]], AMB, 2, 8);
+      arrow(c, 270, 131, 302, 131, AMB);
+      star(330, 131, 20, AMB);
+      line(c, [[366, 123], [388, 123]], CRM, 3, 10);
+      line(c, [[366, 139], [388, 139]], CRM, 3, 10);
+      box(c, 402, 100, 58, 62, RED, 2.4, 6, 16);
+      star(431, 131, 16, RED);
+      glow(c, RED, 10); c.strokeStyle = RED; c.lineWidth = 2.4;
+      c.beginPath(); c.arc(431, 100, 15, Math.PI, 0); c.stroke(); c.shadowBlur = 0;
+      line(c, [[34, 262], [446, 262]], "rgba(255,233,199,.18)", 1, 0);
+      for (i = 0; i < 9; i++) line(c, [[34 + i * 51.5, 256], [34 + i * 51.5, 268]], "rgba(255,233,199,.4)", 1.2, 0);
+      dot(c, 446, 262, 6, RED, 18);
     }
   };
 
@@ -353,6 +447,20 @@
     },
     aggregate: function (c) {
       grid(c, 900, 30, 30, 450, 270, function (x, y) { c.fillStyle = ICE; c.fillRect(x, y, 3, 3); });
+    },
+    vuln: function (c) {
+      for (var i = 0; i < 12; i++) {
+        var w = 120 + ((i * 71) % 200), hot = i === 7;
+        line(c, [[60 + (i % 3) * 16, 40 + i * 20], [60 + (i % 3) * 16 + w, 40 + i * 20]], hot ? RED : "rgba(169,180,255,.5)", hot ? 3 : 1.6, hot ? 16 : 0);
+      }
+      ring(c, 400, 180, 26, RED, 2.4, 16);
+    },
+    malware: function (c) {
+      box(c, 60, 104, 110, 76, CRM, 2, 6, 10);
+      arrow(c, 180, 142, 230, 142, CRM);
+      box(c, 240, 112, 60, 60, ICE, 2.4, 4, 16);
+      arrow(c, 310, 142, 360, 142, ICE);
+      box(c, 370, 128, 50, 40, CRM, 2.4, 4, 14);
     }
   };
 
@@ -371,13 +479,57 @@
     c.globalCompositeOperation = "source-over";
   }
 
+  /* 封面：先铺色块，再叠流场线条 */
+  function cover(cv) {
+    var c = cv.getContext("2d"), LH = cv.height / cv.width * W, seed = 7, k, fi, text = "chaotic-era";
+    c.setTransform(cv.width / W, 0, 0, cv.width / W, 0, 0);
+    for (k = 0; k < text.length; k++) seed = (seed * 31 + text.charCodeAt(k)) >>> 0;
+    function r() { seed = (seed * 1664525 + 1013904223) >>> 0; return seed / 4294967296; }
+    var pal = ["#ff5a2c", "#ffb04a", "#ffe2a8"], g = c.createLinearGradient(0, 0, W, LH);
+    g.addColorStop(0, "#15131a"); g.addColorStop(1, "#08070a");
+    c.fillStyle = g; c.fillRect(0, 0, W, LH);
+    c.globalCompositeOperation = "screen";
+    for (k = 0; k < 5; k++) {
+      var bx = r() * W, by = r() * LH, br = 130 + r() * 220, wash = c.createRadialGradient(bx, by, 0, bx, by, br);
+      wash.addColorStop(0, pal[k % 3]); wash.addColorStop(1, "rgba(0,0,0,0)");
+      c.globalAlpha = 0.46; c.fillStyle = wash; c.fillRect(0, 0, W, LH);
+    }
+    var f = [];
+    for (fi = 0; fi < 4; fi++) f.push({ x: (0.5 + r() * 3) / W, y: (0.5 + r() * 3) / LH, p: r() * 6.28 });
+    var bend = 3.05, cx = W * (0.2 + r() * 0.6), cy = LH * (0.2 + r() * 0.6);
+    c.globalCompositeOperation = "lighter";
+    function run(n, len, width, alpha) {
+      c.lineWidth = width;
+      for (var q = 0; q < n; q++) {
+        var a0 = r() * 6.28, rad = Math.pow(r(), 0.6) * W * 0.62, x = cx + Math.cos(a0) * rad, y = cy + Math.sin(a0) * rad;
+        c.strokeStyle = pal[Math.floor(r() * 3)];
+        c.globalAlpha = alpha * (0.5 + r());
+        c.beginPath(); c.moveTo(x, y);
+        for (var t = 0; t < len; t++) {
+          var a = 0;
+          for (fi = 0; fi < 4; fi++) a += Math.sin(x * f[fi].x * 6.28 + y * f[fi].y * 6.28 + f[fi].p);
+          a *= bend;
+          x += Math.cos(a) * 3; y += Math.sin(a) * 3;
+          c.lineTo(x, y);
+        }
+        c.stroke();
+      }
+    }
+    run(190, 80, 5.5, 0.035);
+    run(420, 70, 1, 0.16);
+    run(64, 130, 1.5, 0.6);
+    c.globalCompositeOperation = "source-over"; c.globalAlpha = 1;
+  }
+
   window.AISecArt = {
-    draw: function (cv, ev, tone) {
+    tone: function (ev) { return ev.outcome === "loss" ? "loss" : ev.outcome === "blocked" ? "blocked" : "other"; },
+    draw: function (cv, ev) {
       var c = cv.getContext("2d"), s = cv.width / W;
       c.setTransform(s, 0, 0, s, 0, 0);
-      background(c, tone, ev.id);
+      background(c, this.tone(ev), ev.id);
       (SCENES[ev.id] || GENERIC[ev.category] || GENERIC.aggregate)(c);
       plain(c);
-    }
+    },
+    cover: cover
   };
 })();
