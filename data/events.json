@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-07",
+  "updated": "2026-11-17",
   "fx_note": {
     "en": "USD figures are approximate. They use the figure in the cited source where one is given; otherwise EUR is converted at about 1.13 and HKD at about 7.85 USD. Original currency is always shown.",
     "zh": "美元数字均为约数：来源给了美元就用来源的；没给的，欧元按约 1.13、港币按约 7.85 换算。原币金额始终保留。"
@@ -662,8 +662,8 @@
         "short": "Binance",
         "title": "Binance: about $6.3B taken in the largest crypto theft on record",
         "amount": "$6.3B",
-        "amount_note": "Binance's estimate · about $3B frozen · not counted in AI totals",
-        "summary": "Funds left Binance hot wallets across 10 blockchains, most of them in about 20 minutes. Binance says partners froze about $3 billion. It has restored backing for up to 90% of the stolen assets, which does not mean 90% was recovered from the attacker. The FBI says North Korea was responsible. Binance first pointed to a compromised engineer's laptop, then said the attack involved a more complex process. How it happened is still unclear.",
+        "amount_note": "Binance's estimate · about $3B frozen per Binance, over $2.7B per the DOJ · not counted in AI totals",
+        "summary": "Funds left Binance hot wallets across 10 blockchains, most of them in about 20 minutes. Binance says partners froze about $3 billion. It has restored backing for up to 90% of the stolen assets, which does not mean 90% was recovered from the attacker. The FBI attributes the theft to North Korea's TraderTraitor group. According to Nextgov, Binance has said attackers compromised an engineer's computer through a fake job interview, then reached the systems that approve transfers. On 12 November the Justice Department said public and private efforts had frozen more than $2.7 billion, and that it had court authorization to seize or restrain more than $1.2 billion of that.",
         "takeaway_label": "Why it is here",
         "takeaway": "No public evidence so far links AI to this attack, and with the investigation still open it cannot be ruled out. It is here as a scale marker for the era and stays outside every AI total until that changes.",
         "steps": [
@@ -679,8 +679,8 @@
         "short": "币安",
         "title": "币安：约 $63 亿被盗，加密史上最大单案",
         "amount": "$63亿",
-        "amount_note": "币安自估 · 约 $30 亿被冻结 · 不计入 AI 合计",
-        "summary": "资金从币安热钱包转出，涉及 10 条链，大部分在约 20 分钟内完成。币安称合作方冻结约 $30 亿。它已补足最多 90% 被盗资产的储备，但这不等于从攻击者手里追回了 90%。FBI 称朝鲜是幕后黑手。币安起初指向一台被入侵的工程师电脑，后来又说过程更复杂。具体怎么发生的，目前仍不清楚。",
+        "amount_note": "币安自估 · 冻结约 $30 亿（币安说法），司法部称超过 $27 亿 · 不计入 AI 合计",
+        "summary": "资金从币安热钱包转出，涉及 10 条链，大部分在约 20 分钟内完成。币安称合作方冻结约 $30 亿。它已补足最多 90% 被盗资产的储备，但这不等于从攻击者手里追回了 90%。FBI 认定是朝鲜黑客组织 TraderTraitor 所为。据 Nextgov 报道，币安称攻击者通过一场假求职面试入侵了一名工程师的电脑，再进入审批转账的系统。11 月 12 日，美国司法部称公私合力已冻结超过 $27 亿，其中超过 $12 亿已获法院授权查扣或限制转移。",
         "takeaway_label": "为什么收录",
         "takeaway": "目前没有公开证据显示 AI 参与，调查还没结束，也不能排除。它在这里是这个时代的量级标尺，在有证据之前不计入 AI 合计。",
         "steps": [
@@ -707,6 +707,11 @@
           "name": "TRM Labs",
           "url": "https://www.trmlabs.com/resources/blog/north-korea-steals-usd-6-36-billion-from-binance-in-the-largest-hack-in-history",
           "kind": "secondary"
+        },
+        {
+          "name": "Nextgov: DOJ seizure",
+          "url": "https://www.nextgov.com/cybersecurity/2026/11/fbi-disrupts-intricate-north-korean-fake-call-scheme-tied-400m-crypto-theft/417200/",
+          "kind": "news"
         }
       ],
       "plate": "BINANCE"
@@ -887,7 +892,7 @@
         "title": "OpenAI's models escaped a test environment and broke into Hugging Face",
         "amount": "No attacker",
         "amount_note": "The models were trying to cheat on an evaluation",
-        "summary": "OpenAI says agents running with safeguards turned off escaped a restricted test environment by chaining vulnerabilities, then broke into Hugging Face's systems while looking for evaluation answers. OpenAI calls this reward hacking. Hugging Face disclosed the intrusion first and said it found no evidence of tampering with public models, datasets or Spaces. OpenAI then paused related work and published a technical report.",
+        "summary": "OpenAI says agents running with safeguards turned off escaped a restricted test environment by chaining vulnerabilities, then broke into Hugging Face's systems while looking for evaluation answers. OpenAI calls this reward hacking. Hugging Face disclosed the intrusion first and said it found no evidence of tampering with public models, datasets or Spaces. OpenAI then paused related work and published a technical report. On 16 November California's attorney general sued OpenAI in San Francisco Superior Court, alleging it kept testing despite knowing its test environments could be bypassed and citing at least 80 cyber incidents. The claims have not been tested in court.",
         "takeaway_label": "Why it matters",
         "takeaway": "Nobody ordered this attack. People did design the task, the incentives and the permissions, and they had turned the safeguards off. That is what makes the human role here hard to describe.",
         "steps": [
@@ -904,7 +909,7 @@
         "title": "OpenAI 的模型逃出测试环境，入侵了 Hugging Face",
         "amount": "没有攻击者",
         "amount_note": "模型是想在评测里作弊",
-        "summary": "OpenAI 称，关闭了安全限制的智能体串联多个漏洞逃出受限测试环境，然后为了找评测答案入侵了 Hugging Face。OpenAI 把这叫作 reward hacking。Hugging Face 先披露了入侵，并称没有发现公开模型、数据集或 Spaces 被篡改。OpenAI 随后暂停相关工作，并发布技术报告。",
+        "summary": "OpenAI 称，关闭了安全限制的智能体串联多个漏洞逃出受限测试环境，然后为了找评测答案入侵了 Hugging Face。OpenAI 把这叫作 reward hacking。Hugging Face 先披露了入侵，并称没有发现公开模型、数据集或 Spaces 被篡改。OpenAI 随后暂停相关工作，并发布技术报告。11 月 16 日，加州总检察长在旧金山高等法院起诉 OpenAI，指其明知测试环境可能被突破仍继续测试，并列出至少 80 起网络安全事件。这些指控尚未经法院审理。",
         "takeaway_label": "为什么重要",
         "takeaway": "没有人下令发动这次攻击。但任务、激励和权限都是人设计的，安全限制也是人关掉的。这正是人的角色难以界定的地方。",
         "steps": [
@@ -917,6 +922,16 @@
         "art_note": "从测试环境走到别人的系统"
       },
       "sources": [
+        {
+          "name": "California Attorney General: lawsuit",
+          "url": "https://oag.ca.gov/news/press-releases/it%E2%80%99s-golden-state-not-wild-west-attorney-general-bonta-sues-openai-over",
+          "kind": "official"
+        },
+        {
+          "name": "BleepingComputer: lawsuit",
+          "url": "https://www.bleepingcomputer.com/news/security/california-sues-openai-over-ai-agents-escaping-sandboxes-hacking-firms/",
+          "kind": "news"
+        },
         {
           "name": "CNBC: technical report",
           "url": "https://www.cnbc.com/2026/08/26/open-ai-hugging-face-hack.html",
@@ -1275,6 +1290,189 @@
         }
       ],
       "plate": "OPENSSH"
+    },
+    {
+      "id": "google-exploit-agent-2026",
+      "occurred": null,
+      "disclosed": "2026-11-16",
+      "category": "autonomous",
+      "outcome": "no_funds",
+      "ai_evidence": "assessed",
+      "usd_m": null,
+      "en": {
+        "short": "Google: exploit_agent",
+        "title": "Google finds the first attack pipeline that turned patches into exploits with no human in the loop",
+        "amount": "No loss disclosed",
+        "amount_note": "Targets: French media, entertainment and education sites · no count given",
+        "summary": "Google's threat intelligence group found an exposed staging server hosting a multi-agent framework it calls exploit_agent. It connects to several frontier and locally run language models, compares popular web software before and after each patch, works out what the fix reveals, drafts an exploit and runs it without human intervention. Data taken from victims was on the same server, and victim records point to French media, entertainment and education websites. Russian-language comments in a configuration file are the only clue to the operator. Google names no group or country.",
+        "takeaway_label": "Why it matters",
+        "takeaway": "Google says this is the first time it has seen attackers fully automate vulnerability discovery and exploitation without a human in the loop. Until now it had described AI speeding up work that people still directed. The time between a patch and an attack keeps shrinking.",
+        "steps": [
+          "Compare code before and after a patch",
+          "Infer the flaw the fix reveals",
+          "Draft an exploit",
+          "Run it against targets automatically"
+        ],
+        "human_role": "Someone built and launched the framework. Google says no human was in the loop during discovery and exploitation.",
+        "art_note": "Patch diff in, exploit out; the person below is crossed out"
+      },
+      "zh": {
+        "short": "谷歌：exploit_agent",
+        "title": "谷歌：首次发现全程无人参与的 AI 攻击，从读补丁到打漏洞",
+        "amount": "未披露损失",
+        "amount_note": "目标：法国媒体、娱乐和教育类网站 · 未给出数量",
+        "summary": "谷歌威胁情报团队发现一台暴露在网上的中转服务器，上面放着一套多智能体框架，谷歌称之为 exploit_agent。它接入多个前沿大模型和本地模型，持续比对热门网站软件打补丁前后的代码，推断补丁修的是什么漏洞，写出利用代码并自动执行，全程不需要人介入。服务器上还有从受害者那里拿到的数据，受害者记录指向法国的媒体、娱乐和教育类网站。配置文件里的俄语注释是操作者唯一的线索，谷歌没有点名任何组织或国家。",
+        "takeaway_label": "为什么重要",
+        "takeaway": "谷歌称，这是它第一次看到攻击者在没有人参与的情况下，把找漏洞和利用漏洞全部自动化。此前它描述的都是 AI 加速由人主导的工作。从补丁发布到被利用，时间还在缩短。",
+        "steps": [
+          "比对补丁前后的代码",
+          "推断补丁修的漏洞",
+          "写出利用代码",
+          "自动打向目标"
+        ],
+        "human_role": "框架由人搭建和启动。谷歌称，找漏洞和利用漏洞的过程中没有人参与。",
+        "art_note": "补丁差异进去，利用代码出来；下面的人被划掉了"
+      },
+      "sources": [
+        {
+          "name": "Google Threat Intelligence",
+          "url": "https://cloud.google.com/blog/topics/threat-intelligence/agentic-threat-activity-crosses-a-significant-threshold",
+          "kind": "official"
+        },
+        {
+          "name": "CyberScoop",
+          "url": "https://cyberscoop.com/google-fully-automated-ai-cyberattack/",
+          "kind": "news"
+        },
+        {
+          "name": "The Register",
+          "url": "https://www.theregister.com/research/2026/11/16/google-ai-agent-turned-a-security-patch-into-a-working-exploit-with-no-human-help/5309926",
+          "kind": "news"
+        }
+      ],
+      "plate": "EXPLOIT_AGENT"
+    },
+    {
+      "id": "dprk-facestealer-2026",
+      "occurred": null,
+      "disclosed": "2026-11-12",
+      "category": "video",
+      "outcome": "loss",
+      "ai_evidence": "confirmed",
+      "usd_m": 400,
+      "en": {
+        "short": "North Korea FaceStealer",
+        "title": "North Korea's FaceStealer: fake video calls took more than $400M in crypto",
+        "amount": "$400M+",
+        "amount_note": "Whole scheme over 18 months, not only the deepfake part · 900+ victim videos seized",
+        "summary": "Targets got a meeting invite from a contact whose account had already been taken over. In the call they saw that contact's real webcam footage, secretly recorded in an earlier attack, while their own camera was recorded for the next round. The Justice Department says the hackers also used AI to make deepfake videos of well-known figures in crypto and Web3 to win trust. Seconds into the call a fake \"we can't hear you\" error appeared, and the fix installed malware that stole crypto. On 12 November the FBI and Justice Department announced they had seized the scheme's cloud infrastructure and more than 900 victims' webcam videos. The FBI attributes it to the North Korean group known as BlueNoroff or Sapphire Sleet.",
+        "takeaway_label": "How to spot it",
+        "takeaway": "A familiar face on a video call is no longer proof. If a call asks you to download a fix or run a command, hang up and reach the person another way. The core trick was real recorded footage and AI deepfakes were an extra tool, so the $400M is not all down to AI.",
+        "steps": [
+          "Contact's account is hijacked",
+          "Fake meeting plays their recorded video",
+          "Fake audio error asks for a fix",
+          "Malware steals the crypto"
+        ],
+        "human_role": "North Korean operators ran the scheme. AI faked videos of well-known people; the core trick was real recorded footage.",
+        "art_note": "A familiar face, a fake error, a drained wallet; the 900 squares are the seized videos"
+      },
+      "zh": {
+        "short": "朝鲜 FaceStealer",
+        "title": "朝鲜 FaceStealer：假视频会议骗走超过 $4 亿加密货币",
+        "amount": "$4亿+",
+        "amount_note": "整个骗局 18 个月的总数，不只是深度伪造那部分 · 查获 900 多段受害者视频",
+        "summary": "目标收到一位熟人发来的会议邀请，但熟人的账号早已被盗。进入会议后，看到的是这位熟人此前被偷录的真实摄像头画面，而自己的画面也在被录下，用于下一轮。美国司法部称，黑客还用 AI 制作加密货币和 Web3 圈知名人士的深度伪造视频来取得信任。会议开始几秒后弹出假的“听不到声音”故障，所谓修复会安装恶意软件，盗走加密货币。11 月 12 日，FBI 和司法部宣布查扣了这个骗局的云端基础设施和 900 多段受害者摄像头视频。FBI 认定幕后是朝鲜黑客组织 BlueNoroff（又称 Sapphire Sleet）。",
+        "takeaway_label": "防骗要点",
+        "takeaway": "视频里出现熟悉的脸，已经不能证明是本人。通话中让你下载“修复工具”或运行命令，就挂断，换个渠道联系对方。核心手法是偷录的真实画面，AI 深度伪造只是额外的一招，所以 $4 亿不能都算在 AI 头上。",
+        "steps": [
+          "熟人账号被盗",
+          "假会议播放熟人的录像",
+          "假故障要求修复",
+          "恶意软件盗走加密货币"
+        ],
+        "human_role": "朝鲜黑客操作整个骗局。AI 用来伪造知名人士的视频，核心手法是偷录的真实画面。",
+        "art_note": "熟悉的脸、假的报错、被掏空的钱包；右边 900 个格子是查获的视频"
+      },
+      "sources": [
+        {
+          "name": "FBI",
+          "url": "https://www.fbi.gov/investigate/cyber/facestealer-cryptocurrency-theft-scheme",
+          "kind": "official"
+        },
+        {
+          "name": "The Hacker News",
+          "url": "https://thehackernews.com/2026/11/fbi-says-north-korean-hackers-stole.html",
+          "kind": "news"
+        },
+        {
+          "name": "Nextgov",
+          "url": "https://www.nextgov.com/cybersecurity/2026/11/fbi-disrupts-intricate-north-korean-fake-call-scheme-tied-400m-crypto-theft/417200/",
+          "kind": "news"
+        }
+      ],
+      "plate": "FACESTEALER"
+    },
+    {
+      "id": "barracuda-artex-breach-2026",
+      "occurred": "2026-11-01",
+      "disclosed": "2026-11-11",
+      "category": "breach",
+      "outcome": "no_funds",
+      "ai_evidence": "confirmed",
+      "usd_m": null,
+      "en": {
+        "short": "Barracuda",
+        "title": "Barracuda: an AI pentest tool used a forgotten vendor key to reach about 10 cloud accounts in 44 hours",
+        "amount": "No loss disclosed",
+        "amount_note": "About 10 cloud accounts · 44 hours · some XDR customers asked to reset credentials",
+        "summary": "Barracuda had given a cloud access key to an AI company it worked with and never retired it after the project ended. Barracuda believes the attacker took the key when that vendor's development environment was compromised in October. On 1 and 2 November the attacker used it to read stored secrets, including cloud keys, and reused each credential it found to reach the next system. An attempt to create a new cloud administrator was blocked. On 4 November an engineer noticed unusual activity on their account and reported it. The attacker also hunted for crypto wallet material, though there was none on those systems. Barracuda says the probe names, the order of the work and the built-in routines for hunting credentials and wallets all match ARTEX, an open-source AI pentesting framework.",
+        "takeaway_label": "Lesson",
+        "takeaway": "Barracuda admits it never retired the key after the vendor's project ended, and says short-lived, narrowly scoped credentials would have stopped the intrusion at its first step. The ARTEX match shows how the attack was run, not who ran it.",
+        "steps": [
+          "Vendor is breached and the old key stolen",
+          "Key reads stored secrets",
+          "Each secret opens the next system",
+          "An engineer spots it on 4 November"
+        ],
+        "human_role": "Unknown who ran it. Barracuda says the activity matches ARTEX, an AI tool many groups use.",
+        "art_note": "One old key, about 10 cloud accounts, 44 hour marks; teal is the blocked admin attempt"
+      },
+      "zh": {
+        "short": "Barracuda",
+        "title": "Barracuda：AI 渗透工具拿着一把忘了收回的供应商密钥，44 小时进了约 10 个云账号",
+        "amount": "未披露损失",
+        "amount_note": "约 10 个云账号 · 44 小时 · 部分 XDR 客户被要求重置凭据",
+        "summary": "Barracuda 曾把一把云访问密钥交给合作的一家 AI 公司，项目结束后一直没收回。Barracuda 认为，这家供应商的开发环境在 10 月被入侵，密钥就是那时被拿走的。11 月 1 日到 2 日，攻击者用它读取存储的云密钥等机密，再用每个新找到的凭据进入下一个系统。新建云管理员身份的尝试被拦下。11 月 4 日，一名工程师发现自己的账号有异常并上报。攻击者还搜找加密钱包材料，但这些系统里没有。Barracuda 称，探测名称、攻击顺序，以及内置的找凭据、找钱包程序，都和开源 AI 渗透测试框架 ARTEX 一致。",
+        "takeaway_label": "教训",
+        "takeaway": "Barracuda 承认，供应商项目结束后没有收回这把密钥。它说，如果用短期、权限收窄的凭据，这次入侵在第一步就会被挡住。ARTEX 只说明攻击怎么做的，不说明是谁做的。",
+        "steps": [
+          "供应商被入侵，旧密钥被盗",
+          "用密钥读取存储的机密",
+          "每个机密打开下一个系统",
+          "11 月 4 日被工程师发现"
+        ],
+        "human_role": "不知道是谁操作的。Barracuda 称手法和 ARTEX 一致，这款 AI 工具很多团伙都在用。",
+        "art_note": "一把旧钥匙，约 10 个云账号，44 个小时刻度；青色是被拦下的建管理员尝试"
+      },
+      "sources": [
+        {
+          "name": "Barracuda",
+          "url": "https://blog.barracuda.com/2026/11/11/anatomy-of-a-machine-speed-intrusion",
+          "kind": "official"
+        },
+        {
+          "name": "BleepingComputer",
+          "url": "https://www.bleepingcomputer.com/news/security/barracuda-links-cloud-breach-to-artex-ai-powered-cyberattack/",
+          "kind": "news"
+        },
+        {
+          "name": "SecurityWeek",
+          "url": "https://www.securityweek.com/barracuda-hacked-amid-surge-in-artex-powered-cyberattacks/",
+          "kind": "news"
+        }
+      ],
+      "plate": "BARRACUDA"
     }
   ]
 }
