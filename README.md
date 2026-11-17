@@ -52,6 +52,8 @@ The site has three parts, in English and Chinese:
 
 Corrections matter more than new entries. See [CONTRIBUTING.md](CONTRIBUTING.md), or open an issue with a source.
 
+Every Monday a scheduled job scans security news feeds and opens a `scout` issue listing candidate events. It never edits the data. A person checks each candidate's sources and AI evidence, then adds it through a pull request, and merging to `main` redeploys the site.
+
 ## Run locally
 
 ```sh
